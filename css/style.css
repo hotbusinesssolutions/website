@@ -1,10 +1,77 @@
-/* ================================
+/* =========================================================
    HOT BUSINESS SOLUTIONS
-   Main Stylesheet
-================================ */
+   Global Design System
+
+   Brand Palette
+   ---------------------------------------------------------
+   White       #FFFFFF   60%
+   True Black  #000000   30%
+   Yellow      #EFBF04   10%
+
+   Brand Typeface
+   ---------------------------------------------------------
+   Mundial Narrow Extra Bold
+========================================================= */
 
 
-/* ---------- RESET ---------- */
+/* =========================================================
+   1. DESIGN TOKENS
+========================================================= */
+
+:root {
+
+    /* Brand Colors */
+
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-yellow: #efbf04;
+
+
+    /* Supporting Neutrals */
+
+    --color-gray-50: #fafafa;
+    --color-gray-100: #f5f5f5;
+    --color-gray-200: #e5e5e5;
+    --color-gray-400: #a3a3a3;
+    --color-gray-600: #525252;
+
+
+    /* Typography */
+
+    --font-brand:
+        "Mundial Narrow Extra Bold",
+        "Arial Narrow",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    --font-body:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+
+    /* Layout */
+
+    --container-width: 1240px;
+    --page-gutter: 5%;
+
+
+    /* Header */
+
+    --header-height: 80px;
+
+
+    /* Motion */
+
+    --transition-fast: 180ms ease;
+    --transition-normal: 280ms ease;
+}
+
+
+/* =========================================================
+   2. RESET
+========================================================= */
 
 *,
 *::before,
@@ -18,15 +85,34 @@ html {
 
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #172033;
-    background: #ffffff;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    color: var(--color-black);
+    background: var(--color-white);
+
+    font-family: var(--font-body);
+    font-size: 16px;
     line-height: 1.6;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
-img {
-    max-width: 100%;
+img,
+picture,
+svg {
     display: block;
+    max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
 }
 
 a {
@@ -34,382 +120,459 @@ a {
 }
 
 
-/* ---------- DESIGN SYSTEM ---------- */
-
-:root {
-    --navy: #101d38;
-    --blue: #1d4ed8;
-    --light-blue: #eef4ff;
-    --text: #172033;
-    --muted: #64748b;
-    --border: #e2e8f0;
-    --white: #ffffff;
-
-    --container: 1180px;
-}
-
-
-/* ---------- LAYOUT ---------- */
+/* =========================================================
+   3. GLOBAL LAYOUT
+========================================================= */
 
 .container {
-    width: min(90%, var(--container));
+    width: min(
+        calc(100% - (var(--page-gutter) * 2)),
+        var(--container-width)
+    );
+
     margin-inline: auto;
 }
 
-.narrow {
-    max-width: 800px;
+
+/*
+   Main is intentionally empty for now.
+
+   flex: 1 keeps the footer at the bottom
+   even when a page contains no content.
+*/
+
+main {
+    flex: 1;
 }
 
-.section {
-    padding: 110px 0;
+
+/* =========================================================
+   4. BRAND TYPOGRAPHY
+========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.logo,
+.nav-menu a,
+.button {
+    font-family: var(--font-brand);
+    font-weight: 800;
 }
 
-.section-light {
-    background: #f7f9fc;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+
+    color: var(--color-black);
+
+    line-height: 0.95;
+    letter-spacing: -0.025em;
 }
 
 
-/* ---------- HEADER ---------- */
+/* =========================================================
+   5. HEADER
+========================================================= */
 
 .site-header {
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
 
-    background: rgba(255, 255, 255, 0.96);
-    border-bottom: 1px solid var(--border);
+    width: 100%;
+
+    background: var(--color-white);
+
+    border-bottom:
+        1px solid var(--color-gray-200);
 }
 
+
+/* =========================================================
+   6. NAVBAR
+========================================================= */
+
 .navbar {
-    min-height: 76px;
+    min-height: var(--header-height);
 
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    gap: 48px;
 }
 
+
+/* =========================================================
+   7. LOGO / WORDMARK
+========================================================= */
+
 .logo {
+    display: inline-flex;
+    align-items: center;
+
+    color: var(--color-black);
+
+    font-size: 1.1rem;
+    line-height: 1;
+
     text-decoration: none;
-    font-weight: 800;
-    color: var(--navy);
+    white-space: nowrap;
+
+    transition:
+        color var(--transition-fast);
 }
+
+.logo:hover {
+    color: var(--color-black);
+}
+
+
+/* =========================================================
+   8. DESKTOP NAVIGATION
+========================================================= */
 
 .nav-menu {
     display: flex;
-    gap: 32px;
+    align-items: center;
+
+    gap: 36px;
 }
 
 .nav-menu a {
+    position: relative;
+
+    padding: 30px 0;
+
+    color: var(--color-black);
+
+    font-size: 0.9rem;
+    line-height: 1;
+
     text-decoration: none;
-    color: #475569;
-    font-size: 0.95rem;
-    font-weight: 600;
-}
 
-.nav-menu a:hover {
-    color: var(--blue);
-}
-
-.menu-toggle {
-    display: none;
-    background: none;
-    border: 0;
-    font-size: 1.6rem;
-    cursor: pointer;
+    transition:
+        color var(--transition-fast);
 }
 
 
-/* ---------- TYPOGRAPHY ---------- */
+/*
+   Yellow is deliberately used as an accent,
+   rather than as a large background color.
+*/
 
-h1,
-h2,
-h3 {
-    margin-top: 0;
-    color: var(--navy);
-    line-height: 1.1;
+.nav-menu a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 20px;
+
+    height: 3px;
+
+    background: var(--color-yellow);
+
+    transform: scaleX(0);
+    transform-origin: left;
+
+    transition:
+        transform var(--transition-fast);
 }
 
-h1 {
-    font-size: clamp(2.7rem, 6vw, 5.4rem);
-    letter-spacing: -0.055em;
-    max-width: 900px;
-}
-
-h2 {
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    letter-spacing: -0.04em;
-}
-
-h3 {
-    font-size: 1.3rem;
-}
-
-.eyebrow {
-    margin-bottom: 20px;
-
-    color: var(--blue);
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-}
-
-.section-intro {
-    color: var(--muted);
-    font-size: 1.15rem;
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
+    transform: scaleX(1);
 }
 
 
-/* ---------- HERO ---------- */
-.page-hero {
-    padding: 120px 0 100px;
-    background: #ffffff;
-    border-bottom: 1px solid var(--border);
-}
+/* =========================================================
+   9. BUTTON FOUNDATION
 
-.page-hero h1 {
-    max-width: 900px;
-}
-
-.page-hero .hero-description {
-    max-width: 720px;
-}
-.hero {
-    padding: 120px 0;
-    background: var(--white);
-}
-
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1.7fr 0.7fr;
-    gap: 80px;
-    align-items: end;
-}
-
-.hero-description {
-    max-width: 650px;
-    margin: 30px 0;
-
-    color: var(--muted);
-    font-size: 1.15rem;
-}
-
-.hero-actions {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-
-/* ---------- HERO CARD ---------- */
-
-.hero-card {
-    padding: 38px;
-
-    background: var(--navy);
-    color: #cbd5e1;
-}
-
-.hero-card h2 {
-    color: white;
-    font-size: 2rem;
-}
-
-.card-label {
-    color: #93c5fd;
-    font-size: 0.75rem;
-    font-weight: 800;
-    letter-spacing: 0.15em;
-}
-
-.card-highlight {
-    margin-top: 35px;
-    color: white;
-    font-size: 1.3rem;
-    font-weight: 700;
-}
-
-
-/* ---------- BUTTONS ---------- */
+   Ready for use when we start building page content.
+========================================================= */
 
 .button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
-    padding: 14px 22px;
+    min-height: 52px;
+
+    padding: 14px 24px;
+
+    border: 2px solid transparent;
 
     text-decoration: none;
-    font-weight: 700;
 
-    border: 1px solid transparent;
+    cursor: pointer;
 
     transition:
-        background 0.2s ease,
-        color 0.2s ease,
-        border-color 0.2s ease;
+        color var(--transition-fast),
+        background-color var(--transition-fast),
+        border-color var(--transition-fast);
 }
 
+
+/* Primary brand CTA */
+
 .button-primary {
-    background: var(--blue);
-    color: white;
+    color: var(--color-black);
+    background: var(--color-yellow);
 }
 
 .button-primary:hover {
-    background: #173fb0;
+    color: var(--color-white);
+    background: var(--color-black);
 }
 
+
+/* Secondary CTA */
+
 .button-secondary {
-    border-color: var(--border);
-    color: var(--navy);
+    color: var(--color-black);
+    background: var(--color-white);
+
+    border-color: var(--color-black);
 }
 
 .button-secondary:hover {
-    border-color: var(--navy);
-}
-
-.button-light {
-    background: white;
-    color: var(--navy);
+    color: var(--color-white);
+    background: var(--color-black);
 }
 
 
-/* ---------- SERVICES ---------- */
+/* =========================================================
+   10. MOBILE MENU BUTTON
+========================================================= */
 
-.services-grid {
-    margin-top: 60px;
+.menu-toggle {
+    display: none;
 
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    width: 46px;
+    height: 46px;
+
+    padding: 0;
+
+    align-items: center;
+    justify-content: center;
+
+    color: var(--color-black);
+    background: transparent;
+
+    border: 0;
+
+    font-size: 1.5rem;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background-color var(--transition-fast);
 }
 
-.service-card {
-    padding: 35px;
-
-    background: white;
-    border: 1px solid var(--border);
-}
-
-.service-card span {
-    display: block;
-    margin-bottom: 45px;
-
-    color: var(--blue);
-    font-weight: 800;
-}
-
-.service-card p {
-    color: var(--muted);
-}
-
-
-/* ---------- CAREERS ---------- */
-
-.careers {
-    background: var(--navy);
-}
-
-.careers h2 {
-    margin-bottom: 0;
-    max-width: 700px;
-    color: white;
-}
-
-.careers .eyebrow {
-    color: #93c5fd;
-}
-
-.careers-content {
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
-    gap: 50px;
+.menu-toggle:hover {
+    background: var(--color-yellow);
 }
 
 
-/* ---------- FOOTER ---------- */
+/* =========================================================
+   11. FOOTER
+========================================================= */
 
 .footer {
-    padding: 35px 0;
+    width: 100%;
 
-    background: #0a1222;
-    color: #94a3b8;
+    padding: 32px 0;
 
-    font-size: 0.9rem;
+    color: var(--color-white);
+    background: var(--color-black);
+
+    font-size: 0.875rem;
 }
 
 .footer-content {
     display: flex;
+    align-items: center;
     justify-content: space-between;
+
+    gap: 32px;
+}
+
+.footer p {
+    margin: 0;
 }
 
 
-/* ---------- ACCESSIBILITY ---------- */
+/* Small yellow brand accent */
+
+.footer::before {
+    content: "";
+
+    display: block;
+
+    width: 100%;
+    height: 4px;
+
+    margin-top: -32px;
+    margin-bottom: 28px;
+
+    background: var(--color-yellow);
+}
+
+
+/* =========================================================
+   12. ACCESSIBILITY
+========================================================= */
 
 a:focus-visible,
-button:focus-visible {
-    outline: 3px solid #60a5fa;
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--color-yellow);
     outline-offset: 4px;
 }
 
 
-/* ---------- MOBILE ---------- */
+/* =========================================================
+   13. SELECTION
+========================================================= */
+
+::selection {
+    color: var(--color-black);
+    background: var(--color-yellow);
+}
+
+
+/* =========================================================
+   14. TABLET / MOBILE
+========================================================= */
 
 @media (max-width: 800px) {
 
-    .section {
-        padding: 75px 0;
+    :root {
+        --header-height: 70px;
+        --page-gutter: 6%;
     }
 
-    .hero {
-        padding: 80px 0;
+
+    /* NAVBAR */
+
+    .navbar {
+        min-height: var(--header-height);
+
+        gap: 20px;
     }
 
-    .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 45px;
+
+    /* LOGO */
+
+    .logo {
+        font-size: 1rem;
     }
 
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
 
-    .careers-content {
-        align-items: flex-start;
-        flex-direction: column;
-    }
+    /* HAMBURGER */
 
     .menu-toggle {
-        display: block;
+        display: inline-flex;
     }
+
+
+    /* MOBILE NAVIGATION */
 
     .nav-menu {
         position: absolute;
-        top: 76px;
+
+        top: var(--header-height);
         left: 0;
         right: 0;
 
         display: none;
         flex-direction: column;
+        align-items: stretch;
+
         gap: 0;
 
-        padding: 15px 5%;
+        padding: 12px 6% 22px;
 
-        background: white;
-        border-bottom: 1px solid var(--border);
+        background: var(--color-white);
+
+        border-bottom:
+            1px solid var(--color-gray-200);
     }
+
 
     .nav-menu.open {
         display: flex;
     }
 
+
     .nav-menu a {
-        padding: 14px 0;
+        width: 100%;
+
+        padding: 17px 0;
+
+        border-bottom:
+            1px solid var(--color-gray-200);
     }
+
+
+    .nav-menu a:last-child {
+        border-bottom: 0;
+    }
+
+
+    /*
+       Desktop underline isn't appropriate
+       for full-width mobile navigation.
+    */
+
+    .nav-menu a::after {
+        left: 0;
+        right: auto;
+        bottom: 10px;
+
+        width: 34px;
+    }
+
+
+    /* FOOTER */
 
     .footer-content {
         flex-direction: column;
-        gap: 5px;
+        align-items: flex-start;
+
+        gap: 6px;
+    }
+
+}
+
+
+/* =========================================================
+   15. REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
     }
 
 }
