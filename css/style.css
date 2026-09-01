@@ -180,6 +180,7 @@ h6 {
 
 /* =========================================================
    5. HEADER
+   Floating centered navigation
 ========================================================= */
 
 .site-header {
@@ -189,10 +190,11 @@ h6 {
 
     width: 100%;
 
-    background: var(--color-white);
+    padding: 18px var(--page-gutter) 0;
 
-    border-bottom:
-        1px solid var(--color-gray-200);
+    background: transparent;
+
+    pointer-events: none;
 }
 
 
@@ -201,13 +203,27 @@ h6 {
 ========================================================= */
 
 .navbar {
-    min-height: var(--header-height);
+    width: min(100%, var(--container-width));
+    min-height: 72px;
+
+    margin-inline: auto;
+    padding: 0 28px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     gap: 48px;
+
+    background: var(--color-white);
+
+    border: 1px solid var(--color-gray-200);
+    border-radius: 22px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.07);
+
+    pointer-events: auto;
 }
 
 
@@ -219,22 +235,30 @@ h6 {
     display: inline-flex;
     align-items: center;
 
+    flex-shrink: 0;
+
     color: var(--color-black);
 
-    font-size: 1.1rem;
+    font-family: var(--font-brand);
+    font-size: 1.05rem;
+    font-weight: 800;
     line-height: 1;
 
     text-decoration: none;
     white-space: nowrap;
 
     transition:
-        color var(--transition-fast);
+        opacity var(--transition-fast);
 }
 
 .logo:hover {
-    color: var(--color-black);
+    opacity: 0.7;
 }
 
+
+/* =========================================================
+   8. DESKTOP NAVIGATION
+========================================================= */
 
 /* =========================================================
    8. DESKTOP NAVIGATION
@@ -244,30 +268,38 @@ h6 {
     display: flex;
     align-items: center;
 
-    gap: 36px;
+    gap: 34px;
 }
 
 .nav-menu a {
     position: relative;
 
-    padding: 30px 0;
+    display: inline-flex;
+    align-items: center;
+
+    min-height: 72px;
+
+    padding: 0;
 
     color: var(--color-black);
 
+    font-family: var(--font-brand);
     font-size: 0.9rem;
+    font-weight: 800;
     line-height: 1;
 
     text-decoration: none;
 
     transition:
-        color var(--transition-fast);
+        opacity var(--transition-fast);
+}
+
+.nav-menu a:hover {
+    opacity: 0.65;
 }
 
 
-/*
-   Yellow is deliberately used as an accent,
-   rather than as a large background color.
-*/
+/* Yellow active / hover indicator */
 
 .nav-menu a::after {
     content: "";
@@ -276,14 +308,16 @@ h6 {
 
     left: 0;
     right: 0;
-    bottom: 20px;
+    bottom: 14px;
 
     height: 3px;
 
     background: var(--color-yellow);
 
+    border-radius: 999px;
+
     transform: scaleX(0);
-    transform-origin: left;
+    transform-origin: center;
 
     transition:
         transform var(--transition-fast);
@@ -294,6 +328,15 @@ h6 {
     transform: scaleX(1);
 }
 
+
+/*
+   Keep the active page fully visible even though
+   normal menu items fade slightly on hover.
+*/
+
+.nav-menu a.active {
+    opacity: 1;
+}
 
 /* =========================================================
    9. BUTTON FOUNDATION
@@ -461,40 +504,49 @@ select:focus-visible {
 @media (max-width: 800px) {
 
     :root {
-        --header-height: 70px;
-        --page-gutter: 6%;
+        --header-height: 64px;
+        --page-gutter: 5%;
     }
 
+    /* FLOATING HEADER */
+
+    .site-header {
+        padding: 12px var(--page-gutter) 0;
+    }
 
     /* NAVBAR */
 
     .navbar {
+        position: relative;
+
         min-height: var(--header-height);
 
-        gap: 20px;
-    }
+        padding: 0 16px;
 
+        gap: 16px;
+
+        border-radius: 18px;
+    }
 
     /* LOGO */
 
     .logo {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
-
 
     /* HAMBURGER */
 
     .menu-toggle {
         display: inline-flex;
+        flex-shrink: 0;
     }
-
 
     /* MOBILE NAVIGATION */
 
     .nav-menu {
         position: absolute;
 
-        top: var(--header-height);
+        top: calc(100% + 10px);
         left: 0;
         right: 0;
 
@@ -504,48 +556,43 @@ select:focus-visible {
 
         gap: 0;
 
-        padding: 12px 6% 22px;
+        padding: 12px 18px;
 
         background: var(--color-white);
 
-        border-bottom:
-            1px solid var(--color-gray-200);
-    }
+        border: 1px solid var(--color-gray-200);
+        border-radius: 18px;
 
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10);
+    }
 
     .nav-menu.open {
         display: flex;
     }
 
-
     .nav-menu a {
         width: 100%;
+        min-height: auto;
 
-        padding: 17px 0;
+        padding: 16px 4px;
 
-        border-bottom:
-            1px solid var(--color-gray-200);
+        border-bottom: 1px solid var(--color-gray-200);
     }
-
 
     .nav-menu a:last-child {
         border-bottom: 0;
     }
 
-
-    /*
-       Desktop underline isn't appropriate
-       for full-width mobile navigation.
-    */
+    /* Yellow active indicator */
 
     .nav-menu a::after {
-        left: 0;
+        left: 4px;
         right: auto;
-        bottom: 10px;
+        bottom: 8px;
 
-        width: 34px;
+        width: 30px;
+        height: 3px;
     }
-
 
     /* FOOTER */
 
