@@ -160,7 +160,19 @@ h3 {
 
 
 /* ---------- HERO ---------- */
+.page-hero {
+    padding: 120px 0 100px;
+    background: #ffffff;
+    border-bottom: 1px solid var(--border);
+}
 
+.page-hero h1 {
+    max-width: 900px;
+}
+
+.page-hero .hero-description {
+    max-width: 720px;
+}
 .hero {
     padding: 120px 0;
     background: var(--white);
