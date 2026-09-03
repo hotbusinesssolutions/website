@@ -1,43 +1,25 @@
 /* =========================================================
    HOT BUSINESS SOLUTIONS
-   Global Design System
-
-   Brand Palette
-   ---------------------------------------------------------
-   White       #FFFFFF   60%
-   True Black  #000000   30%
-   Yellow      #EFBF04   10%
-
-   Brand Typeface
-   ---------------------------------------------------------
-   Mundial Narrow Extra Bold
+   GLOBAL DESIGN SYSTEM
 ========================================================= */
 
 
-/* =========================================================
-   1. DESIGN TOKENS
-========================================================= */
+/* ---------- TOKENS ---------- */
 
 :root {
+    /* Brand */
+    --white: #ffffff;
+    --black: #000000;
+    --yellow: #efbf04;
 
-    /* Brand Colors */
-
-    --color-white: #ffffff;
-    --color-black: #000000;
-    --color-yellow: #efbf04;
-
-
-    /* Supporting Neutrals */
-
-    --color-gray-50: #fafafa;
-    --color-gray-100: #f5f5f5;
-    --color-gray-200: #e5e5e5;
-    --color-gray-400: #a3a3a3;
-    --color-gray-600: #525252;
-
+    /* Neutral */
+    --gray-50: #fafafa;
+    --gray-100: #f5f5f5;
+    --gray-200: #e5e5e5;
+    --gray-500: #737373;
+    --gray-700: #404040;
 
     /* Typography */
-
     --font-brand:
         "Mundial Narrow Extra Bold",
         "Arial Narrow",
@@ -50,28 +32,40 @@
         Helvetica,
         sans-serif;
 
-
     /* Layout */
+    --container: 1240px;
+    --text-width: 720px;
+    --gutter: 5%;
 
-    --container-width: 1240px;
-    --page-gutter: 5%;
+    /* Spacing */
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 40px;
+    --space-xl: 64px;
+    --space-2xl: 96px;
+    --space-3xl: 144px;
 
+    /* Shape */
+    --radius-sm: 10px;
+    --radius-md: 18px;
+    --radius-lg: 28px;
+    --radius-pill: 999px;
 
     /* Header */
-
-    --header-height: 80px;
-
+    --header-height: 72px;
 
     /* Motion */
+    --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
 
-    --transition-fast: 180ms ease;
-    --transition-normal: 280ms ease;
+    --duration-fast: 180ms;
+    --duration-normal: 350ms;
+    --duration-slow: 700ms;
 }
 
 
-/* =========================================================
-   2. RESET
-========================================================= */
+/* ---------- RESET ---------- */
 
 *,
 *::before,
@@ -84,14 +78,14 @@ html {
 }
 
 body {
-    margin: 0;
     min-height: 100vh;
+    margin: 0;
 
     display: flex;
     flex-direction: column;
 
-    color: var(--color-black);
-    background: var(--color-white);
+    color: var(--black);
+    background: var(--white);
 
     font-family: var(--font-body);
     font-size: 16px;
@@ -119,46 +113,56 @@ a {
     color: inherit;
 }
 
-
-/* =========================================================
-   3. GLOBAL LAYOUT
-========================================================= */
-
-.container {
-    width: min(
-        calc(100% - (var(--page-gutter) * 2)),
-        var(--container-width)
-    );
-
-    margin-inline: auto;
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
 }
 
 
-/*
-   Main is intentionally empty for now.
-
-   flex: 1 keeps the footer at the bottom
-   even when a page contains no content.
-*/
+/* ---------- LAYOUT ---------- */
 
 main {
     flex: 1;
 }
 
+.container {
+    width: min(
+        calc(100% - (var(--gutter) * 2)),
+        var(--container)
+    );
 
-/* =========================================================
-   4. BRAND TYPOGRAPHY
-========================================================= */
+    margin-inline: auto;
+}
+
+.text-container {
+    width: min(100%, var(--text-width));
+}
+
+.section {
+    padding-block: var(--space-3xl);
+}
+
+.section-black {
+    color: var(--white);
+    background: var(--black);
+}
+
+.section-yellow {
+    color: var(--black);
+    background: var(--yellow);
+}
+
+
+/* ---------- TYPOGRAPHY ---------- */
 
 h1,
 h2,
 h3,
 h4,
-h5,
-h6,
 .logo,
 .nav-menu a,
-.button {
+.button,
+.eyebrow {
     font-family: var(--font-brand);
     font-weight: 800;
 }
@@ -167,44 +171,83 @@ h1,
 h2,
 h3,
 h4,
-h5,
-h6 {
+p {
     margin-top: 0;
+}
 
-    color: var(--color-black);
+h1,
+h2,
+h3,
+h4 {
+    color: inherit;
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+}
 
-    line-height: 0.95;
-    letter-spacing: -0.025em;
+h1 {
+    font-size: clamp(3.4rem, 6vw, 6.5rem);
+}
+
+h2 {
+    font-size: clamp(2.6rem, 4.5vw, 5rem);
+}
+
+h3 {
+    font-size: clamp(1.7rem, 2.5vw, 2.5rem);
+}
+
+p {
+    margin-bottom: var(--space-md);
+}
+
+.lead {
+    max-width: 680px;
+
+    font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+    line-height: 1.6;
+}
+
+.eyebrow {
+    width: fit-content;
+    margin-bottom: var(--space-md);
+
+    font-size: 0.8rem;
+    line-height: 1;
+
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.eyebrow::after {
+    content: "";
+
+    display: block;
+
+    width: 44px;
+    height: 4px;
+
+    margin-top: 10px;
+
+    background: var(--yellow);
+    border-radius: var(--radius-pill);
 }
 
 
-/* =========================================================
-   5. HEADER
-   Floating centered navigation
-========================================================= */
+/* ---------- HEADER ---------- */
 
 .site-header {
     position: sticky;
     top: 0;
     z-index: 1000;
 
-    width: 100%;
-
-    padding: 18px var(--page-gutter) 0;
-
-    background: transparent;
+    padding: 18px var(--gutter) 0;
 
     pointer-events: none;
 }
 
-
-/* =========================================================
-   6. NAVBAR
-========================================================= */
-
 .navbar {
-    width: min(100%, var(--container-width));
-    min-height: 72px;
+    width: min(100%, var(--container));
+    min-height: var(--header-height);
 
     margin-inline: auto;
     padding: 0 28px;
@@ -212,115 +255,83 @@ h6 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     gap: 48px;
 
-    background: var(--color-white);
+    background: rgb(255 255 255 / 96%);
 
-    border: 1px solid var(--color-gray-200);
+    border: 1px solid var(--gray-200);
     border-radius: 22px;
 
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 10px 30px rgb(0 0 0 / 7%);
 
     pointer-events: auto;
 }
 
-
-/* =========================================================
-   7. LOGO / WORDMARK
-========================================================= */
-
 .logo {
-    display: inline-flex;
-    align-items: center;
-
     flex-shrink: 0;
 
-    color: var(--color-black);
-
-    font-family: var(--font-brand);
     font-size: 1.05rem;
-    font-weight: 800;
     line-height: 1;
 
     text-decoration: none;
     white-space: nowrap;
 
-    transition:
-        opacity var(--transition-fast);
+    transition: opacity var(--duration-fast);
 }
 
 .logo:hover {
-    opacity: 0.7;
+    opacity: 0.65;
 }
 
 
-/* =========================================================
-   8. DESKTOP NAVIGATION
-========================================================= */
-
-/* =========================================================
-   8. DESKTOP NAVIGATION
-========================================================= */
+/* ---------- NAVIGATION ---------- */
 
 .nav-menu {
     display: flex;
     align-items: center;
-
     gap: 34px;
 }
 
 .nav-menu a {
     position: relative;
 
+    min-height: var(--header-height);
+
     display: inline-flex;
     align-items: center;
 
-    min-height: 72px;
-
-    padding: 0;
-
-    color: var(--color-black);
-
-    font-family: var(--font-brand);
     font-size: 0.9rem;
-    font-weight: 800;
     line-height: 1;
 
     text-decoration: none;
 
-    transition:
-        opacity var(--transition-fast);
+    transition: opacity var(--duration-fast);
 }
 
 .nav-menu a:hover {
     opacity: 0.65;
 }
 
-
-/* Yellow active / hover indicator */
-
 .nav-menu a::after {
     content: "";
 
     position: absolute;
-
-    left: 0;
     right: 0;
     bottom: 14px;
+    left: 0;
 
     height: 3px;
 
-    background: var(--color-yellow);
-
-    border-radius: 999px;
+    background: var(--yellow);
+    border-radius: var(--radius-pill);
 
     transform: scaleX(0);
     transform-origin: center;
 
     transition:
-        transform var(--transition-fast);
+        transform
+        var(--duration-fast)
+        var(--ease-standard);
 }
 
 .nav-menu a:hover::after,
@@ -328,117 +339,188 @@ h6 {
     transform: scaleX(1);
 }
 
-
-/*
-   Keep the active page fully visible even though
-   normal menu items fade slightly on hover.
-*/
-
 .nav-menu a.active {
     opacity: 1;
 }
 
-/* =========================================================
-   9. BUTTON FOUNDATION
 
-   Ready for use when we start building page content.
-========================================================= */
-
-.button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    min-height: 52px;
-
-    padding: 14px 24px;
-
-    border: 2px solid transparent;
-
-    text-decoration: none;
-
-    cursor: pointer;
-
-    transition:
-        color var(--transition-fast),
-        background-color var(--transition-fast),
-        border-color var(--transition-fast);
-}
-
-
-/* Primary brand CTA */
-
-.button-primary {
-    color: var(--color-black);
-    background: var(--color-yellow);
-}
-
-.button-primary:hover {
-    color: var(--color-white);
-    background: var(--color-black);
-}
-
-
-/* Secondary CTA */
-
-.button-secondary {
-    color: var(--color-black);
-    background: var(--color-white);
-
-    border-color: var(--color-black);
-}
-
-.button-secondary:hover {
-    color: var(--color-white);
-    background: var(--color-black);
-}
-
-
-/* =========================================================
-   10. MOBILE MENU BUTTON
-========================================================= */
+/* ---------- MOBILE MENU BUTTON ---------- */
 
 .menu-toggle {
-    display: none;
-
     width: 46px;
     height: 46px;
-
     padding: 0;
 
+    display: none;
     align-items: center;
     justify-content: center;
 
-    color: var(--color-black);
+    color: var(--black);
     background: transparent;
 
     border: 0;
+    border-radius: var(--radius-sm);
 
-    font-size: 1.5rem;
-    line-height: 1;
+    font-size: 1.4rem;
 
     cursor: pointer;
-
-    transition:
-        background-color var(--transition-fast);
 }
 
 .menu-toggle:hover {
-    background: var(--color-yellow);
+    background: var(--yellow);
 }
 
 
-/* =========================================================
-   11. FOOTER
-========================================================= */
+/* ---------- BUTTONS ---------- */
+
+.button {
+    min-height: 54px;
+    padding: 14px 26px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    border: 2px solid transparent;
+    border-radius: var(--radius-pill);
+
+    line-height: 1;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    transition:
+        color var(--duration-fast),
+        background var(--duration-fast),
+        border-color var(--duration-fast),
+        transform var(--duration-fast);
+}
+
+.button:hover {
+    transform: translateY(-2px);
+}
+
+.button-primary {
+    color: var(--black);
+    background: var(--yellow);
+}
+
+.button-primary:hover {
+    color: var(--white);
+    background: var(--black);
+}
+
+.button-dark {
+    color: var(--white);
+    background: var(--black);
+}
+
+.button-dark:hover {
+    color: var(--black);
+    background: var(--yellow);
+}
+
+.button-outline {
+    color: var(--black);
+    background: transparent;
+    border-color: var(--black);
+}
+
+.button-outline:hover {
+    color: var(--white);
+    background: var(--black);
+}
+
+.button-arrow {
+    transition:
+        transform
+        var(--duration-fast)
+        var(--ease-standard);
+}
+
+.button:hover .button-arrow {
+    transform: translateX(4px);
+}
+
+
+/* ---------- IMAGES ---------- */
+
+.media {
+    position: relative;
+    overflow: hidden;
+
+    background: var(--gray-100);
+    border-radius: var(--radius-lg);
+}
+
+.media img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform
+        800ms
+        var(--ease-standard);
+}
+
+.media:hover img {
+    transform: scale(1.025);
+}
+
+.image-portrait {
+    aspect-ratio: 4 / 5;
+}
+
+.image-landscape {
+    aspect-ratio: 16 / 10;
+}
+
+.image-square {
+    aspect-ratio: 1;
+}
+
+
+/* ---------- MOTION UTILITIES ---------- */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+
+    transition:
+        opacity var(--duration-slow) var(--ease-enter),
+        transform var(--duration-slow) var(--ease-enter);
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+.reveal-delay-1 {
+    transition-delay: 100ms;
+}
+
+.reveal-delay-2 {
+    transition-delay: 200ms;
+}
+
+.reveal-delay-3 {
+    transition-delay: 300ms;
+}
+
+
+/* ---------- FOOTER ---------- */
 
 .footer {
-    width: 100%;
+    padding: 40px 0;
 
-    padding: 32px 0;
+    color: var(--white);
+    background: var(--black);
 
-    color: var(--color-white);
-    background: var(--color-black);
+    border-top: 4px solid var(--yellow);
 
     font-size: 0.875rem;
 }
@@ -447,7 +529,6 @@ h6 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     gap: 32px;
 }
 
@@ -456,114 +537,102 @@ h6 {
 }
 
 
-/* Small yellow brand accent */
-
-.footer::before {
-    content: "";
-
-    display: block;
-
-    width: 100%;
-    height: 4px;
-
-    margin-top: -32px;
-    margin-bottom: 28px;
-
-    background: var(--color-yellow);
-}
-
-
-/* =========================================================
-   12. ACCESSIBILITY
-========================================================= */
+/* ---------- ACCESSIBILITY ---------- */
 
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-    outline: 3px solid var(--color-yellow);
+    outline: 3px solid var(--yellow);
     outline-offset: 4px;
 }
 
-
-/* =========================================================
-   13. SELECTION
-========================================================= */
-
 ::selection {
-    color: var(--color-black);
-    background: var(--color-yellow);
+    color: var(--black);
+    background: var(--yellow);
 }
 
 
-/* =========================================================
-   14. TABLET / MOBILE
-========================================================= */
+/* ---------- TABLET ---------- */
+
+@media (max-width: 1024px) {
+    :root {
+        --space-3xl: 112px;
+    }
+
+    .navbar {
+        gap: 30px;
+    }
+
+    .nav-menu {
+        gap: 24px;
+    }
+
+}
+
+
+/* ---------- MOBILE ---------- */
 
 @media (max-width: 800px) {
-
     :root {
+        --gutter: 5%;
         --header-height: 64px;
-        --page-gutter: 5%;
+
+        --space-xl: 48px;
+        --space-2xl: 72px;
+        --space-3xl: 80px;
     }
 
-    /* FLOATING HEADER */
+    h1 {
+        font-size: clamp(3rem, 14vw, 4.6rem);
+    }
+
+    h2 {
+        font-size: clamp(2.4rem, 11vw, 3.8rem);
+    }
 
     .site-header {
-        padding: 12px var(--page-gutter) 0;
+        padding: 12px var(--gutter) 0;
     }
-
-    /* NAVBAR */
 
     .navbar {
         position: relative;
 
-        min-height: var(--header-height);
-
         padding: 0 16px;
-
         gap: 16px;
 
         border-radius: 18px;
     }
 
-    /* LOGO */
-
     .logo {
         font-size: 0.95rem;
     }
-
-    /* HAMBURGER */
 
     .menu-toggle {
         display: inline-flex;
         flex-shrink: 0;
     }
 
-    /* MOBILE NAVIGATION */
-
     .nav-menu {
         position: absolute;
-
         top: calc(100% + 10px);
-        left: 0;
         right: 0;
+        left: 0;
 
         display: none;
         flex-direction: column;
         align-items: stretch;
-
         gap: 0;
 
         padding: 12px 18px;
 
-        background: var(--color-white);
+        background: var(--white);
 
-        border: 1px solid var(--color-gray-200);
+        border: 1px solid var(--gray-200);
         border-radius: 18px;
 
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10);
+        box-shadow: 0 12px 30px rgb(0 0 0 / 10%);
     }
 
     .nav-menu.open {
@@ -576,42 +645,51 @@ select:focus-visible {
 
         padding: 16px 4px;
 
-        border-bottom: 1px solid var(--color-gray-200);
+        border-bottom: 1px solid var(--gray-200);
     }
 
     .nav-menu a:last-child {
         border-bottom: 0;
     }
 
-    /* Yellow active indicator */
-
     .nav-menu a::after {
-        left: 4px;
         right: auto;
         bottom: 8px;
+        left: 4px;
 
         width: 30px;
-        height: 3px;
     }
-
-    /* FOOTER */
 
     .footer-content {
         flex-direction: column;
         align-items: flex-start;
-
         gap: 6px;
     }
 
+        /* ---------- SERVICES ---------- */
 }
 
 
-/* =========================================================
-   15. REDUCED MOTION
-========================================================= */
+/* ---------- SMALL MOBILE ---------- */
+
+@media (max-width: 480px) {
+    :root {
+        --gutter: 20px;
+    }
+
+    .logo {
+        font-size: 0.88rem;
+    }
+
+    .button {
+        width: 100%;
+    }
+}
+
+
+/* ---------- REDUCED MOTION ---------- */
 
 @media (prefers-reduced-motion: reduce) {
-
     html {
         scroll-behavior: auto;
     }
@@ -619,7 +697,13 @@ select:focus-visible {
     *,
     *::before,
     *::after {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
         transition-duration: 0.01ms !important;
     }
 
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
 }
