@@ -141,6 +141,24 @@
     line-height: 1.65;
 }
 
+/* ---------- HERO ACTIONS ---------- */
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
+.hero-actions .button-outline {
+    background: transparent;
+}
+
+.hero-actions .button-outline:hover {
+    color: var(--white);
+    background: var(--black);
+}
+
 
 /* ---------- HERO ANIMATION ---------- */
 
@@ -178,25 +196,16 @@
 
 [data-brake-reveal] {
     opacity: 0;
-    transform: translateX(130px);
+    transform: translateY(22px);
 
     animation:
         brake-in 900ms
         var(--ease-enter)
-        850ms forwards;
+        500ms forwards;
 }
 
 @keyframes brake-in {
-    68% {
-        opacity: 1;
-        transform: translateX(-16px);
-    }
-
-    84% {
-        transform: translateX(6px);
-    }
-
-    100% {
+    to {
         opacity: 1;
         transform: none;
     }
@@ -361,8 +370,10 @@
 ========================================================= */
 
 .services-home {
+    position: relative;
+
     color: var(--white);
-    background: var(--black);
+    background: var(--charcoal);
 }
 
 .services-header {
@@ -391,15 +402,30 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 
-    border-top: 1px solid rgb(255 255 255 / 25%);
-    border-bottom: 1px solid rgb(255 255 255 / 25%);
+    background: var(--charcoal-deep);
+
+    border:
+        1px solid
+        rgb(255 255 255 / 14%);
+
+    border-radius: var(--radius-lg);
+
+    overflow: hidden;
+
+    box-shadow:
+        0 24px 60px
+        rgb(0 0 0 / 20%);
 }
 
 
 /* ---------- SERVICE LIST ---------- */
 
 .service-list {
-    border-right: 1px solid rgb(255 255 255 / 25%);
+    background: var(--charcoal-deep);
+
+    border-right:
+        1px solid
+        rgb(255 255 255 / 14%);
 }
 
 .service-tab {
@@ -416,7 +442,7 @@
     background: transparent;
 
     border: 0;
-    border-bottom: 1px solid rgb(255 255 255 / 20%);
+    border-bottom: 1px solid rgb(255 255 255 / 12%);
 
     text-align: left;
     cursor: pointer;
@@ -475,10 +501,12 @@
 
 .service-panel {
     min-width: 0;
-    padding: 34px 0 34px 48px;
+    padding: 34px 34px 34px 48px;
 
     display: flex;
     flex-direction: column;
+
+    background: var(--charcoal);
 }
 
 .service-panel-top {
@@ -515,10 +543,19 @@
     display: grid;
     place-content: center;
 
-    color: var(--gray-500);
-    background: #161616;
+    color: rgb(255 255 255 / 48%);
 
-    border: 1px solid rgb(255 255 255 / 12%);
+    background:
+        linear-gradient(
+            145deg,
+            var(--charcoal-soft),
+            var(--charcoal-deep)
+        );
+
+    border:
+        1px solid
+        rgb(255 255 255 / 12%);
+
     border-radius: var(--radius-lg);
 
     font-size: 0.85rem;
@@ -831,22 +868,26 @@
 
 .services-explorer {
     grid-template-columns: 1fr;
-    border-bottom: 0;
+
+    border-radius: 22px;
 }
 
 .service-list {
     border-right: 0;
+    border-bottom:
+        1px solid
+        rgb(255 255 255 / 14%);
 }
 
 .service-tab {
     min-height: 82px;
-    padding: 20px 4px;
+    padding: 20px;
 
     grid-template-columns: 34px 1fr auto;
 }
 
 .service-panel {
-    padding: 40px 0 0;
+    padding: 32px 20px 24px;
 }
 
 .service-visual {
@@ -857,7 +898,39 @@
     font-size: clamp(2rem, 10vw, 3rem);
 }
 
-/* ---------- PANEL CHANGE ---------- */
+.hero-actions {
+    width: 100%;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.hero-actions .button {
+    width: 100%;
+}
+
+    .capability {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .capability-info {
+        grid-template-columns: 72px minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .capability-track {
+        width: 100%;
+        height: 10px;
+        border-radius: var(--radius-pill);
+    }
+
+    .capability-bar {
+        border-radius: var(--radius-pill);
+    }
+}
+
+
+/* ---------- SERVICE PANEL CHANGE ---------- */
 
 .service-copy.is-changing {
     animation:
@@ -879,119 +952,553 @@
 }
 
 /* =========================================================
-   MANILA CAPABILITIES
+   FINAL CTA
 ========================================================= */
 
-.capabilities {
-    color: var(--black);
-    background: var(--white);
+.final-cta {
+    position: relative;
+    overflow: hidden;
+
+    padding: var(--space-3xl) 0;
+
+    color: var(--white);
+    background: var(--charcoal-deep);
+
+    border-top: 4px solid var(--yellow);
 }
 
-.capabilities-header {
-    max-width: 800px;
-    margin-bottom: var(--space-2xl);
+/* Decorative gold background shape */
+
+.final-cta::before {
+    content: "";
+
+    position: absolute;
+    top: -260px;
+    right: -190px;
+
+    width: 620px;
+    height: 620px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgb(239 191 4 / 20%) 0%,
+            rgb(239 191 4 / 7%) 45%,
+            transparent 70%
+        );
+
+    pointer-events: none;
 }
 
-.capabilities-header h2 {
-    max-width: 720px;
-    margin-bottom: var(--space-md);
+.final-cta::after {
+    content: "";
+
+    position: absolute;
+    bottom: -120px;
+    left: 38%;
+
+    width: 240px;
+    height: 240px;
+
+    border: 1px solid rgb(239 191 4 / 25%);
+    border-radius: 50%;
+
+    pointer-events: none;
 }
 
-.capabilities-header .lead {
-    margin-bottom: 0;
-}
-
-.capabilities-list {
-    border-top: 1px solid var(--gray-200);
-}
-
-.capability {
-    padding: 34px 0;
+.final-cta-layout {
+    position: relative;
+    z-index: 1;
 
     display: grid;
     grid-template-columns:
-        minmax(360px, 0.8fr) 1.2fr;
+        minmax(0, 1.15fr)
+        minmax(340px, 0.85fr);
 
     align-items: center;
-    gap: 60px;
-
-    border-bottom: 1px solid var(--gray-200);
+    gap: clamp(50px, 8vw, 110px);
 }
 
-.capability-info {
-    display: grid;
-    grid-template-columns: 90px 1fr;
 
-    align-items: center;
-    gap: 24px;
+/* ---------- CTA CONTENT ---------- */
+
+.final-cta-content {
+    max-width: 760px;
 }
 
-.capability-value {
+.final-cta-eyebrow {
     color: var(--yellow);
-
-    font-family: var(--font-brand);
-    font-size: 1.4rem;
-    font-weight: 800;
 }
 
-.capability h3 {
-    margin: 0;
-
-    font-size:
-        clamp(1.5rem, 2.2vw, 2.2rem);
+.final-cta-title {
+    max-width: 760px;
+    margin-bottom: var(--space-md);
 }
 
-.capability-track {
-    height: 12px;
+.final-cta-title span {
+    display: block;
+    width: fit-content;
+
+    margin-top: 12px;
+    padding: 0.06em 0.12em 0.1em;
+
+    color: var(--black);
+    background: var(--yellow);
+}
+
+.final-cta-description {
+    max-width: 600px;
+    margin-bottom: 36px;
+
+    color: rgb(255 255 255 / 72%);
+
+    font-size: clamp(1rem, 1.25vw, 1.2rem);
+    line-height: 1.65;
+}
+
+.final-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
+
+/* ---------- PRIMARY BUTTON EFFECT ---------- */
+
+.final-cta-primary {
+    position: relative;
+    z-index: 0;
+    isolation: isolate;
+}
+
+/*
+The gold shape expands slightly behind
+the button when hovered.
+*/
+
+.final-cta-primary::before {
+    content: "";
+
+    position: absolute;
+    z-index: -1;
+    inset: -5px;
+
+    background: var(--yellow);
+    border-radius: var(--radius-pill);
+
+    opacity: 0;
+    transform: scaleX(0.55);
+    transform-origin: center;
+
+    transition:
+        opacity var(--duration-normal),
+        transform var(--duration-normal)
+        var(--ease-enter);
+
+    filter: blur(8px);
+}
+
+.final-cta-primary:hover {
+    color: var(--black);
+    background: var(--yellow);
+}
+
+.final-cta-primary:hover::before {
+    opacity: 0.38;
+    transform: scaleX(1.06);
+}
+
+
+/* ---------- SECONDARY BUTTON ---------- */
+
+.final-cta-secondary {
+    color: var(--white);
+    background: transparent;
+
+    border-color: rgb(255 255 255 / 45%);
+}
+
+.final-cta-secondary:hover {
+    color: var(--black);
+    background: var(--white);
+    border-color: var(--white);
+}
+
+
+/* ---------- IMAGE PLACEHOLDER ---------- */
+
+.final-cta-visual {
+    position: relative;
+
+    min-height: 440px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     overflow: hidden;
 
-    background: var(--gray-100);
+    color: rgb(255 255 255 / 60%);
+    background:
+    linear-gradient(
+        145deg,
+        var(--charcoal-soft),
+        var(--charcoal)
+    );
+
+    border:
+    1px solid
+    rgb(255 255 255 / 14%);
+
+    border-radius: var(--radius-lg);
+}
+
+/* Gold corner accent */
+
+.final-cta-visual::before {
+    content: "";
+
+    position: absolute;
+    top: 24px;
+    left: 24px;
+
+    width: 52px;
+    height: 8px;
+
+    background: var(--yellow);
     border-radius: var(--radius-pill);
 }
 
-.capability-bar {
-    display: block;
+/* Decorative connection circle */
 
-    width: var(--value);
-    height: 100%;
+.final-cta-visual::after {
+    content: "";
 
-    background: var(--black);
-    border-radius: var(--radius-pill);
+    position: absolute;
+    right: -70px;
+    bottom: -70px;
 
-    transform: scaleX(0);
-    transform-origin: left;
+    width: 210px;
+    height: 210px;
 
-    transition:
-        transform
-        900ms
-        var(--ease-enter);
+    border:
+        1px solid
+        rgb(239 191 4 / 35%);
+
+    border-radius: 50%;
 }
 
-.capability.is-visible .capability-bar {
-    transform: scaleX(1);
+.final-cta-visual-label {
+    color: var(--white);
+
+    font-family: var(--font-brand);
+    font-weight: 800;
 }
 
-.capabilities-note {
-    margin: 18px 0 0;
+.final-cta-visual-note {
+    margin-top: 4px;
 
-    color: var(--gray-500);
-
-    font-size: 0.78rem;
+    color: rgb(255 255 255 / 45%);
+    font-size: 0.85rem;
 }
 
 
-/* ---------- REDUCED MOTION ---------- */
+/* ---------- TABLET ---------- */
+
+@media (max-width: 1024px) {
+    .final-cta-layout {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(300px, 0.75fr);
+
+        gap: 50px;
+    }
+
+    .final-cta-visual {
+        min-height: 380px;
+    }
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 800px) {
+    .final-cta-layout {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .final-cta-title span {
+        margin-top: 8px;
+    }
+
+    .final-cta-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .final-cta-actions .button {
+        width: 100%;
+    }
+
+    .final-cta-visual {
+        min-height: 340px;
+    }
+
+    .final-cta::before {
+        top: auto;
+        right: -220px;
+        bottom: -180px;
+
+        width: 500px;
+        height: 500px;
+    }
+}
+
+
+/* ---------- SMALL MOBILE ---------- */
+
+@media (max-width: 480px) {
+    .final-cta {
+        padding: 80px 0;
+    }
+
+    .final-cta-visual {
+        min-height: 290px;
+        border-radius: 22px;
+    }
+}
+
 
 /* ---------- REDUCED MOTION ---------- */
 
 @media (prefers-reduced-motion: reduce) {
-    .reveal-word,
-    [data-brake-reveal],
-    .capability-bar {
-        opacity: 1;
-        transform: none;
+    .final-cta-primary::before {
+        transition: none;
     }
 }
 
+/* =========================================================
+   BUSINESS UNIT MARQUEE
+========================================================= */
+
+.brand-marquee {
+    --brand-gap: clamp(18px, 2.5vw, 34px);
+
+    position: relative;
+    overflow: hidden;
+
+    padding: 42px 0;
+
+    color: var(--black);
+    background: var(--white);
+
+    border-top: 1px solid var(--gray-200);
+}
+
+
+/* ---------- MOVING AREA ---------- */
+
+.brand-marquee-window {
+    width: 100%;
+    overflow: hidden;
+
+    -webkit-mask-image:
+        linear-gradient(
+            to right,
+            transparent,
+            black 7%,
+            black 93%,
+            transparent
+        );
+
+    mask-image:
+        linear-gradient(
+            to right,
+            transparent,
+            black 7%,
+            black 93%,
+            transparent
+        );
+}
+
+.brand-marquee-track {
+    width: max-content;
+
+    display: flex;
+
+    animation:
+        brand-marquee-scroll
+        32s
+        linear
+        infinite;
+
+    will-change: transform;
+}
+
+.brand-marquee-group {
+    display: flex;
+    align-items: center;
+    gap: var(--brand-gap);
+
+    padding-right: var(--brand-gap);
+}
+
+.brand-marquee-window:hover
+.brand-marquee-track {
+    animation-play-state: paused;
+}
+
+
+/* ---------- LOGO CARDS ---------- */
+
+.brand-logo-card {
+    width: clamp(190px, 17vw, 250px);
+    height: 118px;
+    padding: 20px 26px;
+
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+
+    transition:
+        transform var(--duration-fast);
+}
+
+.brand-logo-card:hover {
+    transform: translateY(-4px);
+}
+
+
+/* ---------- LOGO IMAGES ---------- */
+
+.brand-logo {
+    width: 100%;
+    height: 70px;
+
+    display: block;
+    object-fit: contain;
+
+    filter: grayscale(1);
+    opacity: 0.74;
+
+    transition:
+        filter var(--duration-normal),
+        opacity var(--duration-normal),
+        transform var(--duration-normal)
+        var(--ease-standard);
+}
+
+.brand-logo-card:hover .brand-logo {
+    filter: grayscale(0);
+    opacity: 1;
+    transform: scale(1.035);
+}
+
+/* White wordmarks remain legible on the light marquee. */
+
+.brand-logo-card-light-logo .brand-logo,
+.brand-logo-card-light-logo:hover .brand-logo {
+    filter: brightness(0) saturate(100%);
+}
+
+.brand-logo-hoot {
+    height: 55px;
+}
+
+.brand-logo-house {
+    height: 78px;
+}
+
+.brand-logo-mix {
+    height: 52px;
+}
+
+.brand-logo-nexus {
+    height: 86px;
+}
+
+.brand-logo-orbit {
+    height: 76px;
+}
+
+.brand-logo-travelmanagers {
+    height: 58px;
+}
+
+.brand-logo-wanderlust {
+    height: 72px;
+}
+
+
+/* ---------- MARQUEE MOVEMENT ---------- */
+
+@keyframes brand-marquee-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+
+/* ---------- TABLET AND MOBILE ---------- */
+
+@media (max-width: 800px) {
+    .brand-marquee {
+        --brand-gap: 16px;
+
+        padding: 34px 0;
+    }
+
+    .brand-marquee-track {
+        animation-duration: 25s;
+    }
+
+    .brand-logo-card {
+        width: 180px;
+        height: 98px;
+        padding: 17px 21px;
+    }
+
+    .brand-logo {
+        max-height: 64px;
+    }
+}
+
+
+/* ---------- ACCESSIBILITY ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .brand-marquee-window {
+        overflow-x: auto;
+
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    .brand-marquee-track {
+        width: auto;
+        animation: none;
+    }
+
+    .brand-marquee-group {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .brand-marquee-group[aria-hidden="true"] {
+        display: none;
+    }
 }

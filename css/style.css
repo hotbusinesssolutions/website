@@ -18,6 +18,11 @@
     --gray-200: #e5e5e5;
     --gray-500: #737373;
     --gray-700: #404040;
+    
+    /* Dark surfaces */
+    --charcoal: #313131;
+    --charcoal-deep: #292929;
+    --charcoal-soft: #383838;
 
     /* Typography */
     --font-brand:
@@ -539,6 +544,30 @@ p {
 
 /* ---------- ACCESSIBILITY ---------- */
 
+.skip-link {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 2000;
+
+    padding: 10px 16px;
+
+    color: var(--black);
+    background: var(--yellow);
+    border-radius: var(--radius-sm);
+
+    font-family: var(--font-brand);
+    font-weight: 800;
+    text-decoration: none;
+
+    transform: translateY(-160%);
+    transition: transform var(--duration-fast);
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -666,7 +695,6 @@ select:focus-visible {
         gap: 6px;
     }
 
-        /* ---------- SERVICES ---------- */
 }
 
 
