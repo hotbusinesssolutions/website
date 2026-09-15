@@ -1,92 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-   <title>Contact | HOT Business Solutions</title>
-
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-
-    <!-- =========================
-         HEADER
-    ========================== -->
-    <header class="site-header">
-
-        <div class="container navbar">
-
-            <a href="index.html" class="logo">
-                HOT Business Solutions
-            </a>
-
-            <button
-                class="menu-toggle"
-                type="button"
-                aria-label="Open navigation menu"
-                aria-expanded="false"
-                aria-controls="main-navigation"
-            >
-                ☰
-            </button>
-
-            <nav
-                class="nav-menu"
-                id="main-navigation"
-                aria-label="Main navigation"
-            >
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="services.html">Services</a>
-                <a href="careers.html">Careers</a>
-                <a href="contact.html">Contact</a>
-            </nav>
-
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Contact | HBS</title>
+    <link rel="icon" href="images/favicon.svg" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+  </head>
+  <body>
+    <div data-site-header></div>
+    <main id="main-content">
+      <section class="page-hero">
+        <span class="route-line"></span>
+        <div class="container">
+          <p class="eyebrow">Contact</p>
+          <h1 data-word-reveal>
+            Let’s build what your <span class="gold">team needs next.</span>
+          </h1>
+          <p class="lead">
+            Tell us about the roles, support and operating model you are
+            considering.
+          </p>
         </div>
-
-    </header>
-
-
-    <!-- =========================
-         PAGE CONTENT
-    ========================== -->
-   <main>
-
-    <!-- Contact page content will go here -->
-
-</main>
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-    <footer class="footer">
-
-        <div class="container footer-content">
-
+      </section>
+      <section class="section">
+        <div class="container grid-2">
+          <div class="reveal">
+            <p class="eyebrow">Business enquiry</p>
+            <h2>Start the <span class="gold">conversation.</span></h2>
             <p>
-                © <span id="current-year"></span>
-                HOT Business Solutions Inc.
+              Select an enquiry type and replace the sample form action with
+              your approved form service or CRM endpoint.
             </p>
-
-            <p>
-                Philippines
-            </p>
-
+            <div id="office">
+              <h3>Manila office</h3>
+              <p>
+                BGC, Taguig, Metro Manila, Philippines<br /><strong
+                  >Sample address — replace before publishing.</strong
+                >
+              </p>
+            </div>
+          </div>
+          <form class="form-grid reveal" action="#" method="post">
+            <label class="field"
+              ><span>Name</span
+              ><input name="name" autocomplete="name" required /></label
+            ><label class="field"
+              ><span>Work email</span
+              ><input
+                type="email"
+                name="email"
+                autocomplete="email"
+                required /></label
+            ><label class="field full"
+              ><span>Enquiry type</span
+              ><select name="type">
+                <option>Build your team</option>
+                <option>Business enquiry</option>
+                <option>Careers enquiry</option>
+                <option>General enquiry</option>
+              </select></label
+            ><label class="field full"
+              ><span>How can we help?</span><textarea name="message"></textarea>
+            </label>
+            <div class="field full">
+              <button class="button" type="submit">Send enquiry →</button>
+            </div>
+          </form>
         </div>
-
-    </footer>
-
-
+      </section>
+    </main>
+    <div data-site-footer></div>
     <script src="js/main.js"></script>
-
-</body>
-
+  </body>
 </html>
