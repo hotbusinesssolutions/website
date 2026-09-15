@@ -1,6 +1,317 @@
-.home-hero{min-height:100svh;padding:185px 0 105px;position:relative;overflow:hidden;background:#242424;color:#fff;display:flex;align-items:center}.home-hero .container{position:relative;z-index:2}.home-hero h1{max-width:1050px}.home-hero .lead{margin-top:28px}.hero-support{margin-top:30px;padding-left:18px;border-left:3px solid var(--gold);color:#bdbdbd;font-size:.85rem}.hero-orbit{position:absolute;right:-8vw;bottom:-30vw;width:62vw;aspect-ratio:1;border:1px solid rgba(239,191,4,.3);border-radius:50%}.hero-orbit:after{content:"";position:absolute;inset:12%;border:1px solid rgba(255,255,255,.09);border-radius:50%}.group-band{background:#fff;padding:42px 0;border-bottom:1px solid var(--line)}.group-band .container{display:flex;justify-content:space-between;align-items:center;gap:30px}.group-band p{margin:0;color:#666}.why-card{min-height:310px;display:flex;flex-direction:column}.why-card h3{margin-bottom:18px}.why-card p{color:#666}.why-card .card-number{margin-bottom:auto}.service-stack{display:grid;grid-template-columns:.8fr 1.2fr;border:1px solid #4a4a4a;border-radius:28px;overflow:hidden}.service-tabs{display:flex;flex-direction:column}.service-tab{border:0;border-bottom:1px solid #444;background:transparent;color:#fff;text-align:left;padding:24px;display:flex;justify-content:space-between;cursor:pointer}.service-tab.active{background:var(--gold);color:#111}.service-panel{padding:46px;min-height:430px;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(145deg,#363636,#282828)}.service-panel .mini-flow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:auto}.mini-flow span{border:1px solid #555;border-radius:999px;padding:7px 12px;font-size:.69rem;color:#bbb}.capability-layout{display:grid;grid-template-columns:.7fr 1.3fr;gap:80px}.cap-row{margin-bottom:24px}.cap-meta{display:flex;justify-content:space-between;font-weight:700;margin-bottom:9px}.cap-track{height:10px;background:#ddd;border-radius:10px;overflow:hidden}.cap-fill{display:block;height:100%;width:0;background:var(--gold);transition:width 1.2s var(--ease)}.capability-layout.in-view .cap-fill{width:var(--value)}.journey{display:grid;grid-template-columns:repeat(4,1fr);position:relative}.journey:before{content:"";position:absolute;left:8%;right:8%;top:22px;height:1px;background:#555}.journey-step{position:relative;padding:0 20px}.journey-step b{position:relative;z-index:1;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--gold);color:#111;margin-bottom:28px}.skyline-cta{position:relative;min-height:550px;background:#fff;overflow:hidden;display:flex;align-items:center}.skyline-cta:after{content:"";position:absolute;left:0;right:0;bottom:0;height:75%;background:url('../images/hbs-global-skyline.png') center bottom/cover no-repeat;opacity:.58}.skyline-cta .container{position:relative;z-index:2;align-self:flex-start;padding-top:80px}.skyline-cta h2{max-width:690px}.contact-cta{background:#0d0d0d;color:#fff}.contact-cta h2{max-width:900px}.contact-cta .grid-2{align-items:end}.contact-cta p{color:#aaa}
-@media(max-width:800px){.group-band .container{display:block}.group-band p{margin-top:12px}.service-stack{grid-template-columns:1fr}.service-panel{min-height:380px}.capability-layout{grid-template-columns:1fr;gap:40px}.journey{grid-template-columns:1fr 1fr;gap:38px}.journey:before{display:none}.skyline-cta{min-height:600px}.skyline-cta:after{background-size:auto 55%;background-position:center bottom}}
-@media(max-width:520px){.journey{grid-template-columns:1fr}.service-tab{padding:18px}.service-panel{padding:28px}}
+.home-hero {
+    min-height: 100svh;
+    padding: 185px 0 105px;
+    position: relative;
+    overflow: hidden;
+    background: #242424;
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.home-hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.home-hero h1 {
+    max-width: 1050px;
+}
+
+.home-hero .lead {
+    margin-top: 28px;
+}
+
+.hero-support {
+    margin-top: 30px;
+    padding-left: 18px;
+    border-left: 3px solid var(--gold);
+    color: #bdbdbd;
+    font-size: .85rem;
+}
+
+.hero-orbit {
+    position: absolute;
+    right: -8vw;
+    bottom: -30vw;
+    width: 62vw;
+    aspect-ratio: 1;
+    border: 1px solid rgba(239,191,4,.3);
+    border-radius: 50%;
+}
+
+.hero-orbit:after {
+    content: "";
+    position: absolute;
+    inset: 12%;
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 50%;
+}
+
+.group-band {
+    background: #fff;
+    padding: 42px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.group-band .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.group-band p {
+    margin: 0;
+    color: #666;
+}
+
+.why-card {
+    min-height: 310px;
+    display: flex;
+    flex-direction: column;
+}
+
+.why-card h3 {
+    margin-bottom: 18px;
+}
+
+.why-card p {
+    color: #666;
+}
+
+.why-card .card-number {
+    margin-bottom: auto;
+}
+
+.service-stack {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    border: 1px solid #4a4a4a;
+    border-radius: 28px;
+    overflow: hidden;
+}
+
+.service-tabs {
+    display: flex;
+    flex-direction: column;
+}
+
+.service-tab {
+    border: 0;
+    border-bottom: 1px solid #444;
+    background: transparent;
+    color: #fff;
+    text-align: left;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.service-tab.active {
+    background: var(--gold);
+    color: #111;
+}
+
+.service-panel {
+    padding: 46px;
+    min-height: 430px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(145deg,#363636,#282828);
+}
+
+.service-panel .mini-flow {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: auto;
+}
+
+.mini-flow span {
+    border: 1px solid #555;
+    border-radius: 999px;
+    padding: 7px 12px;
+    font-size: .69rem;
+    color: #bbb;
+}
+
+.capability-layout {
+    display: grid;
+    grid-template-columns: .7fr 1.3fr;
+    gap: 80px;
+}
+
+.cap-row {
+    margin-bottom: 24px;
+}
+
+.cap-meta {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    margin-bottom: 9px;
+}
+
+.cap-track {
+    height: 10px;
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.cap-fill {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: var(--gold);
+    transition: width 1.2s var(--ease);
+}
+
+.capability-layout.in-view .cap-fill {
+    width: var(--value);
+}
+
+.journey {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    position: relative;
+}
+
+.journey:before {
+    content: "";
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    top: 22px;
+    height: 1px;
+    background: #555;
+}
+
+.journey-step {
+    position: relative;
+    padding: 0 20px;
+}
+
+.journey-step b {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: #111;
+    margin-bottom: 28px;
+}
+
+.skyline-cta {
+    position: relative;
+    min-height: 550px;
+    background: #fff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.skyline-cta:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 75%;
+    background: url('../images/hbs-global-skyline.png') center bottom/cover no-repeat;
+    opacity: .58;
+}
+
+.skyline-cta .container {
+    position: relative;
+    z-index: 2;
+    align-self: flex-start;
+    padding-top: 80px;
+}
+
+.skyline-cta h2 {
+    max-width: 690px;
+}
+
+.contact-cta {
+    background: #0d0d0d;
+    color: #fff;
+}
+
+.contact-cta h2 {
+    max-width: 900px;
+}
+
+.contact-cta .grid-2 {
+    align-items: end;
+}
+
+.contact-cta p {
+    color: #aaa;
+}
+
+@media(max-width:800px) {
+    .group-band .container {
+        display: block;
+    }
+
+    .group-band p {
+        margin-top: 12px;
+    }
+
+    .service-stack {
+        grid-template-columns: 1fr;
+    }
+
+    .service-panel {
+        min-height: 380px;
+    }
+
+    .capability-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .journey {
+        grid-template-columns: 1fr 1fr;
+        gap: 38px;
+    }
+
+    .journey:before {
+        display: none;
+    }
+
+    .skyline-cta {
+        min-height: 600px;
+    }
+
+    .skyline-cta:after {
+        background-size: auto 55%;
+        background-position: center bottom;
+    }
+
+}
+
+@media(max-width:520px) {
+    .journey {
+        grid-template-columns: 1fr;
+    }
+
+    .service-tab {
+        padding: 18px;
+    }
+
+    .service-panel {
+        padding: 28px;
+    }
+
+}
 
 /* =========================================================
    BUSINESS-UNIT LOGO MARQUEE
@@ -25,31 +336,15 @@
 
 .brand-marquee-window {
     overflow: hidden;
-
-    -webkit-mask-image: linear-gradient(
-        90deg,
-        transparent,
-        #000 8%,
-        #000 92%,
-        transparent
-    );
-
-    mask-image: linear-gradient(
-        90deg,
-        transparent,
-        #000 8%,
-        #000 92%,
-        transparent
-    );
+    -webkit-mask-image: linear-gradient(         90deg,         transparent,         #000 8%,         #000 92%,         transparent     );
+    mask-image: linear-gradient(         90deg,         transparent,         #000 8%,         #000 92%,         transparent     );
 }
 
 .brand-marquee-track {
     display: flex;
     width: max-content;
-
     animation: brand-scroll 30s linear infinite;
     will-change: transform;
-
     pointer-events: none;
     user-select: none;
 }
@@ -57,7 +352,6 @@
 .brand-marquee-group {
     display: flex;
     align-items: center;
-
     gap: clamp(48px, 7vw, 110px);
     padding-right: clamp(48px, 7vw, 110px);
 }
@@ -66,18 +360,14 @@
     width: auto;
     height: clamp(42px, 5vw, 72px);
     max-width: 190px;
-
     object-fit: contain;
     flex: none;
-
     /* Preserve exact logo colors. */
+
     filter: none;
 }
 
-.brand-marquee-group img[src*="nexus"],
-.brand-marquee-group img[src*="orbit"],
-.brand-marquee-group img[src*="travelmanagers"],
-.brand-marquee-group img[src*="wanderlust"] {
+.brand-marquee-group img[src*="nexus"], .brand-marquee-group img[src*="orbit"], .brand-marquee-group img[src*="travelmanagers"], .brand-marquee-group img[src*="wanderlust"] {
     height: clamp(52px, 6vw, 84px);
 }
 
@@ -85,8 +375,8 @@
     to {
         transform: translateX(-50%);
     }
-}
 
+}
 
 /* =========================================================
    INTERACTIVE SCALING HEADING
@@ -95,34 +385,24 @@
 .scaling-title span {
     display: inline-block;
     transform-origin: center bottom;
-
-    transition:
-        transform 0.35s var(--ease),
-        color 0.35s ease,
-        opacity 0.35s ease;
+    transition: transform 0.35s var(--ease),         color 0.35s ease,         opacity 0.35s ease;
 }
 
 .scaling-title span:hover {
     color: var(--gold);
-
-    transform:
-        scale(1.16)
-        translateY(-3px);
+    transform: scale(1.16)         translateY(-3px);
 }
 
 .scaling-title:has(span:hover) span:not(:hover) {
     opacity: 0.55;
 }
 
-
 /* =========================================================
    CORE SERVICE CONTENT TRANSITION
    ========================================================= */
 
 .service-panel > * {
-    transition:
-        opacity 0.28s ease,
-        transform 0.38s var(--ease);
+    transition: opacity 0.28s ease,         transform 0.38s var(--ease);
 }
 
 .service-panel.is-changing > * {
@@ -131,11 +411,7 @@
 }
 
 .service-panel.is-entering > * {
-    animation:
-        service-content-in
-        0.55s
-        var(--ease)
-        both;
+    animation: service-content-in         0.55s         var(--ease)         both;
 }
 
 .service-panel.is-entering .lead {
@@ -156,8 +432,8 @@
         opacity: 1;
         transform: none;
     }
-}
 
+}
 
 /* =========================================================
    RESPONSIVE
@@ -176,6 +452,7 @@
     .scaling-title span:hover {
         transform: scale(1.08);
     }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -186,4 +463,5 @@
     .service-panel.is-entering > * {
         animation: none;
     }
+
 }
