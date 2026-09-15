@@ -627,3 +627,27 @@ p {
     }
 
 }
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+    font-weight: 800;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    display: block;
+    width: auto;
+    height: 42px;
+    max-width: 190px;
+    object-fit: contain;
+}
+
+@media (max-width: 680px) {
+    .brand-logo {
+        height: 36px;
+        max-width: 160px;
+    }
+}

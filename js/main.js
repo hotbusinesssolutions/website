@@ -56,9 +56,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <header class="site-header">
                 <div class="container nav-shell">
-                    <a class="brand" href="${rootPath}index.html">
-                        HOT <span>Business</span> Solutions
-                    </a>
+                  <a
+  class="brand"
+  href="index.html"
+  aria-label="HOT Business Solutions home"
+>
+  <img
+    class="brand-logo"
+    src="images/company-logo.png"
+    alt="HOT Business Solutions"
+  />
+</a>
 
                     <button
                         class="menu-toggle"
