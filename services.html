@@ -140,5 +140,64 @@
     <div data-site-footer></div>
     <a class="sticky-contact" href="contact.html">Build your team →</a>
     <script src="js/main.js"></script>
+    <script>
+      /* Services-only fallback: keeps the modal working even when an older
+         cached main.js is loaded by the browser. */
+      (() => {
+        const dialog = document.querySelector("[data-service-dialog]");
+        if (!dialog || dialog.dataset.modalBound === "true") return;
+
+        const content = {
+          team: ["01 / Build your team", "Build Your Offshore Team", "A structured path from role definition and talent search through onboarding and ongoing people support.", [["Role calibration", "Clarify responsibilities, skills, coverage and success measures before sourcing."], ["Talent pathway", "Coordinate sourcing, screening, selection and onboarding around the agreed role profile."], ["Ongoing support", "Support employee administration after the team is established."]]],
+          travel: ["02 / Travel operations", "Travel Operations", "Operational support for travel workflows requiring accuracy, responsive handling and clear escalation paths.", [["Transaction support", "Assist with ticketing, reissuance, refunds and itinerary processing."], ["GDS workflows", "Align support with documented systems, queues and procedures."], ["Service continuity", "Define coverage, handoffs and escalation points."]]],
+          customer: ["03 / Customer experience", "Customer Experience", "Connected voice and digital support designed around the customer journey and established channels.", [["Channel coverage", "Support voice, email and chat within an agreed scope."], ["Correspondence", "Handle customer and agent communication using documented guidance."], ["Sales support", "Provide defined pre-sale or post-sale assistance."]]],
+          finance: ["04 / Finance operations", "Finance & Back Office", "Process-focused support for recurring finance and administration work within agreed controls.", [["Transaction processing", "Support invoicing and AR/AP activities."], ["Reconciliation", "Assist with matching, investigation and reconciliation outputs."], ["Reporting support", "Prepare defined reporting inputs for review."]]],
+          hr: ["05 / Shared services", "HR & Shared Services", "Employee-lifecycle coordination that keeps recurring people processes organised and visible.", [["Employee administration", "Coordinate routine employee-lifecycle documentation."], ["Time & benefits", "Support attendance, payroll inputs and benefits coordination."], ["People support", "Assist with performance processes and offboarding."]]],
+          workplace: ["06 / Managed workplace", "Managed Workplace", "A supported BGC environment connecting equipment, IT operations, security and continuity planning.", [["Workplace setup", "Coordinate workstations and equipment."], ["IT support", "Provide defined infrastructure and technical support pathways."], ["Continuity", "Align security and continuity arrangements with operational requirements."]]],
+        };
+
+        const kicker = dialog.querySelector("[data-service-modal-kicker]");
+        const title = dialog.querySelector("[data-service-modal-title]");
+        const intro = dialog.querySelector("[data-service-modal-intro]");
+        const details = dialog.querySelector("[data-service-modal-details]");
+        const close = dialog.querySelector("[data-service-modal-close]");
+        let opener;
+
+        const closeDialog = () => {
+          if (typeof dialog.close === "function" && dialog.open) dialog.close();
+          else dialog.removeAttribute("open");
+        };
+
+        document.querySelectorAll("[data-service-modal]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const item = content[button.dataset.serviceModal];
+            if (!item) return;
+            opener = button;
+            kicker.textContent = item[0];
+            title.textContent = item[1];
+            intro.textContent = item[2];
+            details.replaceChildren(...item[3].map(([heading, copy]) => {
+              const block = document.createElement("div");
+              block.className = "service-modal-detail";
+              const strong = document.createElement("strong");
+              const span = document.createElement("span");
+              strong.textContent = heading;
+              span.textContent = copy;
+              block.append(strong, span);
+              return block;
+            }));
+            if (typeof dialog.showModal === "function") dialog.showModal();
+            else dialog.setAttribute("open", "");
+          });
+        });
+
+        close.addEventListener("click", closeDialog);
+        dialog.addEventListener("click", (event) => {
+          if (event.target === dialog) closeDialog();
+        });
+        dialog.addEventListener("close", () => opener?.focus());
+        dialog.dataset.modalBound = "true";
+      })();
+    </script>
   </body>
 </html>
