@@ -820,7 +820,6 @@
 
 .operations-scroll {
     position: relative;
-    height: auto;
 }
 
 .operations-stage {
@@ -841,44 +840,6 @@
     border-radius: 26px;
     box-shadow: 0 24px 70px rgba(11, 11, 11, 0.14);
     opacity: 1;
-    pointer-events: auto;
-    transform: none;
-    transition:
-        opacity 0.55s var(--ease),
-        transform 0.7s var(--ease),
-        filter 0.55s ease;
-}
-
-.operations-scroll.is-enhanced {
-    height: 500vh;
-}
-
-.operations-scroll.is-enhanced .operations-stage {
-    position: sticky;
-    top: 96px;
-    display: block;
-    height: calc(100vh - 116px);
-    min-height: 540px;
-}
-
-.operations-scroll.is-enhanced .operation-panel {
-    position: absolute;
-    inset: 0;
-    opacity: var(--card-opacity, 1);
-    pointer-events: none;
-    transform:
-        translateY(var(--card-y, 0px))
-        scale(var(--card-scale, 1));
-}
-
-.operations-scroll.is-enhanced .operation-panel.is-active {
-    z-index: 2;
-    pointer-events: auto;
-}
-
-.operations-scroll.is-enhanced .operation-panel.is-before {
-    opacity: 0;
-    filter: blur(3px);
 }
 
 .operation-panel-dark {
@@ -999,6 +960,46 @@
     background: var(--gold);
 }
 
+/* Scroll-enhanced desktop stack. JavaScript adds .is-enhanced. */
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
+    .operations-scroll.is-enhanced {
+        height: 520vh;
+    }
+
+    .operations-scroll.is-enhanced .operations-stage {
+        position: sticky;
+        top: 96px;
+        display: block;
+        height: calc(100vh - 116px);
+        min-height: 540px;
+        overflow: hidden;
+    }
+
+    .operations-scroll.is-enhanced .operation-panel,
+    .operations-scroll.is-enhanced .operations-unified {
+        --card-y: 0px;
+        --card-scale: 1;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: calc(10 + var(--panel-index, 0));
+        height: min(54vh, 430px);
+        min-height: 430px;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translate3d(0, var(--card-y), 0)
+            scale(var(--card-scale));
+        transform-origin: 50% 50%;
+        will-change: transform;
+        backface-visibility: hidden;
+    }
+
+    .operations-scroll.is-enhanced .operation-image {
+        min-height: 100%;
+    }
+}
+
 @media (max-width: 900px) {
     .operations-stack-heading {
         grid-template-columns: 1fr;
@@ -1021,7 +1022,6 @@
         position: relative;
         grid-template-columns: 1fr;
         opacity: 1;
-        filter: none;
         pointer-events: auto;
         transform: none;
     }
@@ -1063,6 +1063,58 @@
 @media (prefers-reduced-motion: reduce) {
     .operation-panel,
     .operations-unified {
+        transition: none;
+    }
+}
+
+/* Service bullets reveal slowly; headings remain static. */
+
+.directory-card.reveal li {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+    transition:
+         opacity 1.5s ease,
+        transform 1.8s var(--ease);
+}
+
+.directory-card.reveal li {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+    transition:
+        opacity 1.5s ease,
+        transform 1.8s var(--ease);
+}
+
+.directory-card.reveal.in-view li {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.directory-card.reveal.in-view li:nth-child(1) {
+    transition-delay: 0.4s;
+}
+
+.directory-card.reveal.in-view li:nth-child(2) {
+    transition-delay: 0.7s;
+}
+
+.directory-card.reveal.in-view li:nth-child(3) {
+    transition-delay: 1.2s;
+}
+
+.directory-card.reveal.in-view li:nth-child(4) {
+    transition-delay: 1.6s;
+}
+
+.directory-card.reveal.in-view li:nth-child(5) {
+    transition-delay: 2.0s;
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .directory-card.reveal li {
+        opacity: 1;
+        transform: none;
         transition: none;
     }
 }

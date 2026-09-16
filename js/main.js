@@ -4,14 +4,12 @@ document.addEventListener("DOMContentLoaded", () => {
        ========================================================= */
 
     const currentPage = (
-        window.location.pathname.split("/").pop() ||
-        "index.html"
+        window.location.pathname.split("/").pop() || "index.html"
     ).replace(".html", "");
 
-    const rootPath =
-        window.location.pathname.includes("/legal/")
-            ? "../"
-            : "";
+    const rootPath = window.location.pathname.includes("/legal/")
+        ? "../"
+        : "";
 
     const navigationItems = [
         ["index", "Home"],
@@ -24,20 +22,19 @@ document.addEventListener("DOMContentLoaded", () => {
         ["contact", "Contact"],
     ];
 
-
     /* =========================================================
-       HEADER
+       SHARED HEADER
        ========================================================= */
 
-    const headerContainer = document.querySelector(
-        "[data-site-header]"
-    );
+    const headerContainer = document.querySelector("[data-site-header]");
 
     if (headerContainer) {
         const navigationLinks = navigationItems
             .map(([pageName, pageLabel]) => {
-                const isCurrentPage =
-                    currentPage === pageName;
+                const currentAttribute =
+                    currentPage === pageName
+                        ? 'aria-current="page"'
+                        : "";
 
                 if (pageName === "about") {
                     return `
@@ -45,14 +42,10 @@ document.addEventListener("DOMContentLoaded", () => {
                             <button
                                 class="nav-dropdown-toggle"
                                 type="button"
-                                aria-label="Open About menu"
+                                aria-label="Toggle About submenu"
                                 aria-expanded="false"
                                 aria-controls="about-submenu"
-                                ${
-                                    isCurrentPage
-                                        ? 'aria-current="page"'
-                                        : ""
-                                }
+                                ${currentAttribute}
                             >
                                 About
                             </button>
@@ -111,11 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <li class="nav-item">
                         <a
                             href="${rootPath}${pageName}.html"
-                            ${
-                                isCurrentPage
-                                    ? 'aria-current="page"'
-                                    : ""
-                            }
+                            ${currentAttribute}
                         >
                             ${pageLabel}
                         </a>
@@ -125,7 +114,10 @@ document.addEventListener("DOMContentLoaded", () => {
             .join("");
 
         headerContainer.innerHTML = `
-            <a class="skip-link" href="#main-content">
+            <a
+                class="skip-link"
+                href="#main-content"
+            >
                 Skip to content
             </a>
 
@@ -140,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             class="brand-logo"
                             src="${rootPath}images/company-logo.png"
                             alt="HOT Business Solutions"
-                        >
+                        />
                     </a>
 
                     <button
@@ -164,14 +156,11 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
     }
 
-
     /* =========================================================
-       FOOTER
+       SHARED FOOTER
        ========================================================= */
 
-    const footerContainer = document.querySelector(
-        "[data-site-footer]"
-    );
+    const footerContainer = document.querySelector("[data-site-footer]");
 
     if (footerContainer) {
         footerContainer.innerHTML = `
@@ -181,22 +170,17 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div>
                             <h3>
                                 Global talent.<br>
-                                <span class="gold">
-                                    Real impact.
-                                </span>
+                                <span class="gold">Real impact.</span>
                             </h3>
 
                             <p class="footer-description">
-                                A House of Travel company supporting
-                                Australia, New Zealand and international
-                                partners.
+                                A House of Travel company supporting Australia,
+                                New Zealand and international partners.
                             </p>
                         </div>
 
                         <div>
-                            <p class="footer-title">
-                                Explore
-                            </p>
+                            <p class="footer-title">Explore</p>
 
                             <ul class="footer-links">
                                 <li>
@@ -226,9 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
 
                         <div>
-                            <p class="footer-title">
-                                Connect
-                            </p>
+                            <p class="footer-title">Connect</p>
 
                             <ul class="footer-links">
                                 <li>
@@ -252,9 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
 
                         <div>
-                            <p class="footer-title">
-                                Legal
-                            </p>
+                            <p class="footer-title">Legal</p>
 
                             <ul class="footer-links">
                                 <li>
@@ -276,13 +256,17 @@ document.addEventListener("DOMContentLoaded", () => {
                                 </li>
 
                                 <li>
-                                    <a href="${rootPath}legal/data-protection.html">
+                                    <a
+                                        href="${rootPath}legal/data-protection.html"
+                                    >
                                         Data protection
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="${rootPath}legal/accessibility.html">
+                                    <a
+                                        href="${rootPath}legal/accessibility.html"
+                                    >
                                         Accessibility
                                     </a>
                                 </li>
@@ -311,154 +295,101 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
     }
 
-    document
-        .querySelectorAll("[data-year]")
-        .forEach((element) => {
-            element.textContent =
-                new Date().getFullYear();
-        });
-
+    document.querySelectorAll("[data-year]").forEach((yearElement) => {
+        yearElement.textContent = new Date().getFullYear();
+    });
 
     /* =========================================================
        MOBILE MENU AND ABOUT DROPDOWN
        ========================================================= */
 
-    const menuButton =
-        document.querySelector(".menu-toggle");
-
-    const navigationList =
-        document.querySelector(".nav-list");
-
-    const aboutDropdown =
-        document.querySelector(".nav-item-dropdown");
-
-    const aboutDropdownButton =
-        document.querySelector(
-            ".nav-dropdown-toggle"
-        );
+    const menuButton = document.querySelector(".menu-toggle");
+    const navigationList = document.querySelector(".nav-list");
+    const aboutDropdown = document.querySelector(".nav-item-dropdown");
+    const aboutDropdownButton = document.querySelector(
+        ".nav-dropdown-toggle",
+    );
 
     const closeAboutDropdown = () => {
-        if (!aboutDropdown || !aboutDropdownButton) {
-            return;
-        }
+        aboutDropdown?.classList.remove("is-open");
 
-        aboutDropdown.classList.remove("is-open");
-
-        aboutDropdownButton.setAttribute(
+        aboutDropdownButton?.setAttribute(
             "aria-expanded",
-            "false"
+            "false",
         );
     };
 
     if (aboutDropdown && aboutDropdownButton) {
-        aboutDropdownButton.addEventListener(
-            "click",
-            (event) => {
-                event.stopPropagation();
+        aboutDropdownButton.addEventListener("click", (event) => {
+            event.stopPropagation();
 
-                const isOpen =
-                    aboutDropdown.classList.toggle(
-                        "is-open"
-                    );
+            const isOpen = aboutDropdown.classList.toggle("is-open");
 
-                aboutDropdownButton.setAttribute(
-                    "aria-expanded",
-                    String(isOpen)
-                );
+            aboutDropdownButton.setAttribute(
+                "aria-expanded",
+                String(isOpen),
+            );
+        });
+
+        document.addEventListener("click", (event) => {
+            if (!aboutDropdown.contains(event.target)) {
+                closeAboutDropdown();
             }
-        );
-
-        document.addEventListener(
-            "click",
-            (event) => {
-                if (
-                    event.target instanceof Node &&
-                    !aboutDropdown.contains(event.target)
-                ) {
-                    closeAboutDropdown();
-                }
-            }
-        );
+        });
     }
 
     if (menuButton && navigationList) {
         const closeMenu = () => {
             navigationList.classList.remove("open");
-
-            menuButton.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-            document.body.classList.remove(
-                "menu-open"
-            );
+            menuButton.setAttribute("aria-expanded", "false");
+            document.body.classList.remove("menu-open");
 
             closeAboutDropdown();
         };
 
-        menuButton.addEventListener(
-            "click",
-            () => {
-                const isOpen =
-                    navigationList.classList.toggle(
-                        "open"
-                    );
+        menuButton.addEventListener("click", () => {
+            const isOpen = navigationList.classList.toggle("open");
 
-                menuButton.setAttribute(
-                    "aria-expanded",
-                    String(isOpen)
-                );
+            menuButton.setAttribute(
+                "aria-expanded",
+                String(isOpen),
+            );
 
-                document.body.classList.toggle(
-                    "menu-open",
-                    isOpen
-                );
-            }
-        );
+            document.body.classList.toggle(
+                "menu-open",
+                isOpen,
+            );
+        });
 
         navigationList
             .querySelectorAll("a")
             .forEach((link) => {
-                link.addEventListener(
-                    "click",
-                    closeMenu
-                );
+                link.addEventListener("click", closeMenu);
             });
 
-        document.addEventListener(
-            "keydown",
-            (event) => {
-                if (event.key === "Escape") {
-                    closeMenu();
-                }
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeMenu();
             }
-        );
+        });
 
-        window.addEventListener(
-            "resize",
-            () => {
-                if (window.innerWidth > 980) {
-                    closeMenu();
-                }
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 980) {
+                closeMenu();
             }
-        );
+        });
     }
-
 
     /* =========================================================
        HEADER SCROLL STATE
        ========================================================= */
 
-    const siteHeader =
-        document.querySelector(".site-header");
+    const siteHeader = document.querySelector(".site-header");
 
     const updateHeader = () => {
-        if (!siteHeader) return;
-
-        siteHeader.classList.toggle(
+        siteHeader?.classList.toggle(
             "scrolled",
-            window.scrollY > 30
+            window.scrollY > 30,
         );
     };
 
@@ -467,39 +398,31 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener(
         "scroll",
         updateHeader,
-        { passive: true }
+        { passive: true },
     );
 
-
     /* =========================================================
-       GENERAL SCROLL REVEALS
+       SCROLL REVEALS
        ========================================================= */
 
-    const revealElements =
-        document.querySelectorAll(".reveal");
+    const revealElements = document.querySelectorAll(".reveal");
 
     if ("IntersectionObserver" in window) {
-        const revealObserver =
-            new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (!entry.isIntersecting) {
-                            return;
-                        }
+        const revealObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
 
-                        entry.target.classList.add(
-                            "in-view"
-                        );
-
-                        revealObserver.unobserve(
-                            entry.target
-                        );
-                    });
-                },
-                {
-                    threshold: 0.14,
-                }
-            );
+                    entry.target.classList.add("in-view");
+                    revealObserver.unobserve(entry.target);
+                });
+            },
+            {
+                threshold: 0.14,
+            },
+        );
 
         revealElements.forEach((element) => {
             revealObserver.observe(element);
@@ -510,39 +433,30 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-
     /* =========================================================
        MANILA OPERATING MODEL
        ========================================================= */
 
-    const operationsScroll =
-        document.querySelector(
-            "[data-operations-scroll]"
-        );
+    const operationsScroll = document.querySelector(
+        "[data-operations-scroll]",
+    );
 
     const operationPanels = [
-        ...document.querySelectorAll(
-            "[data-operation-panel]"
-        ),
+        ...document.querySelectorAll("[data-operation-panel]"),
     ];
 
-    const simpleOperationsLayout =
-        window.matchMedia(
-            "(max-width: 900px)"
-        );
+    const simpleOperationsLayout = window.matchMedia(
+        "(max-width: 900px)",
+    );
 
-    const reducedMotion =
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        );
+    const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+    );
 
-    let operationsFrame = null;
+    let operationsFrame;
 
     const clamp = (value) => {
-        return Math.min(
-            Math.max(value, 0),
-            1
-        );
+        return Math.min(Math.max(value, 0), 1);
     };
 
     const smooth = (value) => {
@@ -550,54 +464,27 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const resetOperations = () => {
-        if (!operationsScroll) return;
-
-        operationsScroll.classList.remove(
-            "is-enhanced"
-        );
-
-        operationsScroll.style.setProperty(
-            "--operations-progress",
-            "0%"
-        );
+        operationsScroll?.classList.remove("is-enhanced");
 
         operationPanels.forEach((panel) => {
-            panel.style.removeProperty(
-                "--panel-index"
-            );
-
-            panel.style.removeProperty(
-                "--card-y"
-            );
-
-            panel.style.removeProperty(
-                "--card-scale"
-            );
-
-            panel.style.removeProperty(
-                "--card-opacity"
-            );
-
-            panel.style.removeProperty(
-                "z-index"
-            );
+            panel.style.removeProperty("--panel-index");
+            panel.style.removeProperty("--card-y");
+            panel.style.removeProperty("--card-scale");
         });
+
+        operationsScroll?.style.setProperty(
+            "--operations-progress",
+            "0%",
+        );
     };
 
     const updateOperations = () => {
         operationsFrame = null;
 
-        if (
-            !operationsScroll ||
-            !operationPanels.length
-        ) {
+        if (!operationsScroll || !operationPanels.length) {
             return;
         }
 
-        /*
-         * Use the normal vertical layout on mobile
-         * and when reduced motion is enabled.
-         */
         if (
             simpleOperationsLayout.matches ||
             reducedMotion.matches
@@ -606,203 +493,135 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        operationsScroll.classList.add(
-            "is-enhanced"
-        );
+        operationsScroll.classList.add("is-enhanced");
 
-        const bounds =
-            operationsScroll.getBoundingClientRect();
+        const bounds = operationsScroll.getBoundingClientRect();
 
         const scrollDistance = Math.max(
             bounds.height - window.innerHeight,
-            1
+            1,
         );
 
+        const stickyTop = 96;
+
         const progress = clamp(
-            -bounds.top / scrollDistance
+            (stickyTop - bounds.top) / scrollDistance,
         );
 
         /*
-         * Complete the card animation at 82%.
-         * The remaining 18% holds the finished stack.
+         * The first 82% of the section builds the panel stack.
+         * The remaining 18% briefly holds the completed stack.
          */
-        const stackProgress = clamp(
-            progress / 0.82
+        const stackProgress = clamp(progress / 0.86);
+        const transitions = operationPanels.length - 1;
+
+        const cardHeight =
+            operationPanels[0].getBoundingClientRect().height;
+
+        const cardGap = Math.max(
+            window.innerHeight * 0.055,
+            36,
         );
 
-        const transitionCount =
-            operationPanels.length - 1;
+        const travelUnit = cardHeight + cardGap;
+        const timeline = stackProgress * transitions;
+        const scaleStep = transitions > 0 ? 0.2 / transitions : 0;
 
-        const entryDistance = Math.max(
-            window.innerHeight * 0.72,
-            520
-        );
+        operationPanels.forEach((panel, index) => {
+            /* All following panels rise together during each phase. */
+            const travelledUnits = Math.min(index, timeline);
+            const arrivalProgress = index === 0
+                ? 1
+                : smooth(clamp(timeline - (index - 1)));
+            const layerOffset = index * 38 * arrivalProgress;
+            const translateY =
+                index * travelUnit -
+                travelledUnits * travelUnit +
+                layerOffset;
 
-        operationPanels.forEach(
-            (panel, index) => {
-                /*
-                 * Panel 1 starts visible.
-                 * Other panels enter sequentially.
-                 */
-                const rawArrival =
-                    index === 0
-                        ? 1
-                        : clamp(
-                            stackProgress *
-                                transitionCount -
-                            (index - 1)
-                        );
+            /* A covered panel gradually falls back toward the stack. */
+            const exposure = Math.max(0, timeline - index);
+            const completedCovers = Math.max(
+                0,
+                Math.min(transitions - index, Math.floor(exposure)),
+            );
+            const partialCover = clamp(exposure - completedCovers);
+            const scale = 1 -
+                scaleStep * (completedCovers + smooth(partialCover));
 
-                const arrival =
-                    index === 0
-                        ? 1
-                        : smooth(rawArrival);
+            panel.style.setProperty(
+                "--panel-index",
+                index,
+            );
 
-                /*
-                 * Older panels shrink while
-                 * the next panel enters.
-                 */
-                const compression = smooth(
-                    clamp(
-                        stackProgress *
-                            transitionCount -
-                        index
-                    )
-                );
+            panel.style.setProperty(
+                "--card-y",
+                `${translateY.toFixed(2)}px`,
+            );
 
-                const finalScale =
-                    1 -
-                    (
-                        transitionCount -
-                        index
-                    ) *
-                        0.05;
-
-                const scale =
-                    1 +
-                    (
-                        finalScale - 1
-                    ) *
-                        compression;
-
-                const startingY =
-                    index === 0
-                        ? 0
-                        : entryDistance;
-
-                const finalY =
-                    index * 20;
-
-                const translateY =
-                    startingY +
-                    (
-                        finalY -
-                        startingY
-                    ) *
-                        arrival;
-
-                panel.style.setProperty(
-                    "--panel-index",
-                    String(index)
-                );
-
-                panel.style.setProperty(
-                    "--card-y",
-                    `${translateY.toFixed(2)}px`
-                );
-
-                panel.style.setProperty(
-                    "--card-scale",
-                    scale.toFixed(4)
-                );
-
-                panel.style.setProperty(
-                    "--card-opacity",
-                    arrival.toFixed(3)
-                );
-
-                panel.style.zIndex = String(index + 1);
-            }
-        );
+            panel.style.setProperty(
+                "--card-scale",
+                scale.toFixed(4),
+            );
+        });
 
         operationsScroll.style.setProperty(
             "--operations-progress",
-            `${(progress * 100).toFixed(2)}%`
+            `${progress * 100}%`,
         );
     };
 
     const requestOperationsUpdate = () => {
-        if (operationsFrame !== null) {
+        if (operationsFrame) {
             return;
         }
 
         operationsFrame =
-            window.requestAnimationFrame(
-                updateOperations
-            );
+            window.requestAnimationFrame(updateOperations);
     };
 
-    if (
-        operationsScroll &&
-        operationPanels.length
-    ) {
+    if (operationsScroll) {
         updateOperations();
 
         window.addEventListener(
             "scroll",
             requestOperationsUpdate,
-            { passive: true }
+            { passive: true },
         );
 
         window.addEventListener(
             "resize",
-            requestOperationsUpdate
+            requestOperationsUpdate,
         );
 
-        if (
-            typeof simpleOperationsLayout
-                .addEventListener === "function"
-        ) {
-            simpleOperationsLayout.addEventListener(
-                "change",
-                requestOperationsUpdate
-            );
-        }
+        simpleOperationsLayout.addEventListener?.(
+            "change",
+            requestOperationsUpdate,
+        );
 
-        if (
-            typeof reducedMotion
-                .addEventListener === "function"
-        ) {
-            reducedMotion.addEventListener(
-                "change",
-                requestOperationsUpdate
-            );
-        }
+        reducedMotion.addEventListener?.(
+            "change",
+            requestOperationsUpdate,
+        );
     }
 
-
     /* =========================================================
-       WORD REVEAL
+       WORD-REVEAL ANIMATION
        ========================================================= */
 
     document
-        .querySelectorAll(
-            "[data-word-reveal]"
-        )
+        .querySelectorAll("[data-word-reveal]")
         .forEach((element) => {
             let wordIndex = 0;
             const textNodes = [];
 
-            const walker =
-                document.createTreeWalker(
-                    element,
-                    NodeFilter.SHOW_TEXT
-                );
+            const walker = document.createTreeWalker(
+                element,
+                NodeFilter.SHOW_TEXT,
+            );
 
             while (walker.nextNode()) {
-                textNodes.push(
-                    walker.currentNode
-                );
+                textNodes.push(walker.currentNode);
             }
 
             textNodes.forEach((textNode) => {
@@ -812,7 +631,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 textNode.textContent
                     .split(/(\s+)/)
                     .forEach((part) => {
-                        if (!part) return;
+                        if (!part) {
+                            return;
+                        }
 
                         if (/^\s+$/.test(part)) {
                             fragment.append(part);
@@ -820,20 +641,16 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
 
                         const mask =
-                            document.createElement(
-                                "span"
-                            );
+                            document.createElement("span");
 
                         const word =
-                            document.createElement(
-                                "span"
-                            );
+                            document.createElement("span");
 
                         mask.className = "word";
 
                         word.style.setProperty(
                             "--i",
-                            String(wordIndex)
+                            wordIndex,
                         );
 
                         word.textContent = part;
@@ -848,15 +665,13 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-
     /* =========================================================
        MAGNETIC BUTTONS
        ========================================================= */
 
-    const supportsFinePointer =
-        window.matchMedia(
-            "(pointer: fine)"
-        );
+    const supportsFinePointer = window.matchMedia(
+        "(pointer: fine)",
+    );
 
     document
         .querySelectorAll("[data-magnetic]")
@@ -864,9 +679,7 @@ document.addEventListener("DOMContentLoaded", () => {
             button.addEventListener(
                 "pointermove",
                 (event) => {
-                    if (
-                        !supportsFinePointer.matches
-                    ) {
+                    if (!supportsFinePointer.matches) {
                         return;
                     }
 
@@ -878,63 +691,51 @@ document.addEventListener("DOMContentLoaded", () => {
                             event.clientX -
                             bounds.left -
                             bounds.width / 2
-                        ) *
-                        0.12;
+                        ) * 0.12;
 
                     const verticalOffset =
                         (
                             event.clientY -
                             bounds.top -
                             bounds.height / 2
-                        ) *
-                        0.12;
+                        ) * 0.12;
 
-                    button.style.transform =
-                        `translate(
+                    button.style.transform = `
+                        translate(
                             ${horizontalOffset}px,
                             ${verticalOffset}px
-                        )`;
-                }
+                        )
+                    `;
+                },
             );
 
             button.addEventListener(
                 "pointerleave",
                 () => {
                     button.style.transform = "";
-                }
+                },
             );
         });
-
 
     /* =========================================================
        CORE SERVICE PILLARS
        ========================================================= */
 
     const serviceTabs = [
-        ...document.querySelectorAll(
-            ".service-tab"
-        ),
+        ...document.querySelectorAll(".service-tab"),
     ];
 
     const servicePanel =
-        document.querySelector(
-            ".service-panel"
-        );
+        document.querySelector(".service-panel");
 
     const serviceTitle =
-        document.querySelector(
-            "[data-service-title]"
-        );
+        document.querySelector("[data-service-title]");
 
     const serviceCopy =
-        document.querySelector(
-            "[data-service-copy]"
-        );
+        document.querySelector("[data-service-copy]");
 
     const serviceFlow =
-        document.querySelector(
-            "[data-service-flow]"
-        );
+        document.querySelector("[data-service-flow]");
 
     const services = {
         talent: {
@@ -964,7 +765,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cx: {
             title: "Customer Experience",
             description:
-                "Voice, email and chat support for customers, agents and sales teams.",
+                "Dependable voice, email and chat support for customers, agents and sales teams.",
             flow: [
                 "Connect",
                 "Assist",
@@ -988,7 +789,7 @@ document.addEventListener("DOMContentLoaded", () => {
         shared: {
             title: "HR & Shared Services",
             description:
-                "HR administration, payroll coordination, attendance, benefits and offboarding support.",
+                "Employee lifecycle support spanning HR administration, payroll coordination, attendance, benefits and offboarding.",
             flow: [
                 "Employ",
                 "Care",
@@ -1000,7 +801,7 @@ document.addEventListener("DOMContentLoaded", () => {
         workplace: {
             title: "Managed Workplace",
             description:
-                "BGC workspaces, IT support, system security, equipment and continuity support.",
+                "Secure BGC workspaces, IT support, system security, equipment and continuity support.",
             flow: [
                 "Equip",
                 "Secure",
@@ -1010,15 +811,11 @@ document.addEventListener("DOMContentLoaded", () => {
         },
     };
 
-    let serviceTransitionTimer = null;
+    let serviceTransitionTimer;
 
-    const activateService = (
-        selectedTab
-    ) => {
+    const activateService = (selectedTab) => {
         if (
-            selectedTab.classList.contains(
-                "active"
-            ) ||
+            selectedTab.classList.contains("active") ||
             !servicePanel ||
             !serviceTitle ||
             !serviceCopy ||
@@ -1027,40 +824,31 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        const serviceName =
-            selectedTab.dataset.service;
-
         const selectedService =
-            services[serviceName];
+            services[selectedTab.dataset.service];
 
-        if (!selectedService) return;
+        if (!selectedService) {
+            return;
+        }
 
         serviceTabs.forEach((tab) => {
-            const isActive =
-                tab === selectedTab;
+            const isActive = tab === selectedTab;
 
             tab.classList.toggle(
                 "active",
-                isActive
+                isActive,
             );
 
             tab.setAttribute(
                 "aria-selected",
-                String(isActive)
+                String(isActive),
             );
         });
 
-        window.clearTimeout(
-            serviceTransitionTimer
-        );
+        window.clearTimeout(serviceTransitionTimer);
 
-        servicePanel.classList.remove(
-            "is-entering"
-        );
-
-        servicePanel.classList.add(
-            "is-changing"
-        );
+        servicePanel.classList.remove("is-entering");
+        servicePanel.classList.add("is-changing");
 
         serviceTransitionTimer =
             window.setTimeout(() => {
@@ -1072,50 +860,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 serviceFlow.innerHTML =
                     selectedService.flow
-                        .map(
-                            (step) =>
-                                `<span>${step}</span>`
-                        )
+                        .map((step) => {
+                            return `<span>${step}</span>`;
+                        })
                         .join("");
 
                 servicePanel.classList.remove(
-                    "is-changing"
+                    "is-changing",
                 );
 
                 /*
-                 * Force the browser to restart
-                 * the entrance animation.
+                 * Force the browser to calculate the updated
+                 * layout before restarting the entrance effect.
                  */
                 void servicePanel.offsetWidth;
 
                 servicePanel.classList.add(
-                    "is-entering"
+                    "is-entering",
                 );
 
                 window.setTimeout(() => {
                     servicePanel.classList.remove(
-                        "is-entering"
+                        "is-entering",
                     );
                 }, 650);
             }, 220);
     };
 
     serviceTabs.forEach((tab) => {
-        tab.addEventListener(
-            "click",
-            () => {
-                activateService(tab);
-            }
-        );
+        tab.addEventListener("click", () => {
+            activateService(tab);
+        });
 
         tab.addEventListener(
             "keydown",
             (event) => {
-                const validKey =
-                    event.key === "ArrowDown" ||
-                    event.key === "ArrowUp";
-
-                if (!validKey) return;
+                if (
+                    event.key !== "ArrowDown" &&
+                    event.key !== "ArrowUp"
+                ) {
+                    return;
+                }
 
                 event.preventDefault();
 
@@ -1132,15 +917,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         currentIndex +
                         direction +
                         serviceTabs.length
-                    ) %
-                    serviceTabs.length;
+                    ) % serviceTabs.length;
 
                 const nextTab =
                     serviceTabs[nextIndex];
 
                 nextTab.focus();
                 activateService(nextTab);
-            }
+            },
         );
     });
 });
