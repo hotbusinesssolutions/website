@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&family=Poppins:wght@400;600;700&display=swap');
 :root {
     --ink: #0b0b0b;
     --charcoal: #292929;
@@ -185,7 +185,9 @@ p {
 
 .nav-dropdown-toggle {
     position: relative;
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     width: auto;
     height: auto;
     padding: 0;
@@ -193,9 +195,30 @@ p {
     background: transparent;
     border: 0;
     border-radius: 0;
-    font: inherit;
+    font-family: "Poppins",Arial,sans-serif;
+    font-size: .69rem;
+    font-weight: 700;
+    line-height: inherit;
+    letter-spacing: .04em;
     text-transform: uppercase;
     cursor: pointer;
+}
+
+.nav-dropdown-toggle::before {
+    order: 2;
+    width: 6px;
+    height: 6px;
+    content: "";
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform .25s var(--ease);
+}
+
+.nav-item-dropdown:hover .nav-dropdown-toggle::before,
+.nav-item-dropdown:focus-within .nav-dropdown-toggle::before,
+.nav-item-dropdown.is-open .nav-dropdown-toggle::before {
+    transform: translateY(2px) rotate(225deg);
 }
 
 .nav-dropdown-toggle::after {
@@ -253,6 +276,21 @@ p {
     visibility: visible;
     pointer-events: auto;
     transform: translate(-50%, 0);
+}
+
+@media (min-width:981px) and (hover:hover) {
+    .nav-item-dropdown:hover .nav-submenu,
+    .nav-item-dropdown:focus-within .nav-submenu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translate(-50%, 0);
+    }
+
+    .nav-item-dropdown:hover .nav-dropdown-toggle::after,
+    .nav-item-dropdown:focus-within .nav-dropdown-toggle::after {
+        transform: scaleX(1);
+    }
 }
 
 .nav-submenu a {
@@ -647,11 +685,13 @@ p {
 
     .nav-dropdown-toggle {
         width: 100%;
+        justify-content: space-between;
         height: auto;
         padding: 0;
         color: #fff;
         border: 0;
         text-align: left;
+        font-size: 1rem;
     }
 
     .nav-submenu {

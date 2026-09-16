@@ -320,8 +320,50 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     if (aboutDropdown && aboutDropdownButton) {
+        const desktopHover = window.matchMedia(
+            "(min-width: 981px) and (hover: hover)",
+        );
+
+        const setAboutExpanded = (isExpanded) => {
+            aboutDropdownButton.setAttribute(
+                "aria-expanded",
+                String(isExpanded),
+            );
+        };
+
+        aboutDropdown.addEventListener("mouseenter", () => {
+            if (desktopHover.matches) {
+                setAboutExpanded(true);
+            }
+        });
+
+        aboutDropdown.addEventListener("mouseleave", () => {
+            if (desktopHover.matches) {
+                setAboutExpanded(false);
+            }
+        });
+
+        aboutDropdown.addEventListener("focusin", () => {
+            if (desktopHover.matches) {
+                setAboutExpanded(true);
+            }
+        });
+
+        aboutDropdown.addEventListener("focusout", (event) => {
+            if (
+                desktopHover.matches &&
+                !aboutDropdown.contains(event.relatedTarget)
+            ) {
+                setAboutExpanded(false);
+            }
+        });
+
         aboutDropdownButton.addEventListener("click", (event) => {
             event.stopPropagation();
+
+            if (desktopHover.matches) {
+                return;
+            }
 
             const isOpen = aboutDropdown.classList.toggle("is-open");
 
@@ -432,6 +474,172 @@ document.addEventListener("DOMContentLoaded", () => {
             element.classList.add("in-view");
         });
     }
+
+    /* =========================================================
+       HOMEPAGE CAPABILITY COUNTERS
+       ========================================================= */
+
+    const capabilityLayout = document.querySelector(".capability-layout");
+    const capabilityCounters = capabilityLayout
+        ? [
+              ...capabilityLayout.querySelectorAll(
+                  ".cap-meta > :last-child",
+              ),
+          ]
+        : [];
+
+    if (capabilityLayout && capabilityCounters.length) {
+        const reduceMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        const counters = capabilityCounters
+            .map((element) => {
+                const originalText = element.textContent.trim();
+                const numericMatch = originalText.match(/-?\d+(?:\.\d+)?/);
+
+                if (!numericMatch) {
+                    return null;
+                }
+
+                const target = Number(numericMatch[0]);
+                const decimalPlaces = (numericMatch[0].split(".")[1] || "")
+                    .length;
+                const prefix = originalText.slice(0, numericMatch.index);
+                const suffix = originalText.slice(
+                    numericMatch.index + numericMatch[0].length,
+                );
+
+                element.setAttribute("aria-label", originalText);
+
+                return {
+                    element,
+                    target,
+                    decimalPlaces,
+                    prefix,
+                    suffix,
+                };
+            })
+            .filter(Boolean);
+
+        const renderCounter = (counter, value) => {
+            counter.element.textContent =
+                counter.prefix +
+                value.toFixed(counter.decimalPlaces) +
+                counter.suffix;
+        };
+
+        counters.forEach((counter) => renderCounter(counter, 0));
+
+        const startCapabilityCounters = () => {
+            if (reduceMotion) {
+                counters.forEach((counter) => {
+                    renderCounter(counter, counter.target);
+                });
+                return;
+            }
+
+            const duration = 1200;
+            const startTime = performance.now();
+
+            const animate = (currentTime) => {
+                const progress = Math.min(
+                    (currentTime - startTime) / duration,
+                    1,
+                );
+                const easedProgress = 1 - Math.pow(1 - progress, 3);
+
+                counters.forEach((counter) => {
+                    renderCounter(
+                        counter,
+                        counter.target * easedProgress,
+                    );
+                });
+
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                }
+            };
+
+            requestAnimationFrame(animate);
+        };
+
+        if ("IntersectionObserver" in window) {
+            const capabilityObserver = new IntersectionObserver(
+                (entries) => {
+                    if (!entries[0].isIntersecting) {
+                        return;
+                    }
+
+                    startCapabilityCounters();
+                    capabilityObserver.disconnect();
+                },
+                { threshold: 0.25 },
+            );
+
+            capabilityObserver.observe(capabilityLayout);
+        } else {
+            startCapabilityCounters();
+        }
+    }
+
+    /* =========================================================
+       INDUSTRY SHOWCASE TABS
+       ========================================================= */
+
+    document
+        .querySelectorAll("[data-industry-showcase]")
+        .forEach((showcase) => {
+            const tabs = [...showcase.querySelectorAll("[role='tab']")];
+            const panels = [
+                ...showcase.querySelectorAll("[role='tabpanel']"),
+            ];
+
+            const activateIndustry = (selectedTab, moveFocus = false) => {
+                tabs.forEach((tab) => {
+                    const isSelected = tab === selectedTab;
+                    tab.classList.toggle("is-active", isSelected);
+                    tab.setAttribute("aria-selected", String(isSelected));
+                    tab.tabIndex = isSelected ? 0 : -1;
+                });
+
+                panels.forEach((panel) => {
+                    const isSelected =
+                        panel.id === selectedTab.getAttribute("aria-controls");
+                    panel.hidden = !isSelected;
+                    panel.classList.toggle("is-active", isSelected);
+                });
+
+                if (moveFocus) {
+                    selectedTab.focus();
+                }
+            };
+
+            tabs.forEach((tab, index) => {
+                tab.addEventListener("click", () => {
+                    activateIndustry(tab);
+                });
+
+                tab.addEventListener("keydown", (event) => {
+                    let nextIndex = index;
+
+                    if (event.key === "ArrowRight") {
+                        nextIndex = (index + 1) % tabs.length;
+                    } else if (event.key === "ArrowLeft") {
+                        nextIndex = (index - 1 + tabs.length) % tabs.length;
+                    } else if (event.key === "Home") {
+                        nextIndex = 0;
+                    } else if (event.key === "End") {
+                        nextIndex = tabs.length - 1;
+                    } else {
+                        return;
+                    }
+
+                    event.preventDefault();
+                    activateIndustry(tabs[nextIndex], true);
+                });
+            });
+        });
 
     /* =========================================================
        MANILA OPERATING MODEL

@@ -46,6 +46,7 @@
                 <li>Onboarding</li>
                 <li>Ongoing team support</li>
               </ul>
+              <button class="directory-card-action" type="button" data-service-modal="team">Explore details <span aria-hidden="true">↗</span></button>
             </article>
             <article class="directory-card reveal">
               <h3>Travel Operations</h3>
@@ -56,6 +57,7 @@
                 <li>Itinerary management</li>
                 <li>Travel administration</li>
               </ul>
+              <button class="directory-card-action" type="button" data-service-modal="travel">Explore details <span aria-hidden="true">↗</span></button>
             </article>
             <article class="directory-card reveal">
               <h3>Customer Experience</h3>
@@ -66,6 +68,7 @@
                 <li>Customer and agent correspondence</li>
                 <li>Sales support</li>
               </ul>
+              <button class="directory-card-action" type="button" data-service-modal="customer">Explore details <span aria-hidden="true">↗</span></button>
             </article>
             <article class="directory-card reveal">
               <h3>Finance & Back Office</h3>
@@ -76,6 +79,7 @@
                 <li>Financial reporting support</li>
                 <li>Administrative processing</li>
               </ul>
+              <button class="directory-card-action" type="button" data-service-modal="finance">Explore details <span aria-hidden="true">↗</span></button>
             </article>
             <article class="directory-card reveal">
               <h3>HR & Shared Services</h3>
@@ -86,6 +90,7 @@
                 <li>Benefits coordination</li>
                 <li>Performance, employee relations and offboarding</li>
               </ul>
+              <button class="directory-card-action" type="button" data-service-modal="hr">Explore details <span aria-hidden="true">↗</span></button>
             </article>
             <article class="directory-card reveal">
               <h3>Managed Workplace</h3>
@@ -96,10 +101,22 @@
                 <li>System security</li>
                 <li>Business continuity support</li>
               </ul>
+              <button class="directory-card-action" type="button" data-service-modal="workplace">Explore details <span aria-hidden="true">↗</span></button>
             </article>
           </div>
         </div>
       </section>
+      <dialog class="service-modal" data-service-dialog aria-labelledby="service-modal-title">
+        <div class="service-modal-shell">
+          <button class="service-modal-close" type="button" data-service-modal-close aria-label="Close service details">×</button>
+          <p class="service-modal-kicker" data-service-modal-kicker></p>
+          <h2 id="service-modal-title" data-service-modal-title></h2>
+          <p class="service-modal-intro" data-service-modal-intro></p>
+          <div class="service-modal-details" data-service-modal-details></div>
+          <div class="service-modal-route" aria-hidden="true"><span></span><i></i><span></span><i></i><span></span></div>
+          <a class="service-modal-cta" href="contact.html">Discuss this service <span aria-hidden="true">→</span></a>
+        </div>
+      </dialog>
       <section class="section dark-section">
         <div class="container grid-2 reveal">
           <div>
