@@ -1,4 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#111"/>
-  <path d="M14 15h10v13h16V15h10v34H40V37H24v12H14z" fill="#efbf04"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <!-- Yellow background circle -->
+  <circle cx="250" cy="250" r="240" fill="#F4C430" />
+
+  <!-- Black lightbulb silhouette -->
+  <path d="M 250 100 
+           C 160 100, 125 170, 125 240 
+           C 125 290, 160 325, 185 365 
+           C 195 380, 200 395, 200 425 
+           L 300 425 
+           C 300 395, 305 380, 315 365 
+           C 340 325, 375 290, 375 240 
+           C 375 170, 340 100, 250 100 Z" 
+        fill="#000000" />
+
+  <!-- White curved highlight on bulb -->
+  <path d="M 175 125 
+           C 215 110, 245 110, 255 120 
+           C 260 125, 255 138, 245 140 
+           C 225 130, 185 140, 160 215 
+           C 155 230, 140 230, 142 215 
+           C 148 170, 155 135, 175 125 Z" 
+        fill="#FFFFFF" />
+
+  <!-- White screw thread 1 (top) -->
+  <rect x="202" y="378" width="96" height="24" rx="12" ry="12" fill="#FFFFFF" />
+
+  <!-- White screw thread 2 (middle) -->
+  <rect x="202" y="408" width="96" height="24" rx="12" ry="12" fill="#FFFFFF" />
+
+  <!-- White screw thread 3 (bottom) -->
+  <rect x="202" y="438" width="96" height="24" rx="12" ry="12" fill="#FFFFFF" />
+
+  <!-- White bottom contact cap -->
+  <path d="M 218 470 
+           Q 250 500, 282 470 
+           Z" 
+        fill="#FFFFFF" />
 </svg>
