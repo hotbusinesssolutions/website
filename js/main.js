@@ -11,15 +11,15 @@ document.addEventListener("DOMContentLoaded", () => {
         ? "../"
         : "";
 
-   const navigationItems = [
-    ["about", "About"],
-    ["services", "Services"],
-    ["industries", "Industries"],
-    ["how-we-work", "How We Work"],
-    ["insights", "Insights"],
-    ["careers", "Careers"],
-    ["contact", "Contact"],
-];
+    const navigationItems = [
+        ["about", "About"],
+        ["services", "Services"],
+        ["industries", "Industries"],
+        ["how-we-work", "How We Work"],
+        ["insights", "Insights"],
+        ["careers", "Careers"],
+        ["contact", "Contact"],
+    ];
 
     /* =========================================================
        SHARED HEADER
@@ -299,85 +299,97 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* =========================================================
-       MOBILE MENU AND ABOUT DROPDOWN
+       MOBILE MENU AND NAVIGATION DROPDOWNS
        ========================================================= */
 
     const menuButton = document.querySelector(".menu-toggle");
     const navigationList = document.querySelector(".nav-list");
-    const aboutDropdown = document.querySelector(".nav-item-dropdown");
-    const aboutDropdownButton = document.querySelector(
-        ".nav-dropdown-toggle",
+    const navigationDropdowns = document.querySelectorAll(
+        ".nav-item-dropdown",
+    );
+    const desktopHover = window.matchMedia(
+        "(min-width: 981px) and (hover: hover)",
     );
 
-    const closeAboutDropdown = () => {
-        aboutDropdown?.classList.remove("is-open");
-
-        aboutDropdownButton?.setAttribute(
-            "aria-expanded",
-            "false",
-        );
+    const closeDropdown = (dropdown) => {
+        dropdown.classList.remove("is-open");
+        dropdown
+            .querySelector(".nav-dropdown-toggle")
+            ?.setAttribute("aria-expanded", "false");
     };
 
-    if (aboutDropdown && aboutDropdownButton) {
-        const desktopHover = window.matchMedia(
-            "(min-width: 981px) and (hover: hover)",
+    const closeAllDropdowns = (exception = null) => {
+        navigationDropdowns.forEach((dropdown) => {
+            if (dropdown !== exception) {
+                closeDropdown(dropdown);
+            }
+        });
+    };
+
+    navigationDropdowns.forEach((dropdown) => {
+        const dropdownButton = dropdown.querySelector(
+            ".nav-dropdown-toggle",
         );
 
-        const setAboutExpanded = (isExpanded) => {
-            aboutDropdownButton.setAttribute(
+        if (!dropdownButton) {
+            return;
+        }
+
+        const setExpanded = (isExpanded) => {
+            dropdownButton.setAttribute(
                 "aria-expanded",
                 String(isExpanded),
             );
         };
 
-        aboutDropdown.addEventListener("mouseenter", () => {
+        dropdown.addEventListener("mouseenter", () => {
             if (desktopHover.matches) {
-                setAboutExpanded(true);
+                closeAllDropdowns(dropdown);
+                setExpanded(true);
             }
         });
 
-        aboutDropdown.addEventListener("mouseleave", () => {
+        dropdown.addEventListener("mouseleave", () => {
             if (desktopHover.matches) {
-                setAboutExpanded(false);
+                setExpanded(false);
             }
         });
 
-        aboutDropdown.addEventListener("focusin", () => {
+        dropdown.addEventListener("focusin", () => {
             if (desktopHover.matches) {
-                setAboutExpanded(true);
+                closeAllDropdowns(dropdown);
+                setExpanded(true);
             }
         });
 
-        aboutDropdown.addEventListener("focusout", (event) => {
+        dropdown.addEventListener("focusout", (event) => {
             if (
                 desktopHover.matches &&
-                !aboutDropdown.contains(event.relatedTarget)
+                !dropdown.contains(event.relatedTarget)
             ) {
-                setAboutExpanded(false);
+                setExpanded(false);
             }
         });
 
-        aboutDropdownButton.addEventListener("click", (event) => {
+        dropdownButton.addEventListener("click", (event) => {
             event.stopPropagation();
 
             if (desktopHover.matches) {
                 return;
             }
 
-            const isOpen = aboutDropdown.classList.toggle("is-open");
-
-            aboutDropdownButton.setAttribute(
-                "aria-expanded",
-                String(isOpen),
-            );
+            const shouldOpen = !dropdown.classList.contains("is-open");
+            closeAllDropdowns(dropdown);
+            dropdown.classList.toggle("is-open", shouldOpen);
+            setExpanded(shouldOpen);
         });
+    });
 
-        document.addEventListener("click", (event) => {
-            if (!aboutDropdown.contains(event.target)) {
-                closeAboutDropdown();
-            }
-        });
-    }
+    document.addEventListener("click", (event) => {
+        if (!event.target.closest(".nav-item-dropdown")) {
+            closeAllDropdowns();
+        }
+    });
 
     if (menuButton && navigationList) {
         const closeMenu = () => {
@@ -385,7 +397,7 @@ document.addEventListener("DOMContentLoaded", () => {
             menuButton.setAttribute("aria-expanded", "false");
             document.body.classList.remove("menu-open");
 
-            closeAboutDropdown();
+            closeAllDropdowns();
         };
 
         menuButton.addEventListener("click", () => {
@@ -1134,4 +1146,155 @@ document.addEventListener("DOMContentLoaded", () => {
             },
         );
     });
+
+    /* =========================================================
+       HOMEPAGE EDITORIAL SERVICE RIBBONS
+       ========================================================= */
+
+    document
+        .querySelectorAll("[data-pillar-ribbon]")
+        .forEach((ribbon) => {
+            ribbon.addEventListener("pointermove", (event) => {
+                if (!window.matchMedia("(hover: hover)").matches) {
+                    return;
+                }
+
+                const bounds = ribbon.getBoundingClientRect();
+
+                ribbon.style.setProperty(
+                    "--pillar-x",
+                    `${event.clientX - bounds.left}px`,
+                );
+                ribbon.style.setProperty(
+                    "--pillar-y",
+                    `${event.clientY - bounds.top}px`,
+                );
+            });
+
+            ribbon.addEventListener("pointerleave", () => {
+                ribbon.style.removeProperty("--pillar-x");
+                ribbon.style.removeProperty("--pillar-y");
+            });
+        });
+
+    /* =========================================================
+       SERVICES COMMAND CENTER
+       ========================================================= */
+
+    const serviceCommand = document.querySelector(
+        "[data-service-command]",
+    );
+
+    if (serviceCommand) {
+        const commandTabs = Array.from(
+            serviceCommand.querySelectorAll(
+                "[data-command-service]",
+            ),
+        );
+        const commandPanels = Array.from(
+            serviceCommand.querySelectorAll(
+                "[data-command-panel]",
+            ),
+        );
+        const commandStage = serviceCommand.querySelector(
+            ".service-command-stage",
+        );
+
+        const activateCommandService = (selectedTab) => {
+            const selectedService =
+                selectedTab.dataset.commandService;
+            const selectedIndex = commandTabs.indexOf(selectedTab);
+
+            commandTabs.forEach((tab) => {
+                const isActive = tab === selectedTab;
+
+                tab.classList.toggle("is-active", isActive);
+                tab.setAttribute("aria-selected", String(isActive));
+                tab.tabIndex = isActive ? 0 : -1;
+            });
+
+            commandPanels.forEach((panel) => {
+                const isActive =
+                    panel.dataset.commandPanel === selectedService;
+
+                panel.classList.toggle("is-active", isActive);
+                panel.setAttribute("aria-hidden", String(!isActive));
+                panel.inert = !isActive;
+            });
+
+            serviceCommand.style.setProperty(
+                "--service-progress",
+                `${((selectedIndex + 1) / commandTabs.length) * 100}%`,
+            );
+        };
+
+        commandTabs.forEach((tab, index) => {
+            tab.addEventListener("pointerenter", () => {
+                if (window.matchMedia("(hover: hover)").matches) {
+                    activateCommandService(tab);
+                }
+            });
+
+            tab.addEventListener("focus", () => {
+                activateCommandService(tab);
+            });
+
+            tab.addEventListener("click", () => {
+                activateCommandService(tab);
+            });
+
+            tab.addEventListener("keydown", (event) => {
+                const keyDirections = {
+                    ArrowDown: 1,
+                    ArrowRight: 1,
+                    ArrowUp: -1,
+                    ArrowLeft: -1,
+                };
+
+                let nextIndex;
+
+                if (event.key in keyDirections) {
+                    nextIndex =
+                        (index + keyDirections[event.key] + commandTabs.length) %
+                        commandTabs.length;
+                } else if (event.key === "Home") {
+                    nextIndex = 0;
+                } else if (event.key === "End") {
+                    nextIndex = commandTabs.length - 1;
+                } else {
+                    return;
+                }
+
+                event.preventDefault();
+                commandTabs[nextIndex].focus();
+            });
+        });
+
+        commandStage?.addEventListener("pointermove", (event) => {
+            const bounds = commandStage.getBoundingClientRect();
+
+            commandStage.style.setProperty(
+                "--pointer-x",
+                `${event.clientX - bounds.left}px`,
+            );
+            commandStage.style.setProperty(
+                "--pointer-y",
+                `${event.clientY - bounds.top}px`,
+            );
+        });
+
+        commandStage?.addEventListener("pointerleave", () => {
+            commandStage.style.removeProperty("--pointer-x");
+            commandStage.style.removeProperty("--pointer-y");
+        });
+
+        const initialTab =
+            commandTabs.find((tab) =>
+                tab.classList.contains("is-active"),
+            ) || commandTabs[0];
+
+        if (initialTab) {
+            activateCommandService(initialTab);
+        }
+    }
 });

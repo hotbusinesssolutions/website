@@ -84,58 +84,175 @@
     margin-bottom: auto;
 }
 
-.service-stack {
+.pillar-gallery {
+    --pillar-x: 78%;
+    --pillar-y: 50%;
+    margin-top: clamp(42px, 6vw, 76px);
+    border-top: 1px solid rgba(255, 255, 255, .24);
+}
+
+.pillar-ribbon {
+    position: relative;
     display: grid;
-    grid-template-columns: .8fr 1.2fr;
-    border: 1px solid #4a4a4a;
-    border-radius: 28px;
+    grid-template-columns: 64px minmax(0, 1fr) minmax(150px, .35fr) 38px;
+    gap: clamp(18px, 3vw, 46px);
+    align-items: center;
+    min-height: 112px;
+    padding: 26px clamp(18px, 3vw, 38px);
     overflow: hidden;
+    color: var(--white);
+    border-bottom: 1px solid rgba(255, 255, 255, .24);
+    isolation: isolate;
+    transition: min-height .55s var(--ease), color .4s ease, padding .55s var(--ease);
 }
 
-.service-tabs {
-    display: flex;
-    flex-direction: column;
-}
-
-.service-tab {
-    border: 0;
-    border-bottom: 1px solid #444;
-    background: transparent;
-    color: #fff;
-    text-align: left;
-    padding: 24px;
-    display: flex;
-    justify-content: space-between;
-    cursor: pointer;
-}
-
-.service-tab.active {
+.pillar-ribbon::before {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    content: "";
     background: var(--gold);
-    color: #111;
+    clip-path: inset(48% 50% 48% 50% round 999px);
+    transition: clip-path .7s var(--ease);
 }
 
-.service-panel {
-    padding: 46px;
-    min-height: 430px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    background: linear-gradient(145deg,#363636,#282828);
+.pillar-ribbon::after {
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 78%;
+    width: min(28vw, 340px);
+    aspect-ratio: 1;
+    content: "";
+    background: rgba(255, 255, 255, .23);
+    border: 1px solid rgba(255, 255, 255, .36);
+    border-radius: 44% 56% 63% 37% / 54% 42% 58% 46%;
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-18deg) scale(.45);
+    transition: opacity .35s ease, transform .75s var(--ease);
 }
 
-.service-panel .mini-flow {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: auto;
+.pillar-ribbon:hover,
+.pillar-ribbon:focus-visible {
+    min-height: 164px;
+    padding-block: 38px;
+    color: var(--ink);
+    outline: 0;
 }
 
-.mini-flow span {
-    border: 1px solid #555;
-    border-radius: 999px;
-    padding: 7px 12px;
+.pillar-ribbon:hover::before,
+.pillar-ribbon:focus-visible::before {
+    clip-path: inset(0 round 0);
+}
+
+.pillar-ribbon:hover::after,
+.pillar-ribbon:focus-visible::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(12deg) scale(1);
+}
+
+.pillar-number {
+    align-self: start;
+    padding-top: 7px;
+    color: rgba(255, 255, 255, .54);
     font-size: .69rem;
-    color: #bbb;
+    font-weight: 700;
+    letter-spacing: .14em;
+    transition: color .35s ease;
+}
+
+.pillar-copy h3 {
+    font-size: clamp(1.65rem, 3.2vw, 3.65rem);
+    letter-spacing: -.025em;
+    transition: transform .6s var(--ease);
+}
+
+.pillar-copy p {
+    max-width: 670px;
+    max-height: 0;
+    margin: 0;
+    overflow: hidden;
+    color: rgba(0, 0, 0, .68);
+    opacity: 0;
+    transform: translateY(14px);
+    transition: max-height .55s var(--ease), margin .55s var(--ease), opacity .4s ease .08s, transform .55s var(--ease);
+}
+
+.pillar-label {
+    align-self: start;
+    padding-top: 7px;
+    color: rgba(255, 255, 255, .6);
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    transition: color .35s ease;
+}
+
+.pillar-arrow {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    color: var(--ink);
+    background: var(--gold);
+    border-radius: 50%;
+    transition: background .35s ease, transform .55s var(--ease);
+}
+
+.pillar-orb {
+    position: absolute;
+    z-index: -1;
+    left: var(--pillar-x);
+    top: var(--pillar-y);
+    width: 150px;
+    aspect-ratio: 1;
+    background: rgba(255, 255, 255, .2);
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(.4);
+    transition: opacity .3s ease, transform .6s var(--ease), left .18s ease-out, top .18s ease-out;
+}
+
+.pillar-ribbon:hover .pillar-copy h3,
+.pillar-ribbon:focus-visible .pillar-copy h3 {
+    transform: translateX(10px);
+}
+
+.pillar-ribbon:hover .pillar-copy p,
+.pillar-ribbon:focus-visible .pillar-copy p {
+    max-height: 80px;
+    margin-top: 10px;
+    opacity: 1;
+    transform: none;
+}
+
+.pillar-ribbon:hover .pillar-number,
+.pillar-ribbon:hover .pillar-label,
+.pillar-ribbon:focus-visible .pillar-number,
+.pillar-ribbon:focus-visible .pillar-label {
+    color: rgba(0, 0, 0, .64);
+}
+
+.pillar-ribbon:hover .pillar-arrow,
+.pillar-ribbon:focus-visible .pillar-arrow {
+    background: var(--white);
+    transform: rotate(45deg);
+}
+
+.pillar-ribbon:hover .pillar-orb,
+.pillar-ribbon:focus-visible .pillar-orb {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.pillar-gallery:has(.pillar-ribbon:hover) .pillar-ribbon:not(:hover) {
+    opacity: .42;
+}
+
+.pillar-gallery .pillar-ribbon {
+    transition: min-height .55s var(--ease), color .4s ease, padding .55s var(--ease), opacity .35s ease;
 }
 
 .capability-layout {
@@ -256,6 +373,86 @@
     color: #aaa;
 }
 
+.audience-invitation {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.audience-path {
+    position: relative;
+    min-height: 520px;
+    padding: clamp(52px, 7vw, 105px);
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.audience-path > span {
+    display: block;
+    margin-bottom: 48px;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+}
+
+.audience-path h2 {
+    max-width: 680px;
+    font-size: clamp(3rem, 5.5vw, 6.5rem);
+}
+
+.audience-path p {
+    max-width: 560px;
+    margin-top: 26px;
+}
+
+.audience-path a {
+    display: inline-flex;
+    gap: 16px;
+    align-items: center;
+    margin-top: 24px;
+    padding-bottom: 5px;
+    font-weight: 700;
+    border-bottom: 2px solid currentColor;
+}
+
+.audience-path i {
+    font-style: normal;
+    transition: transform .35s var(--ease);
+}
+
+.audience-path a:hover i,
+.audience-path a:focus-visible i {
+    transform: translateX(6px);
+}
+
+.audience-path-client {
+    color: var(--ink);
+    background: var(--gold);
+}
+
+.audience-path-talent {
+    color: var(--white);
+    background: var(--ink);
+}
+
+.audience-path::after {
+    position: absolute;
+    z-index: -1;
+    right: -16%;
+    bottom: -42%;
+    width: 62%;
+    aspect-ratio: 1;
+    content: "";
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    opacity: .24;
+    transition: transform .8s var(--ease);
+}
+
+.audience-path:hover::after {
+    transform: translate(-12%, -14%) scale(1.24);
+}
+
 @media(max-width:800px) {
     .group-band .container {
         display: block;
@@ -265,12 +462,16 @@
         margin-top: 12px;
     }
 
-    .service-stack {
+    .audience-invitation {
         grid-template-columns: 1fr;
     }
 
-    .service-panel {
-        min-height: 380px;
+    .pillar-ribbon {
+        grid-template-columns: 42px minmax(0, 1fr) 38px;
+    }
+
+    .pillar-label {
+        display: none;
     }
 
     .capability-layout {
@@ -303,12 +504,40 @@
         grid-template-columns: 1fr;
     }
 
-    .service-tab {
-        padding: 18px;
+    .pillar-ribbon {
+        grid-template-columns: 32px minmax(0, 1fr) 34px;
+        gap: 12px;
+        min-height: auto;
+        padding: 24px 10px;
     }
 
-    .service-panel {
-        padding: 28px;
+    .pillar-ribbon:hover,
+    .pillar-ribbon:focus-visible {
+        min-height: auto;
+        padding-block: 24px;
+    }
+
+    .pillar-copy h3 {
+        font-size: clamp(1.55rem, 8vw, 2.35rem);
+    }
+
+    .pillar-copy p {
+        max-height: none;
+        margin-top: 8px;
+        color: rgba(255, 255, 255, .65);
+        font-size: .84rem;
+        opacity: 1;
+        transform: none;
+    }
+
+    .pillar-ribbon:hover .pillar-copy p,
+    .pillar-ribbon:focus-visible .pillar-copy p {
+        color: rgba(0, 0, 0, .68);
+    }
+
+    .pillar-arrow {
+        width: 34px;
+        height: 34px;
     }
 
 }
@@ -398,44 +627,6 @@
 }
 
 /* =========================================================
-   CORE SERVICE CONTENT TRANSITION
-   ========================================================= */
-
-.service-panel > * {
-    transition: opacity 0.28s ease,         transform 0.38s var(--ease);
-}
-
-.service-panel.is-changing > * {
-    opacity: 0;
-    transform: translateY(18px);
-}
-
-.service-panel.is-entering > * {
-    animation: service-content-in         0.55s         var(--ease)         both;
-}
-
-.service-panel.is-entering .lead {
-    animation-delay: 0.07s;
-}
-
-.service-panel.is-entering .mini-flow {
-    animation-delay: 0.12s;
-}
-
-@keyframes service-content-in {
-    from {
-        opacity: 0;
-        transform: translateY(24px);
-    }
-
-    to {
-        opacity: 1;
-        transform: none;
-    }
-
-}
-
-/* =========================================================
    RESPONSIVE
    ========================================================= */
 
@@ -460,8 +651,14 @@
         animation: none;
     }
 
-    .service-panel.is-entering > * {
-        animation: none;
+    .pillar-ribbon,
+    .pillar-ribbon::before,
+    .pillar-ribbon::after,
+    .pillar-copy h3,
+    .pillar-copy p,
+    .pillar-arrow,
+    .pillar-orb {
+        transition: none;
     }
 
 }

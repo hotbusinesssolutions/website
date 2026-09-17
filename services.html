@@ -12,7 +12,7 @@
   <body class="page-services">
     <div data-site-header></div>
     <main id="main-content">
-      <section class="page-hero">
+      <section class="page-hero services-fold-hero">
         <span class="route-line"></span>
         <div class="container">
           <p class="eyebrow">Services</p>
@@ -23,9 +23,10 @@
             From finding talent to providing the workplace and ongoing people
             support that helps teams perform.
           </p>
+          <div class="services-fold-rail" aria-hidden="true"><span>People</span><span>Operations</span><span>Technology</span><span>Workplace</span></div>
         </div>
       </section>
-      <section class="section">
+      <section class="section" id="services-overview">
         <div class="container">
           <div class="section-head reveal">
             <div>
@@ -37,73 +38,62 @@
               HBS deck.
             </p>
           </div>
-          <div class="service-directory">
-            <article class="directory-card reveal">
-              <h3>Build Your Offshore Team</h3>
-              <ul>
-                <li>Talent sourcing</li>
-                <li>Recruitment and selection</li>
-                <li>Employer of Record</li>
-                <li>Onboarding</li>
-                <li>Ongoing team support</li>
-              </ul>
-              <button class="directory-card-action" type="button" data-service-modal="team">Explore details <span aria-hidden="true">↗</span></button>
-            </article>
-            <article class="directory-card reveal">
-              <h3>Travel Operations</h3>
-              <ul>
-                <li>GDS-based support</li>
-                <li>Ticketing and reissuance</li>
-                <li>Refunds</li>
-                <li>Itinerary management</li>
-                <li>Travel administration</li>
-              </ul>
-              <button class="directory-card-action" type="button" data-service-modal="travel">Explore details <span aria-hidden="true">↗</span></button>
-            </article>
-            <article class="directory-card reveal">
-              <h3>Customer Experience</h3>
-              <ul>
-                <li>Voice support</li>
-                <li>Email support</li>
-                <li>Chat support</li>
-                <li>Customer and agent correspondence</li>
-                <li>Sales support</li>
-              </ul>
-              <button class="directory-card-action" type="button" data-service-modal="customer">Explore details <span aria-hidden="true">↗</span></button>
-            </article>
-            <article class="directory-card reveal">
-              <h3>Finance & Back Office</h3>
-              <ul>
-                <li>AR/AP support</li>
-                <li>Reconciliation</li>
-                <li>Invoicing</li>
-                <li>Financial reporting support</li>
-                <li>Administrative processing</li>
-              </ul>
-              <button class="directory-card-action" type="button" data-service-modal="finance">Explore details <span aria-hidden="true">↗</span></button>
-            </article>
-            <article class="directory-card reveal">
-              <h3>HR & Shared Services</h3>
-              <ul>
-                <li>HR administration</li>
-                <li>Payroll coordination</li>
-                <li>Attendance and timekeeping</li>
-                <li>Benefits coordination</li>
-                <li>Performance, employee relations and offboarding</li>
-              </ul>
-              <button class="directory-card-action" type="button" data-service-modal="hr">Explore details <span aria-hidden="true">↗</span></button>
-            </article>
-            <article class="directory-card reveal">
-              <h3>Managed Workplace</h3>
-              <ul>
-                <li>BGC office</li>
-                <li>Workstations and equipment</li>
-                <li>IT infrastructure and support</li>
-                <li>System security</li>
-                <li>Business continuity support</li>
-              </ul>
-              <button class="directory-card-action" type="button" data-service-modal="workplace">Explore details <span aria-hidden="true">↗</span></button>
-            </article>
+          <div class="service-command reveal" data-service-command>
+            <div class="service-command-list" role="tablist" aria-label="HBS service areas">
+              <button class="service-command-tab is-active" type="button" role="tab" id="service-tab-team" aria-selected="true" aria-controls="service-panel-team" data-command-service="team"><span>01</span><strong>Build Your Offshore Team</strong><i aria-hidden="true">↗</i></button>
+              <button class="service-command-tab" type="button" role="tab" id="service-tab-travel" aria-selected="false" aria-controls="service-panel-travel" tabindex="-1" data-command-service="travel"><span>02</span><strong>Travel Operations</strong><i aria-hidden="true">↗</i></button>
+              <button class="service-command-tab" type="button" role="tab" id="service-tab-customer" aria-selected="false" aria-controls="service-panel-customer" tabindex="-1" data-command-service="customer"><span>03</span><strong>Customer Experience</strong><i aria-hidden="true">↗</i></button>
+              <button class="service-command-tab" type="button" role="tab" id="service-tab-finance" aria-selected="false" aria-controls="service-panel-finance" tabindex="-1" data-command-service="finance"><span>04</span><strong>Finance &amp; Back Office</strong><i aria-hidden="true">↗</i></button>
+              <button class="service-command-tab" type="button" role="tab" id="service-tab-hr" aria-selected="false" aria-controls="service-panel-hr" tabindex="-1" data-command-service="hr"><span>05</span><strong>HR &amp; Shared Services</strong><i aria-hidden="true">↗</i></button>
+              <button class="service-command-tab" type="button" role="tab" id="service-tab-workplace" aria-selected="false" aria-controls="service-panel-workplace" tabindex="-1" data-command-service="workplace"><span>06</span><strong>Managed Workplace</strong><i aria-hidden="true">↗</i></button>
+            </div>
+
+            <div class="service-command-stage" aria-live="polite">
+              <span class="service-command-glow" aria-hidden="true"></span>
+              <span class="service-command-progress" aria-hidden="true"><i></i></span>
+
+              <article class="service-command-panel is-active" id="service-panel-team" role="tabpanel" aria-labelledby="service-tab-team" data-command-panel="team">
+                <p class="service-command-count">01 / 06 · Build capability</p><h3>Build Your Offshore Team</h3><p>From role calibration and talent search through onboarding and ongoing people support.</p>
+                <ul><li>Talent sourcing</li><li>Recruitment and selection</li><li>Employer of Record</li><li>Ongoing support</li></ul>
+                <div class="service-command-flow" aria-label="Service workflow"><span>Calibrate</span><span>Select</span><span>Onboard</span><span>Support</span></div>
+                <button class="service-command-action" type="button" data-service-modal="team">Explore details <span aria-hidden="true">→</span></button>
+              </article>
+
+              <article class="service-command-panel" id="service-panel-travel" role="tabpanel" aria-labelledby="service-tab-travel" aria-hidden="true" inert data-command-panel="travel">
+                <p class="service-command-count">02 / 06 · Travel delivery</p><h3>Travel Operations</h3><p>Accurate operational support for documented travel workflows, queues and escalation paths.</p>
+                <ul><li>GDS support</li><li>Ticketing and reissuance</li><li>Refunds</li><li>Itinerary management</li></ul>
+                <div class="service-command-flow" aria-label="Service workflow"><span>Receive</span><span>Process</span><span>Check</span><span>Resolve</span></div>
+                <button class="service-command-action" type="button" data-service-modal="travel">Explore details <span aria-hidden="true">→</span></button>
+              </article>
+
+              <article class="service-command-panel" id="service-panel-customer" role="tabpanel" aria-labelledby="service-tab-customer" aria-hidden="true" inert data-command-panel="customer">
+                <p class="service-command-count">03 / 06 · Connected service</p><h3>Customer Experience</h3><p>Responsive support across customer, agent and sales channels within an agreed scope.</p>
+                <ul><li>Voice</li><li>Email</li><li>Chat</li><li>Sales support</li></ul>
+                <div class="service-command-flow" aria-label="Service workflow"><span>Connect</span><span>Assist</span><span>Resolve</span><span>Learn</span></div>
+                <button class="service-command-action" type="button" data-service-modal="customer">Explore details <span aria-hidden="true">→</span></button>
+              </article>
+
+              <article class="service-command-panel" id="service-panel-finance" role="tabpanel" aria-labelledby="service-tab-finance" aria-hidden="true" inert data-command-panel="finance">
+                <p class="service-command-count">04 / 06 · Process control</p><h3>Finance &amp; Back Office</h3><p>Structured transaction, reconciliation and reporting support built around established controls.</p>
+                <ul><li>AR/AP support</li><li>Reconciliation</li><li>Invoicing</li><li>Reporting support</li></ul>
+                <div class="service-command-flow" aria-label="Service workflow"><span>Process</span><span>Check</span><span>Report</span><span>Improve</span></div>
+                <button class="service-command-action" type="button" data-service-modal="finance">Explore details <span aria-hidden="true">→</span></button>
+              </article>
+
+              <article class="service-command-panel" id="service-panel-hr" role="tabpanel" aria-labelledby="service-tab-hr" aria-hidden="true" inert data-command-panel="hr">
+                <p class="service-command-count">05 / 06 · People operations</p><h3>HR &amp; Shared Services</h3><p>Coordinated employee-lifecycle support that keeps recurring people processes organised.</p>
+                <ul><li>HR administration</li><li>Payroll coordination</li><li>Benefits</li><li>Offboarding</li></ul>
+                <div class="service-command-flow" aria-label="Service workflow"><span>Employ</span><span>Care</span><span>Comply</span><span>Retain</span></div>
+                <button class="service-command-action" type="button" data-service-modal="hr">Explore details <span aria-hidden="true">→</span></button>
+              </article>
+
+              <article class="service-command-panel" id="service-panel-workplace" role="tabpanel" aria-labelledby="service-tab-workplace" aria-hidden="true" inert data-command-panel="workplace">
+                <p class="service-command-count">06 / 06 · Supported environment</p><h3>Managed Workplace</h3><p>A connected BGC workplace bringing equipment, IT support, security and continuity together.</p>
+                <ul><li>BGC office</li><li>Equipment</li><li>IT support</li><li>Business continuity</li></ul>
+                <div class="service-command-flow" aria-label="Service workflow"><span>Equip</span><span>Secure</span><span>Operate</span><span>Continue</span></div>
+                <button class="service-command-action" type="button" data-service-modal="workplace">Explore details <span aria-hidden="true">→</span></button>
+              </article>
+            </div>
           </div>
         </div>
       </section>
@@ -118,6 +108,20 @@
           <a class="service-modal-cta" href="contact.html">Discuss this service <span aria-hidden="true">→</span></a>
         </div>
       </dialog>
+      <section class="section capability-scope-section">
+        <div class="container">
+          <div class="section-head reveal"><div><p class="eyebrow">Expanded business support scope</p><h2>Support that can grow <span class="gold">with the brief.</span></h2></div><p>HBS is structured to support House of Travel companies and independent third-party clients across Australia, New Zealand and other international markets. Each engagement is validated against the required people, systems, controls and delivery model.</p></div>
+          <div class="capability-scope-grid reveal">
+            <article><span>01</span><h3>Customer &amp; Contact Centre</h3><p>Voice, email, chat, customer correspondence, sales assistance and service workflows designed around approved channels and service levels.</p></article>
+            <article><span>02</span><h3>Data &amp; Back-Office Operations</h3><p>Data management, administrative processing, documentation, reconciliation and repeatable operational tasks supported by defined controls.</p></article>
+            <article><span>03</span><h3>IT &amp; Managed Technology</h3><p>Information-technology support, managed workplace services, endpoint and infrastructure coordination, system administration and service continuity.</p></article>
+            <article><span>04</span><h3>Automation &amp; AI-Enabled Support</h3><p>Carefully scoped automation and AI-assisted workflows that improve consistency or reduce manual effort, subject to client approval, security and governance.</p></article>
+            <article><span>05</span><h3>Finance, Accounting &amp; HR</h3><p>Finance operations, accounting support, payroll inputs, HR administration, employee-lifecycle coordination and shared-service processes.</p></article>
+            <article><span>06</span><h3>Platforms, Tools &amp; Digital Services</h3><p>Development, operation and maintenance of approved systems, platforms and tools necessary to deliver the agreed business-support service.</p></article>
+          </div>
+          <p class="scope-note reveal"><strong>Important:</strong> These categories describe the company’s permitted support scope. Final availability, technology, staffing, compliance and implementation requirements are confirmed during discovery.</p>
+        </div>
+      </section>
       <section class="section dark-section">
         <div class="container grid-2 reveal">
           <div>
