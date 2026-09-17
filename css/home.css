@@ -371,6 +371,19 @@
     border-radius: 50%;
 }
 
+.journey-output {
+    display: block;
+    margin-top: 20px;
+    padding-top: 15px;
+    color: #222;
+    font-size: .68rem;
+    font-weight: 800;
+    line-height: 1.45;
+    letter-spacing: .04em;
+    border-top: 1px solid rgba(0,0,0,.14);
+    text-transform: uppercase;
+}
+
 .skyline-cta {
     position: relative;
     min-height: 550px;

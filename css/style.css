@@ -894,9 +894,23 @@ textarea {
     }
 
     .nav-shell {
+        position: relative;
         min-height: 58px;
         padding-inline: 16px;
         border-radius: 15px;
+    }
+
+    .menu-toggle {
+        flex: 0 0 44px;
+        width: 44px;
+        margin-right: -8px;
+        margin-left: auto;
+        padding: 8px 0 8px 8px;
+    }
+
+    .menu-toggle span {
+        margin-right: 0;
+        margin-left: auto;
     }
 
     .nav-list {
