@@ -11,16 +11,15 @@ document.addEventListener("DOMContentLoaded", () => {
         ? "../"
         : "";
 
-    const navigationItems = [
-        ["index", "HOME"],
-        ["about", "About"],
-        ["services", "SERVICES"],
-        ["industries", "INDUSTRIES"],
-        ["how-we-work", "HOW WE WORK"],
-        ["insights", "INSIGHTS"],
-        ["careers", "CAREERS"],
-        ["contact", "CONTACT"],
-    ];
+   const navigationItems = [
+    ["about", "About"],
+    ["services", "Services"],
+    ["industries", "Industries"],
+    ["how-we-work", "How We Work"],
+    ["insights", "Insights"],
+    ["careers", "Careers"],
+    ["contact", "Contact"],
+];
 
     /* =========================================================
        SHARED HEADER
