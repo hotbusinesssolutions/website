@@ -3,8 +3,8 @@
     padding: 185px 0 105px;
     position: relative;
     overflow: hidden;
-    background: #242424;
-    color: #fff;
+    background: var(--ink);
+    color: var(--white);
     display: flex;
     align-items: center;
 }
@@ -49,7 +49,7 @@
 }
 
 .group-band {
-    background: #fff;
+    background: var(--white);
     padding: 42px 0;
     border-bottom: 1px solid var(--line);
 }
@@ -240,8 +240,8 @@
 }
 
 .contact-cta {
-    background: #0d0d0d;
-    color: #fff;
+    background: var(--ink);
+    color: var(--white);
 }
 
 .contact-cta h2 {

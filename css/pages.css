@@ -3,7 +3,7 @@
 }
 
 .industry-experience {
-    --industry-surface: #f4f2ed;
+    --industry-surface: var(--white);
     background: var(--industry-surface);
 }
 
@@ -25,7 +25,7 @@
     position: relative;
     padding: 0 0 12px;
     color: #787878;
-    font: 700 .66rem/1.15 "Poppins", var(--body);
+    font: 800 .66rem/1.15 var(--display);
     text-align: left;
     background: transparent;
     border: 0;
@@ -169,7 +169,8 @@
 .industry-panel h3 {
     max-width: 520px;
     margin-bottom: 22px;
-    font-family: "Poppins", var(--body);
+    font-family: var(--display);
+    font-weight: 800;
     font-size: clamp(2.2rem, 3.5vw, 4rem);
     font-weight: 700;
     line-height: .98;
@@ -204,7 +205,7 @@
 }
 
 .industry-capabilities strong {
-    font: 600 clamp(1.2rem, 2vw, 2.05rem)/1 "Poppins", var(--body);
+    font: 800 clamp(1.2rem, 2vw, 2.05rem)/1 var(--display);
     letter-spacing: -.04em;
 }
 
@@ -620,7 +621,7 @@
     margin-top: auto;
     padding: 9px 0 3px;
     color: var(--ink);
-    font: 700 .72rem/1 "Poppins", var(--body);
+    font: 800 .72rem/1 var(--display);
     background: transparent;
     border: 0;
     border-bottom: 2px solid var(--gold);
@@ -710,7 +711,7 @@
 .service-modal h2 {
     max-width: 700px;
     margin-bottom: 22px;
-    font-family: "Poppins", var(--body);
+    font-family: var(--display);
     font-size: clamp(2.5rem, 6vw, 5.5rem);
     line-height: .95;
 }
@@ -751,7 +752,7 @@
 .service-modal-detail strong {
     margin-bottom: 8px;
     color: #fff;
-    font: 700 1rem/1.2 "Poppins", var(--body);
+    font: 800 1rem/1.2 var(--display);
 }
 
 .service-modal-detail span {

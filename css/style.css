@@ -1,15 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/*
+ * HBS display typeface.
+ * Add the licensed webfont at fonts/MundialNarrow-ExtraBold.woff2.
+ * The fallback stack preserves the intended narrow, heavy character until then.
+ */
+@font-face {
+    font-family: "Mundial Narrow";
+    src: url("../fonts/MundialNarrow-ExtraBold.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+}
+
 :root {
-    --ink: #0b0b0b;
-    --charcoal: #292929;
-    --panel: #323232;
-    --gold: #efbf04;
-    --paper: #f6f5f0;
-    --white: #fff;
-    --muted: #73777f;
-    --line: #d9d9d4;
-    --display: "Oswald",Arial Narrow,sans-serif;
-    --body: "Inter",Arial,sans-serif;
+    --ink: #000000;
+    --charcoal: #000000;
+    --panel: #000000;
+    --gold: #EFBF04;
+    --paper: #FFFFFF;
+    --white: #FFFFFF;
+    --muted: #666666;
+    --line: rgba(0, 0, 0, .18);
+    --display: "Mundial Narrow", "Arial Narrow", "Helvetica Neue Condensed", Arial, sans-serif;
+    --body: "Inter", Arial, sans-serif;
     --max: 1240px;
     --radius: 24px;
     --ease: cubic-bezier(.22,1,.36,1);
@@ -92,6 +106,7 @@ button,input,select,textarea {
 
 h1,h2,h3 {
     font-family: var(--display);
+    font-weight: 800;
     line-height: .98;
     margin: 0;
     text-wrap: balance;
@@ -136,7 +151,7 @@ p {
 }
 
 .site-header.scrolled {
-    background: rgba(246,245,240,.92);
+    background: rgba(255,255,255,.94);
     backdrop-filter: blur(16px);
     box-shadow: 0 1px 0 rgba(0,0,0,.08);
 }
@@ -146,7 +161,7 @@ p {
     padding: 0 22px;
     border: 1px solid rgba(255,255,255,.22);
     border-radius: 18px;
-    background: rgba(20,20,20,.88);
+    background: rgba(0,0,0,.92);
     color: #fff;
     display: flex;
     align-items: center;
@@ -155,9 +170,9 @@ p {
 }
 
 .site-header.scrolled .nav-shell {
-    background: #fff;
-    color: #111;
-    border-color: #ddd;
+    background: var(--white);
+    color: var(--ink);
+    border-color: rgba(0,0,0,.18);
 }
 
 .brand {
@@ -195,7 +210,8 @@ p {
     background: transparent;
     border: 0;
     border-radius: 0;
-    font-family: "Poppins",Arial,sans-serif;
+    font-family: var(--display);
+    font-weight: 800;
     font-size: .69rem;
     font-weight: 700;
     line-height: inherit;
@@ -490,7 +506,7 @@ p {
     min-height: 280px;
     border: 1px solid #555;
     border-radius: var(--radius);
-    background: linear-gradient(145deg,#333,#242424);
+    background: linear-gradient(145deg,rgba(255,255,255,.08),var(--ink));
     color: #999;
     font-size: .72rem;
     letter-spacing: .12em;
