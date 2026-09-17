@@ -2370,3 +2370,165 @@
         transition: none;
     }
 }
+
+/* Page-level responsive hardening. */
+@media (max-width: 980px) {
+    .content-nav {
+        top: 78px;
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        scrollbar-width: thin;
+    }
+
+    .content-nav ul,
+    .industry-tabs {
+        width: max-content;
+        min-width: 100%;
+    }
+
+    .industry-tabs {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x proximity;
+    }
+
+    .industry-tab {
+        flex: 0 0 min(250px, 72vw);
+        scroll-snap-align: start;
+    }
+
+    .industry-panel,
+    .operations-stack-heading,
+    .managed-support-layout {
+        min-width: 0;
+    }
+
+    .office-location-panel {
+        border-radius: 22px;
+    }
+}
+
+@media (max-width: 680px) {
+    .about-manifesto-hero,
+    .page-hero {
+        min-height: auto;
+    }
+
+    .about-manifesto-grid,
+    .candidate-invitation-grid,
+    .office-location-panel {
+        gap: 30px;
+    }
+
+    .about-manifesto-note {
+        width: 100%;
+        max-width: none;
+    }
+
+    .service-command {
+        overflow: visible;
+        border-radius: 18px;
+    }
+
+    .service-command-list {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+    }
+
+    .service-command-tab,
+    .service-command-tab:first-child {
+        flex: 0 0 min(280px, 82vw);
+        min-height: 72px;
+        border-right: 1px solid rgba(0,0,0,.12);
+        scroll-snap-align: start;
+    }
+
+    .service-command-stage {
+        min-height: 620px;
+        border-radius: 0 0 18px 18px;
+    }
+
+    .service-command-panel {
+        padding: 42px 22px 30px;
+    }
+
+    .service-command-panel ul {
+        align-items: flex-start;
+    }
+
+    .service-command-flow {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .capability-scope-grid,
+    .leader-grid,
+    .industry-panel,
+    .directory-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .operation-panel {
+        border-radius: 20px;
+    }
+
+    .operation-image {
+        min-height: 260px;
+    }
+
+    .office-location-panel {
+        margin-top: 58px;
+        padding: 28px 20px;
+    }
+
+    .office-map-frame {
+        height: min(390px, 72vh);
+        border-radius: 14px;
+    }
+
+    .contact-signal-options {
+        margin-top: 34px;
+    }
+
+    .service-modal {
+        width: calc(100% - 16px);
+        margin: auto;
+    }
+}
+
+@media (max-width: 420px) {
+    .service-command-stage {
+        min-height: 660px;
+    }
+
+    .service-command-flow {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .service-command-flow span::after {
+        display: none;
+    }
+
+    .office-map-frame {
+        height: 330px;
+    }
+
+    .capability-scope-grid article {
+        padding: 24px 20px;
+    }
+}
+
+@media (hover: none) {
+    .service-command-glow,
+    .services-fold-hero::after {
+        pointer-events: none;
+    }
+
+    .capability-scope-grid article:hover,
+    .service-command-action:hover {
+        transform: none;
+    }
+}

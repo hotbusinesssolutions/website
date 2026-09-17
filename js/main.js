@@ -624,6 +624,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (moveFocus) {
                     selectedTab.focus();
                 }
+
+                if (window.innerWidth <= 980) {
+                    selectedTab.scrollIntoView({
+                        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                            ? "auto"
+                            : "smooth",
+                        block: "nearest",
+                        inline: "center",
+                    });
+                }
             };
 
             tabs.forEach((tab, index) => {
@@ -1226,6 +1236,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 "--service-progress",
                 `${((selectedIndex + 1) / commandTabs.length) * 100}%`,
             );
+
+            if (window.innerWidth <= 680) {
+                selectedTab.scrollIntoView({
+                    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                        ? "auto"
+                        : "smooth",
+                    block: "nearest",
+                    inline: "center",
+                });
+            }
         };
 
         commandTabs.forEach((tab, index) => {

@@ -691,3 +691,72 @@
     }
 
 }
+
+/* Homepage layouts remain fluid across phones, tablets and wide screens. */
+@media (max-width: 980px) {
+    .hero {
+        min-height: 760px;
+    }
+
+    .hero-copy {
+        max-width: 760px;
+    }
+
+    .pillar-ribbons,
+    .capability-layout,
+    .audience-invitation {
+        min-width: 0;
+    }
+}
+
+@media (max-width: 680px) {
+    .hero {
+        min-height: 100svh;
+        padding-top: 132px;
+    }
+
+    .hero-orbit {
+        width: min(78vw, 390px);
+        right: -34%;
+        opacity: .62;
+    }
+
+    .brand-marquee {
+        padding-block: 28px 32px;
+    }
+
+    .brand-marquee-window {
+        -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+        mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+    }
+
+    .pillar-ribbon,
+    .pillar-ribbon:hover,
+    .pillar-ribbon:focus-visible {
+        transform: none;
+    }
+
+    .capability-stat-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .audience-path {
+        min-height: 300px;
+        padding: 30px 24px;
+    }
+
+    .skyline-cta {
+        min-height: 520px;
+    }
+}
+
+@media (max-width: 420px) {
+    .capability-stat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .brand-marquee-group {
+        gap: 34px;
+        padding-right: 34px;
+    }
+}
