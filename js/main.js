@@ -214,13 +214,13 @@ document.addEventListener("DOMContentLoaded", () => {
                             <ul class="footer-links">
                                 <li>
                                     <a href="${rootPath}contact.html">
-                                        Build your team
+                                        Business inquiries
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="${rootPath}contact.html#careers">
-                                        Careers enquiry
+                                    <a href="${rootPath}careers.html">
+                                        Career opportunities
                                     </a>
                                 </li>
 
@@ -550,7 +550,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            const duration = 1200;
+            const duration = 1560;
             const startTime = performance.now();
 
             const animate = (currentTime) => {
