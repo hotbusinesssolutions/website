@@ -1155,7 +1155,7 @@ textarea {
 :root {
     --black-100: #000000;
     --black-50: rgba(0, 0, 0, .50);
-    --black-50-solid: #808080;
+    --black-50-solid: #666666;
     --yellow: #EFBF04;
     --ink: var(--black-100);
     --charcoal: var(--black-100);
@@ -1163,7 +1163,7 @@ textarea {
     --gold: var(--yellow);
     --paper: #FFFFFF;
     --white: #FFFFFF;
-    --muted: var(--black-50);
+    --muted: var(--black-50-solid);
     --line: rgba(0, 0, 0, .18);
 }
 
@@ -1452,6 +1452,26 @@ main,
         animation: none !important;
         transition: none !important;
         transform: none !important;
+    }
+}
+
+/* Reveal content remains readable without JavaScript. JavaScript adds
+   .reveal-ready before enabling the animated hidden state. */
+.reveal {
+    opacity: 1;
+    transform: none;
+}
+
+html.reveal-ready .reveal:not(.in-view) {
+    opacity: 0;
+    transform: translateY(38px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.reveal-ready .reveal,
+    html.reveal-ready .reveal:not(.in-view) {
+        opacity: 1;
+        transform: none;
     }
 }
 

@@ -1,3 +1,7 @@
+/* Progressive enhancement: CSS keeps reveal content visible until JavaScript
+   is available, then enables the animated state below. */
+document.documentElement.classList.add("reveal-ready");
+
 document.addEventListener("DOMContentLoaded", () => {
     /* =========================================================
        PAGE PATHS
@@ -483,6 +487,14 @@ document.addEventListener("DOMContentLoaded", () => {
         revealElements.forEach((element) => {
             revealObserver.observe(element);
         });
+
+        // Safety net for delayed observers, anchor jumps and full-page captures.
+        // Normal scrolling still uses the intersection animation first.
+        window.setTimeout(() => {
+            revealElements.forEach((element) => {
+                element.classList.add("in-view");
+            });
+        }, 1800);
     } else {
         revealElements.forEach((element) => {
             element.classList.add("in-view");

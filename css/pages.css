@@ -2,6 +2,12 @@
     padding-top: clamp(150px, 16vw, 210px);
 }
 
+.about-first-section h1,
+.industry-experience .section-head h1 {
+    font-size: clamp(2.5rem, 5vw, 5.3rem);
+    letter-spacing: -.035em;
+}
+
 .industry-experience {
     --industry-surface: var(--white);
     background: var(--industry-surface);
@@ -603,6 +609,13 @@
 .office-location-map { display: flex; min-height: 570px; flex-direction: column; }
 .office-map-frame { height: auto; min-height: 520px; flex: 1; }
 
+/* Keep the map substantial at every width instead of collapsing to the
+   iframe's default 150px height. */
+.office-map-frame {
+    height: clamp(420px, 34vw, 520px);
+    min-height: 420px;
+}
+
 @media (max-width: 1050px) {
     .managed-support-intro { grid-template-columns: 1fr; }
     .managed-support-layout { grid-template-columns: 1fr; }
@@ -668,7 +681,19 @@
     }
     .office-location-panel { min-height: 0; }
     .office-location-map { min-height: 430px; }
-    .office-map-frame { min-height: 390px; }
+    .office-map-frame {
+        height: 420px;
+        min-height: 420px;
+    }
+}
+
+/* Body copy uses a readable solid grey instead of 50% black transparency. */
+main p:not(.eyebrow),
+main .lead,
+main .card p,
+main .industry-panel-copy > p,
+main .section-head > p {
+    color: var(--muted) !important;
 }
 
 /* Authoritative screenshot corrections — keep last in the cascade. */
@@ -4648,4 +4673,32 @@
     .office-location-panel { min-height: 0; }
     .office-location-map { min-height: 430px; }
     .office-map-frame { min-height: 390px; }
+}
+
+/* Final accessibility/layout overrides. Keep these after the legacy theme
+   layers above so they remain authoritative. */
+.office-map-frame {
+    height: clamp(420px, 34vw, 520px) !important;
+    min-height: 420px !important;
+}
+
+.about-first-section h1,
+.industry-experience .section-head h1 {
+    font-size: clamp(2.5rem, 5vw, 5.3rem);
+    letter-spacing: -.035em;
+}
+
+main p:not(.eyebrow),
+main .lead,
+main .card p,
+main .industry-panel-copy > p,
+main .section-head > p {
+    color: var(--muted) !important;
+}
+
+@media (max-width: 680px) {
+    .office-map-frame {
+        height: 420px !important;
+        min-height: 420px !important;
+    }
 }
