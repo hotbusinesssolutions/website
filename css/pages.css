@@ -397,6 +397,671 @@
     }
 }
 
+/* =========================================================
+   FINAL RESPONSIVE POLISH — SEPTEMBER 2026
+   ========================================================= */
+
+/* Flat service chips: yellow accents without a 3D drop treatment. */
+.services-fold-rail span,
+.services-fold-rail span:hover {
+    color: var(--black-100);
+    background: var(--yellow);
+    border: 2px solid var(--black-100);
+    box-shadow: none;
+    transform: none;
+}
+
+.services-fold-rail span {
+    transition: background-color .35s ease, color .35s ease, border-color .35s ease;
+}
+
+.services-fold-rail span:hover {
+    color: var(--yellow);
+    background: var(--black-100);
+    border-color: var(--yellow);
+}
+
+/* Connected tab-and-panel system inspired by modern product showcases. */
+.industry-showcase { margin-top: clamp(38px, 5vw, 66px); }
+
+.industry-tabs {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+    margin: 0 0 -2px;
+    padding: 0 clamp(18px, 3vw, 44px);
+    align-items: end;
+}
+
+.industry-tab,
+.industry-tab:not(.is-active),
+.industry-tab.is-active {
+    min-height: 86px;
+    padding: 18px 16px 20px;
+    color: var(--black-50) !important;
+    background: var(--white) !important;
+    border: 2px solid var(--black-100) !important;
+    border-bottom-color: var(--black-100) !important;
+    border-radius: 18px 18px 0 0;
+    box-shadow: none;
+    transform: none;
+    transition: min-height .45s var(--ease), color .35s ease, border-color .35s ease;
+}
+
+.industry-tab span { color: var(--black-100) !important; transform: none !important; }
+
+.industry-tab::after {
+    right: 50%;
+    bottom: 10px;
+    left: 16px;
+    height: 3px;
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+.industry-tab:hover,
+.industry-tab:focus-visible,
+.industry-tab.is-active { color: var(--yellow) !important; }
+
+.industry-tab:hover span,
+.industry-tab:focus-visible span,
+.industry-tab.is-active span { color: var(--yellow) !important; }
+
+.industry-tab.is-active {
+    z-index: 3;
+    min-height: 98px;
+    border-bottom-color: var(--white) !important;
+}
+
+.industry-tab:hover::after,
+.industry-tab:focus-visible::after,
+.industry-tab.is-active::after { right: 16px; transform: scaleX(1); }
+
+.industry-panels {
+    overflow: hidden;
+    background: var(--white);
+    border: 2px solid var(--black-100);
+    border-top: 6px solid var(--yellow);
+    border-radius: 28px;
+    box-shadow: 0 22px 54px rgba(0, 0, 0, .10);
+}
+
+.industry-panel,
+.industry-panel.is-active {
+    grid-template-columns: minmax(0, .92fr) minmax(340px, 1.08fr);
+    gap: clamp(38px, 5vw, 74px);
+    height: auto;
+    min-height: 560px;
+    padding: clamp(36px, 5vw, 70px);
+    background: var(--white) !important;
+    border: 0 !important;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.industry-panel::before,
+.industry-panel::after { display: none; }
+
+.industry-panel.is-active { animation: industry-panel-sweep .62s var(--ease) both; }
+.industry-panel.is-active .industry-panel-copy > * { animation: industry-copy-rise .58s var(--ease) both; }
+.industry-panel.is-active .industry-photo-placeholder { animation: industry-media-arrive .72s var(--ease) both; }
+
+.industry-photo-placeholder {
+    min-height: 390px;
+    border: 2px solid var(--black-100);
+    border-radius: 22px;
+}
+
+@keyframes industry-panel-sweep {
+    from { opacity: .35; clip-path: inset(0 12% 0 0 round 24px); }
+    to { opacity: 1; clip-path: inset(0 0 0 0 round 0); }
+}
+
+@keyframes industry-copy-rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes industry-media-arrive {
+    from { opacity: 0; transform: translateX(28px) scale(.98); }
+    to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+/* Larger How We Work route, moving twenty percent more slowly. */
+.process-route-map > b { top: 10px; height: 5px; }
+.process-route-map > b::after { animation-duration: 4.6s; }
+.process-route-map > span { padding-top: 38px; }
+.process-route-map > span::before {
+    width: 22px;
+    height: 22px;
+    border-width: 5px;
+    box-shadow: 0 0 0 6px var(--white);
+}
+
+/* Intro above; rotating model and its eight explanations side by side. */
+.managed-support-intro {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr);
+    gap: clamp(36px, 7vw, 110px);
+    margin-bottom: clamp(58px, 8vw, 104px);
+    align-items: end;
+}
+
+.managed-support-intro h2 { max-width: 760px; }
+.managed-support-intro .lead { margin: 0; }
+
+.managed-support-layout {
+    grid-template-columns: minmax(440px, .92fr) minmax(460px, 1.08fr);
+    gap: clamp(44px, 6vw, 92px);
+    align-items: center;
+}
+
+.support-orbit { gap: 0; }
+.orbit-descriptions { grid-template-columns: repeat(2, minmax(0, 1fr)); align-self: center; }
+.orbit-descriptions article { min-height: 142px; }
+
+/* Careers: responsive yellow orbital shape, pinned to the right. */
+.careers-invitation-hero { position: relative; overflow: hidden; isolation: isolate; }
+.careers-invitation-hero::after {
+    top: 50%;
+    right: clamp(-100px, -4vw, -34px);
+    bottom: auto;
+    left: auto;
+    width: clamp(330px, 33vw, 590px);
+    height: clamp(580px, 72vw, 860px);
+    background: var(--yellow) !important;
+    clip-path: ellipse(72% 48% at 100% 50%);
+    transform: translateY(-50%) rotate(0deg);
+    transform-origin: 100% 50%;
+    animation: careers-shape-counter 28s linear infinite;
+}
+
+.careers-float-words {
+    z-index: 3;
+    right: clamp(18px, 4vw, 72px);
+    bottom: 23%;
+    color: var(--black-100) !important;
+}
+
+.careers-float-words span { color: var(--black-100) !important; text-shadow: none; }
+
+@keyframes careers-shape-counter {
+    to { transform: translateY(-50%) rotate(-360deg); }
+}
+
+/* Contact: a fuller location panel and a map that occupies the right side. */
+.office-location-panel {
+    grid-template-columns: minmax(250px, .55fr) minmax(0, 1.45fr);
+    gap: clamp(28px, 4vw, 60px);
+    min-height: 660px;
+    padding: clamp(24px, 3vw, 42px);
+}
+
+.office-location-map { display: flex; min-height: 570px; flex-direction: column; }
+.office-map-frame { height: auto; min-height: 520px; flex: 1; }
+
+@media (max-width: 1050px) {
+    .managed-support-intro { grid-template-columns: 1fr; }
+    .managed-support-layout { grid-template-columns: 1fr; }
+    .orbit-descriptions { width: min(820px, 100%); margin-inline: auto; }
+    .industry-tabs { overflow-x: auto; padding-inline: 12px; scroll-snap-type: x proximity; }
+    .industry-tab { min-width: 190px; scroll-snap-align: start; }
+    .office-location-panel { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 680px) {
+    .services-fold-hero::after {
+        right: 20px;
+        bottom: -34px;
+        width: min(72vw, 330px);
+        opacity: .96;
+    }
+
+    .industry-tabs,
+    .content-nav .industry-tabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-bottom: 12px;
+        padding: 0;
+        overflow: visible;
+    }
+    .industry-tab,
+    .industry-tab:not(.is-active),
+    .industry-tab.is-active {
+        min-width: 0;
+        min-height: 78px;
+        border-radius: 14px !important;
+        border-bottom-color: var(--black-100) !important;
+    }
+    .industry-tab:last-child { grid-column: 1 / -1; }
+    .industry-panel,
+    .industry-panel.is-active {
+        grid-template-columns: 1fr;
+        min-height: 0;
+        padding: 28px 20px;
+    }
+    .industry-photo-placeholder { min-height: 270px; }
+    .process-route-map > b { top: 11px; height: 5px; }
+    .process-route-map > span { padding-top: 38px; }
+    .managed-support-intro { margin-bottom: 48px; }
+    .orbit-descriptions { grid-template-columns: 1fr; }
+    .orbit-descriptions article { min-height: 0; }
+    .careers-invitation-hero { min-height: 760px; padding-bottom: 190px; }
+    .careers-invitation-hero::after {
+        top: auto;
+        right: -74px;
+        bottom: -94px;
+        width: 290px;
+        height: 320px;
+        clip-path: ellipse(72% 48% at 100% 50%);
+        transform: none;
+        animation-name: careers-shape-counter-mobile;
+    }
+    .careers-float-words {
+        display: grid;
+        right: 12px;
+        bottom: 50px;
+        gap: 8px;
+        font-size: 1rem;
+    }
+    .office-location-panel { min-height: 0; }
+    .office-location-map { min-height: 430px; }
+    .office-map-frame { min-height: 390px; }
+}
+
+/* Authoritative screenshot corrections — keep last in the cascade. */
+.services-fold-hero::after {
+    right: max(20px, calc((100vw - var(--max)) / 2));
+    bottom: -72px;
+    width: clamp(350px, 33vw, 510px);
+}
+
+.industry-showcase {
+    --folder-tabs-width: 66%;
+    position: relative;
+    padding-top: 88px;
+}
+
+.industry-tabs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0;
+    width: var(--folder-tabs-width);
+    height: 88px;
+    margin: 0;
+    padding: 0 22px 14px;
+    overflow: visible;
+    align-items: end;
+    background: var(--white);
+}
+
+.industry-tab,
+.industry-tab:not(.is-active),
+.industry-tab.is-active {
+    min-width: 0;
+    min-height: 68px;
+    padding: 14px 12px 18px;
+    color: var(--black-50) !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+    transition: color .38s ease, transform .38s var(--ease);
+}
+
+.industry-tab span { color: var(--black-100) !important; transform: none !important; }
+.industry-tab::after {
+    right: 12px;
+    bottom: 7px;
+    left: 12px;
+    height: 3px;
+    background: var(--yellow);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .42s var(--ease);
+}
+.industry-tab:hover,
+.industry-tab:focus-visible,
+.industry-tab.is-active,
+.industry-tab:hover span,
+.industry-tab:focus-visible span,
+.industry-tab.is-active span { color: var(--yellow) !important; }
+.industry-tab:hover::after,
+.industry-tab:focus-visible::after,
+.industry-tab.is-active::after { right: 12px; transform: scaleX(1); }
+.industry-tab:hover,
+.industry-tab:focus-visible { transform: translateY(-2px); }
+
+.industry-panels {
+    position: relative;
+    z-index: 2;
+    overflow: visible;
+    color: var(--white);
+    background: var(--black-100);
+    border: 0;
+    border-radius: 30px;
+    box-shadow: 0 24px 56px rgba(0, 0, 0, .16);
+}
+.industry-panels::before {
+    position: absolute;
+    top: -88px;
+    right: 0;
+    display: block !important;
+    width: calc(100% - var(--folder-tabs-width));
+    height: 90px;
+    content: "";
+    background: var(--black-100);
+    border-radius: 30px 30px 0 0;
+}
+.industry-panels::after {
+    position: absolute;
+    top: -48px;
+    right: calc(100% - var(--folder-tabs-width));
+    display: block;
+    width: 48px;
+    height: 48px;
+    content: "";
+    background: transparent;
+    border-bottom-right-radius: 48px;
+    box-shadow: 24px 24px 0 24px var(--black-100);
+}
+.industry-panel,
+.industry-panel.is-active {
+    grid-template-columns: minmax(0, .92fr) minmax(340px, 1.08fr);
+    min-height: 560px;
+    color: var(--white) !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 30px;
+    box-shadow: none;
+}
+.industry-panel::before,
+.industry-panel::after { display: none; }
+.industry-panel-copy,
+.industry-panel h3,
+.industry-capabilities strong { color: var(--white); }
+.industry-panel-copy > p { color: rgba(255, 255, 255, .74) !important; }
+.industry-number,
+.industry-capabilities span { color: var(--yellow); }
+.industry-photo-placeholder { border: 0; border-radius: 26px; }
+
+.process-route-map > span::before {
+    background: var(--yellow);
+    border: 0;
+    box-shadow: 0 0 0 6px var(--white);
+}
+
+@media (max-width: 900px) {
+    .services-fold-hero::after {
+        right: 20px;
+        bottom: -48px;
+        width: clamp(300px, 48vw, 420px);
+    }
+    .industry-showcase { padding-top: 0; }
+    .industry-tabs,
+    .content-nav .industry-tabs {
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin-bottom: 14px;
+        padding: 0;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        overflow: visible;
+    }
+    .industry-tab,
+    .industry-tab:not(.is-active),
+    .industry-tab.is-active {
+        min-height: 72px;
+        padding: 13px 12px 17px;
+        border: 1px solid var(--black-50) !important;
+        border-radius: 12px;
+    }
+    .industry-tab:last-child { grid-column: 1 / -1; }
+    .industry-panels::before,
+    .industry-panels::after { display: none !important; }
+    .industry-panel,
+    .industry-panel.is-active {
+        grid-template-columns: 1fr;
+        min-height: 0;
+        padding: 30px 22px;
+        border-radius: 22px;
+    }
+}
+
+@media (max-width: 560px) {
+    .services-fold-hero::after {
+        right: 20px;
+        bottom: -34px;
+        width: min(72vw, 330px);
+        opacity: .96;
+    }
+}
+
+/* =========================================================
+   FINAL VISUAL CORRECTIONS — FOLDER PANEL + SHAPE BOUNDARIES
+   ========================================================= */
+
+/* Keep the rotating Services polygon inside the same right margin as .container. */
+.services-fold-hero::after {
+    right: max(20px, calc((100vw - var(--max)) / 2));
+    bottom: -72px;
+    width: clamp(350px, 33vw, 510px);
+}
+
+/* Papaya-inspired horizontal folder silhouette using the HBS palette. */
+.industry-showcase {
+    --folder-tabs-width: 66%;
+    position: relative;
+    padding-top: 88px;
+}
+
+.industry-tabs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0;
+    width: var(--folder-tabs-width);
+    height: 88px;
+    margin: 0;
+    padding: 0 22px 14px;
+    align-items: end;
+    background: var(--white);
+}
+
+.industry-tab,
+.industry-tab:not(.is-active),
+.industry-tab.is-active {
+    min-width: 0;
+    min-height: 68px;
+    padding: 14px 12px 18px;
+    color: var(--black-50) !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+    transition: color .38s ease, transform .38s var(--ease);
+}
+
+.industry-tab span {
+    color: var(--black-100) !important;
+    transform: none !important;
+}
+
+.industry-tab::after {
+    right: 12px;
+    bottom: 7px;
+    left: 12px;
+    height: 3px;
+    background: var(--yellow);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .42s var(--ease);
+}
+
+.industry-tab:hover,
+.industry-tab:focus-visible,
+.industry-tab.is-active,
+.industry-tab:hover span,
+.industry-tab:focus-visible span,
+.industry-tab.is-active span {
+    color: var(--yellow) !important;
+}
+
+.industry-tab:hover::after,
+.industry-tab:focus-visible::after,
+.industry-tab.is-active::after {
+    right: 12px;
+    transform: scaleX(1);
+}
+
+.industry-tab:hover,
+.industry-tab:focus-visible { transform: translateY(-2px); }
+
+.industry-panels {
+    position: relative;
+    z-index: 2;
+    overflow: visible;
+    color: var(--white);
+    background: var(--black-100);
+    border: 0;
+    border-radius: 30px;
+    box-shadow: 0 24px 56px rgba(0, 0, 0, .16);
+}
+
+.industry-panels::before {
+    position: absolute;
+    top: -88px;
+    right: 0;
+    display: block !important;
+    width: calc(100% - var(--folder-tabs-width));
+    height: 90px;
+    content: "";
+    background: var(--black-100);
+    border-radius: 30px 30px 0 0;
+}
+
+.industry-panels::after {
+    position: absolute;
+    top: -48px;
+    right: calc(100% - var(--folder-tabs-width));
+    display: block;
+    width: 48px;
+    height: 48px;
+    content: "";
+    background: transparent;
+    border-bottom-right-radius: 48px;
+    box-shadow: 24px 24px 0 24px var(--black-100);
+}
+
+.industry-panel,
+.industry-panel.is-active {
+    grid-template-columns: minmax(0, .92fr) minmax(340px, 1.08fr);
+    min-height: 560px;
+    color: var(--white) !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 30px;
+    box-shadow: none;
+}
+
+.industry-panel-copy,
+.industry-panel h3,
+.industry-capabilities strong { color: var(--white); }
+
+.industry-panel-copy > p { color: rgba(255, 255, 255, .74) !important; }
+.industry-number,
+.industry-capabilities span { color: var(--yellow); }
+.industry-photo-placeholder { border: 0; border-radius: 26px; }
+
+/* Yellow progress nodes without a black outline. */
+.process-route-map > span::before {
+    background: var(--yellow);
+    border: 0;
+    box-shadow: 0 0 0 6px var(--white);
+}
+
+@media (max-width: 900px) {
+    .services-fold-hero::after {
+        right: 20px;
+        bottom: -48px;
+        width: clamp(300px, 48vw, 420px);
+    }
+
+    .industry-showcase { padding-top: 0; }
+    .industry-tabs,
+    .content-nav .industry-tabs {
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin-bottom: 14px;
+        padding: 0;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        overflow: visible;
+    }
+    .industry-tab,
+    .industry-tab:not(.is-active),
+    .industry-tab.is-active {
+        min-height: 72px;
+        padding: 13px 12px 17px;
+        border: 1px solid var(--black-50) !important;
+        border-radius: 12px;
+    }
+    .industry-tab:last-child { grid-column: 1 / -1; }
+    .industry-panels::before,
+    .industry-panels::after { display: none !important; }
+    .industry-panel,
+    .industry-panel.is-active {
+        grid-template-columns: 1fr;
+        min-height: 0;
+        padding: 30px 22px;
+        border-radius: 22px;
+    }
+}
+
+@media (max-width: 560px) {
+    .services-fold-hero::after {
+        right: 20px;
+        bottom: -34px;
+        width: min(72vw, 330px);
+        opacity: .96;
+    }
+}
+
+@keyframes careers-shape-counter-mobile {
+    to { transform: rotate(-360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .industry-panel.is-active,
+    .industry-panel.is-active .industry-panel-copy > *,
+    .industry-panel.is-active .industry-photo-placeholder,
+    .careers-invitation-hero::after { animation: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .services-fold-hero::after,
+    .insights-signal-word,
+    .process-route-map > b::after,
+    .orbit-ring,
+    .orbit-node,
+    .careers-float-words span {
+        animation: none !important;
+    }
+}
+
 @media (max-width: 560px) {
     .industry-panel {
         min-height: 0;
@@ -1597,6 +2262,31 @@
     }
 }
 
+.page-hero:not(.services-fold-hero):not(.careers-invitation-hero) {
+    color: var(--white);
+    background: var(--black-100);
+}
+
+.page-hero:not(.services-fold-hero):not(.careers-invitation-hero) .lead {
+    color: rgba(255, 255, 255, .76);
+}
+
+.industry-panel,
+.operation-panel,
+.process-card,
+.leader-card,
+.career-role,
+.notice {
+    box-shadow: 0 16px 42px rgba(0, 0, 0, .08);
+}
+
+.service-modal-intro,
+.operation-panel-dark p,
+.operations-unified p,
+.office-location-panel p {
+    color: rgba(255, 255, 255, .76);
+}
+
 .directory-card ul {
     color: #666;
     padding-left: 20px;
@@ -2684,6 +3374,170 @@
     }
 }
 
+/* Page-level application of the HBS 60 / 30 / 10 palette. */
+.services-fold-hero {
+    color: var(--black-100);
+    background: var(--white);
+}
+
+.services-fold-hero::after {
+    background: var(--black-100);
+    opacity: .88;
+}
+
+.services-fold-hero .eyebrow,
+.services-fold-hero .lead {
+    color: var(--black-50);
+}
+
+.services-fold-hero .gold {
+    color: var(--yellow);
+    text-shadow: none;
+}
+
+.services-fold-rail span {
+    color: var(--black-100);
+    background: var(--white);
+    border-color: var(--black-50);
+}
+
+.industries-index-hero,
+.process-route-hero,
+.insights-signal-hero,
+.contact-signal-hero,
+.managed-support-section {
+    color: var(--white);
+    background-color: var(--black-100);
+}
+
+.industries-index-board {
+    color: var(--black-100);
+    background: var(--white);
+    border-top: 8px solid var(--yellow);
+}
+
+.industries-index-board ol,
+.industries-index-board li {
+    border-color: var(--black-50);
+}
+
+.industries-index-board li span,
+.industries-board-label {
+    color: var(--black-50);
+}
+
+.industry-panel {
+    color: var(--black-100);
+    background: var(--white);
+    border: 1px solid var(--black-50);
+    border-top: 8px solid var(--yellow);
+}
+
+.industry-panel::before {
+    background: var(--white);
+}
+
+.industry-panel::after {
+    box-shadow: 20px 20px 0 20px var(--white);
+}
+
+.industry-panel-copy > p {
+    color: var(--black-50);
+}
+
+.careers-invitation-hero {
+    color: var(--black-100);
+    background: var(--white);
+}
+
+.careers-invitation-hero::after {
+    background: var(--black-100);
+}
+
+.careers-invitation-hero .eyebrow,
+.careers-invitation-hero .lead {
+    color: var(--black-50);
+}
+
+.careers-invitation-hero .gold {
+    color: var(--yellow);
+    text-shadow: none;
+}
+
+.candidate-invitation {
+    color: var(--white);
+    background: var(--black-100);
+    border-top: 8px solid var(--yellow);
+}
+
+.candidate-invitation .eyebrow,
+.candidate-invitation p {
+    color: rgba(255, 255, 255, .76);
+}
+
+.candidate-invitation h2 {
+    color: var(--white);
+}
+
+.capability-scope-section,
+.capability-scope-grid article,
+.leader-card,
+.operation-panel,
+.process-card,
+.notice,
+.field input,
+.field select,
+.field textarea {
+    background-color: var(--white);
+}
+
+.capability-scope-grid article:hover,
+.career-role:hover,
+.career-role:focus-visible,
+.service-command-tab.is-active,
+.service-command-tab:hover,
+.service-command-tab:focus-visible {
+    color: var(--black-100);
+    background-color: var(--yellow);
+}
+
+.service-command,
+.service-command-stage,
+.service-modal-shell,
+.operation-panel-dark,
+.operations-unified,
+.office-location-panel {
+    color: var(--white);
+    background-color: var(--black-100);
+}
+
+.service-modal-detail,
+.service-modal-close {
+    background: var(--black-50);
+}
+
+.leader-image,
+.office-map-frame {
+    background-color: var(--black-50);
+}
+
+.content-nav {
+    background: rgba(255, 255, 255, .96);
+}
+
+@media (max-width: 680px) {
+    .industry-tab {
+        color: var(--black-100);
+        background: rgba(0, 0, 0, .10);
+        border-color: rgba(0, 0, 0, .22);
+    }
+
+    .industry-tab.is-active {
+        color: var(--black-100);
+        background: var(--yellow);
+    }
+}
+
 @media (hover: none) {
     .service-command-glow,
     .services-fold-hero::after {
@@ -3077,4 +3931,721 @@
     .services-fold-rail { padding-right: 8vw; }
     .service-command-tab strong { font-size: .76rem; }
     .leadership-section .leader-grid { width: 82%; }
+}
+
+/* Final palette lock: keep late responsive rules inside the 60 / 30 / 10 system. */
+.operation-panel-gold {
+    color: var(--black-100);
+    background: var(--white);
+    border-top: 8px solid var(--yellow);
+}
+
+.operation-image,
+.leader-image,
+.office-map-frame,
+.service-modal-detail,
+.service-modal-close {
+    background: var(--black-50);
+}
+
+.operations-unified,
+.operation-panel-dark,
+.industry-photo-placeholder,
+.about-brand-group img[src*="orbit"],
+.about-brand-group img[src*="travelmanagers"] {
+    background: var(--black-100);
+}
+
+.operations-unified-grid {
+    background: var(--black-50);
+    border-left: 8px solid var(--yellow);
+}
+
+.operations-unified-grid span {
+    color: var(--white);
+    background: var(--black-100);
+    border-color: rgba(255, 255, 255, .24);
+}
+
+.service-modal::backdrop {
+    background: var(--black-50);
+}
+
+@media (max-width: 680px) {
+    .industry-tab {
+        color: var(--black-50);
+        background: var(--white);
+        border-color: var(--black-50);
+    }
+
+    .industry-tab.is-active {
+        color: var(--black-100);
+        background: var(--yellow);
+    }
+}
+
+/* Palette safeguard kept last so every page follows the same visual hierarchy. */
+.page-hero:not(.services-fold-hero):not(.careers-invitation-hero) {
+    color: var(--white);
+    background: var(--black-100);
+}
+
+.page-hero:not(.services-fold-hero):not(.careers-invitation-hero) .lead {
+    color: rgba(255, 255, 255, .76);
+}
+
+.industry-panel,
+.operation-panel,
+.process-card,
+.leader-card,
+.career-role,
+.notice {
+    box-shadow: 0 16px 42px rgba(0, 0, 0, .08);
+}
+
+.service-modal-intro,
+.operation-panel-dark p,
+.operations-unified p,
+.office-location-panel p {
+    color: rgba(255, 255, 255, .76);
+}
+
+/* Authoritative internal-page 60 / 30 / 10 palette — final cascade. */
+.about-first-section,
+.leadership-section,
+.operations-stack-section,
+.industry-experience,
+.capability-scope-section,
+.foundation-section,
+.faq,
+.services-fold-hero,
+.careers-invitation-hero,
+.content-nav {
+    background-color: var(--white);
+}
+
+.industries-index-hero,
+.process-route-hero,
+.insights-signal-hero,
+.contact-signal-hero,
+.managed-support-section,
+.candidate-invitation,
+.service-command,
+.service-command-stage,
+.service-modal-shell,
+.office-location-panel {
+    color: var(--white);
+    background-color: var(--black-100);
+}
+
+.service-modal-detail,
+.service-modal-close,
+.operation-image,
+.leader-image,
+.office-map-frame {
+    background-color: var(--black-50);
+}
+
+.industry-panel,
+.operation-panel,
+.operation-panel-gold,
+.process-card,
+.leader-card,
+.career-role,
+.capability-scope-grid article,
+.service-command-tab:not(.is-active) {
+    color: var(--black-100);
+    background-color: var(--white);
+}
+
+.industry-panel,
+.operation-panel-gold,
+.candidate-invitation {
+    border-top-color: var(--yellow);
+}
+
+.service-command-tab.is-active,
+.industry-tab.is-active,
+.career-role:hover,
+.career-role:focus-visible,
+.capability-scope-grid article:hover {
+    color: var(--black-100);
+    background-color: var(--yellow);
+}
+
+/* White-canvas internal pages — authoritative and intentionally last. */
+.page-hero,
+.industries-index-hero,
+.process-route-hero,
+.insights-signal-hero,
+.contact-signal-hero,
+.managed-support-section,
+.candidate-invitation,
+.section,
+.dark-section,
+.about-first-section,
+.leadership-section,
+.operations-stack-section,
+.industry-experience,
+.capability-scope-section,
+.foundation-section,
+.faq {
+    color: var(--black-100) !important;
+    background-color: var(--white) !important;
+}
+
+.page-hero .lead,
+.industries-index-hero p,
+.process-route-hero p,
+.insights-signal-hero p,
+.contact-signal-hero p,
+.managed-support-section p,
+.candidate-invitation p,
+.dark-section p {
+    color: var(--black-50) !important;
+}
+
+.industries-index-hero .gold,
+.process-route-hero .gold,
+.insights-signal-hero .gold,
+.contact-signal-hero .gold,
+.managed-support-section .gold,
+.candidate-invitation .gold {
+    color: var(--yellow) !important;
+}
+
+.industries-index-board,
+.industry-panel,
+.process-card,
+.leader-card,
+.career-role,
+.capability-scope-grid article,
+.operation-panel,
+.operation-panel-gold,
+.notice {
+    color: var(--black-100) !important;
+    background-color: var(--white) !important;
+    border-color: var(--black-50);
+}
+
+.industries-index-board,
+.industry-panel,
+.operation-panel-gold,
+.process-card,
+.leader-card,
+.career-role {
+    border-top: 6px solid var(--yellow);
+}
+
+.process-route-map span {
+    color: var(--black-100);
+}
+
+.process-route-map b {
+    background-color: var(--black-50);
+}
+
+.insights-signal-word {
+    color: rgba(0, 0, 0, .06);
+}
+
+.service-command,
+.service-command-stage,
+.service-modal-shell,
+.operation-panel-dark,
+.operations-unified,
+.office-location-panel {
+    color: var(--white) !important;
+    background-color: var(--black-100) !important;
+}
+
+.service-command p,
+.service-command-stage p,
+.service-modal-shell p,
+.operation-panel-dark p,
+.operations-unified p,
+.office-location-panel p {
+    color: rgba(255, 255, 255, .76) !important;
+}
+
+.service-command-tab:not(.is-active),
+.industry-tab:not(.is-active) {
+    color: var(--black-100);
+    background-color: var(--white) !important;
+}
+
+.service-command-tab.is-active,
+.industry-tab.is-active,
+.career-role:hover,
+.career-role:focus-visible,
+.capability-scope-grid article:hover {
+    color: var(--black-100) !important;
+    background-color: var(--yellow) !important;
+}
+
+/* Services hero: smaller, slower polygon and raised yellow capability chips. */
+.services-fold-hero::after {
+    right: 1vw;
+    bottom: -7vw;
+    width: 33.6vw;
+    animation-duration: 20s;
+}
+
+.services-fold-rail span {
+    color: var(--black-100);
+    background: var(--yellow);
+    border: 1px solid var(--black-100);
+    box-shadow: 0 5px 0 var(--black-100), 0 12px 24px rgba(0, 0, 0, .16);
+    transform: translateY(-3px);
+    transition: transform .4s var(--ease), box-shadow .4s ease;
+}
+
+.services-fold-rail span:hover {
+    box-shadow: 0 2px 0 var(--black-100), 0 7px 16px rgba(0, 0, 0, .14);
+    transform: translateY(0);
+}
+
+/* Industry tabs: outlined controls with an animated yellow text cue. */
+.industry-tabs {
+    gap: 12px;
+    width: 100%;
+    padding-inline: 0;
+}
+
+.industry-tab,
+.industry-tab:not(.is-active),
+.industry-tab.is-active {
+    min-height: 66px;
+    padding: 14px 18px 18px;
+    color: var(--black-50) !important;
+    background: var(--white) !important;
+    border: 2px solid var(--black-100) !important;
+    border-radius: 14px;
+    transition: color .45s ease, border-color .45s ease, transform .45s var(--ease), box-shadow .45s ease;
+}
+
+.industry-tab span {
+    color: var(--black-100) !important;
+    transition: color .45s ease, transform .45s var(--ease);
+}
+
+.industry-tab::after {
+    right: 70%;
+    bottom: 8px;
+    left: 18px;
+    height: 3px;
+    background: var(--yellow);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .5s var(--ease), right .5s var(--ease);
+}
+
+.industry-tab:hover,
+.industry-tab:focus-visible,
+.industry-tab.is-active {
+    color: var(--yellow) !important;
+    border-color: var(--black-100) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .10);
+    transform: translateY(-2px);
+}
+
+.industry-tab:hover span,
+.industry-tab:focus-visible span,
+.industry-tab.is-active span {
+    color: var(--yellow) !important;
+    transform: translateX(3px);
+}
+
+.industry-tab:hover::after,
+.industry-tab:focus-visible::after,
+.industry-tab.is-active::after {
+    right: 18px;
+    transform: scaleX(1);
+}
+
+/* How We Work route: stronger continuous line and larger nodes, no numbers. */
+.process-route-map > b {
+    top: 8px;
+    height: 4px;
+    background: var(--black-100);
+}
+
+.process-route-map > span {
+    padding-top: 32px;
+    color: var(--black-100);
+    font-size: .82rem;
+}
+
+.process-route-map > span::before {
+    top: 0;
+    width: 18px;
+    height: 18px;
+    background: var(--yellow);
+    border: 4px solid var(--black-100);
+    box-shadow: 0 0 0 5px var(--white);
+}
+
+.process-route-map > span i {
+    display: none;
+}
+
+/* Eight explanations sit directly below the moving support orbit. */
+.support-orbit {
+    gap: 42px;
+}
+
+.orbit-descriptions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+}
+
+.orbit-descriptions article {
+    padding: 16px;
+    background: var(--white);
+    border: 1px solid var(--black-50);
+    border-top: 4px solid var(--yellow);
+    border-radius: 14px;
+    transition: transform .45s var(--ease), box-shadow .45s ease;
+}
+
+.orbit-descriptions article:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, .12);
+    transform: translateY(-4px);
+}
+
+.orbit-descriptions strong {
+    color: var(--black-100);
+    font-family: var(--display);
+    font-size: 1rem;
+}
+
+.orbit-descriptions p {
+    margin-top: 7px;
+    color: var(--black-50) !important;
+    font-size: .7rem;
+    line-height: 1.5;
+}
+
+.managed-support-content .eyebrow,
+.managed-support-content .lead {
+    color: var(--black-50) !important;
+}
+
+.managed-support-content .gold {
+    color: var(--yellow) !important;
+}
+
+/* Insights: remove the empty viewport-sized gap and retain purposeful motion. */
+.insights-signal-hero {
+    min-height: auto;
+    padding-block: 150px 86px;
+}
+
+.insights-signal-grid {
+    min-height: 0;
+    align-items: center;
+}
+
+.insights-signal-word {
+    top: 112px;
+    animation: insight-word-drift 10s ease-in-out infinite alternate;
+}
+
+@keyframes insight-word-drift {
+    to { transform: translateX(-48%) translateY(8px); }
+}
+
+/* Careers: smaller contained shape and readable yellow floating words. */
+.careers-invitation-hero::after {
+    top: 16%;
+    right: 0;
+    bottom: 16%;
+    left: 72%;
+    width: auto;
+    height: auto;
+    clip-path: ellipse(82% 74% at 100% 50%);
+}
+
+.careers-float-words {
+    right: 2.5%;
+    bottom: 24%;
+    color: var(--yellow) !important;
+    font-size: clamp(1.25rem, 2.1vw, 2.25rem);
+}
+
+.careers-float-words span {
+    color: var(--yellow) !important;
+    text-shadow: 0 2px 14px rgba(239, 191, 4, .22);
+}
+
+@media (max-width: 900px) {
+    .services-fold-hero::after {
+        right: -9vw;
+        bottom: -7vw;
+        width: 54vw;
+    }
+
+    .orbit-descriptions {
+        grid-template-columns: 1fr;
+    }
+
+    .careers-invitation-hero::after {
+        top: auto;
+        right: 0;
+        bottom: 0;
+        left: 58%;
+        height: 100px;
+    }
+}
+
+/* Final cascade: the rules below intentionally win over legacy variants. */
+.services-fold-hero::after {
+    right: max(20px, calc((100vw - var(--max)) / 2));
+    bottom: -72px;
+    width: clamp(350px, 33vw, 510px);
+}
+
+.services-fold-rail span,
+.services-fold-rail span:hover {
+    color: var(--black-100);
+    background: var(--yellow);
+    border: 2px solid var(--black-100);
+    box-shadow: none;
+    transform: none;
+}
+
+.industry-tabs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0;
+    width: var(--folder-tabs-width);
+    height: 88px;
+    margin: 0;
+    padding: 0 22px 14px;
+    overflow: visible;
+    align-items: end;
+    background: var(--white);
+}
+
+.industry-tab,
+.industry-tab:not(.is-active),
+.industry-tab.is-active {
+    min-width: 0;
+    min-height: 68px;
+    padding: 14px 12px 18px;
+    color: var(--black-50) !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+}
+
+.industry-tab span { color: var(--black-100) !important; transform: none !important; }
+.industry-tab:hover,
+.industry-tab:focus-visible,
+.industry-tab.is-active,
+.industry-tab:hover span,
+.industry-tab:focus-visible span,
+.industry-tab.is-active span { color: var(--yellow) !important; }
+.industry-tab.is-active { min-height: 68px; }
+
+.industry-showcase {
+    --folder-tabs-width: 66%;
+    position: relative;
+    padding-top: 88px;
+}
+
+.industry-panels {
+    position: relative;
+    z-index: 2;
+    overflow: visible;
+    color: var(--white);
+    background: var(--black-100);
+    border: 0;
+    border-radius: 30px;
+    box-shadow: 0 24px 56px rgba(0, 0, 0, .16);
+}
+.industry-panels::before {
+    position: absolute;
+    top: -88px;
+    right: 0;
+    display: block !important;
+    width: calc(100% - var(--folder-tabs-width));
+    height: 90px;
+    content: "";
+    background: var(--black-100);
+    border-radius: 30px 30px 0 0;
+}
+.industry-panels::after {
+    position: absolute;
+    top: -48px;
+    right: calc(100% - var(--folder-tabs-width));
+    display: block;
+    width: 48px;
+    height: 48px;
+    content: "";
+    background: transparent;
+    border-bottom-right-radius: 48px;
+    box-shadow: 24px 24px 0 24px var(--black-100);
+}
+
+.industry-panel,
+.industry-panel.is-active {
+    grid-template-columns: minmax(0, .92fr) minmax(340px, 1.08fr);
+    gap: clamp(38px, 5vw, 74px);
+    height: auto;
+    min-height: 560px;
+    padding: clamp(36px, 5vw, 70px);
+    color: var(--white) !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 30px;
+    box-shadow: none;
+}
+.industry-panel::before,
+.industry-panel::after { display: none; }
+.industry-panel-copy,
+.industry-panel h3,
+.industry-capabilities strong { color: var(--white); }
+.industry-panel-copy > p { color: rgba(255, 255, 255, .74) !important; }
+.industry-number,
+.industry-capabilities span { color: var(--yellow); }
+.industry-photo-placeholder { min-height: 390px; border: 0; border-radius: 26px; }
+
+.process-route-map > b { top: 10px; height: 5px; }
+.process-route-map > b::after { animation-duration: 4.6s; }
+.process-route-map > span { padding-top: 38px; }
+.process-route-map > span::before {
+    top: 0;
+    width: 22px;
+    height: 22px;
+    border: 0;
+    box-shadow: 0 0 0 6px var(--white);
+}
+
+.managed-support-intro {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr);
+    gap: clamp(36px, 7vw, 110px);
+    margin-bottom: clamp(58px, 8vw, 104px);
+    align-items: end;
+}
+.managed-support-intro h2 { max-width: 760px; }
+.managed-support-intro .lead { margin: 0; }
+.managed-support-layout {
+    grid-template-columns: minmax(440px, .92fr) minmax(460px, 1.08fr);
+    gap: clamp(44px, 6vw, 92px);
+    align-items: center;
+}
+.support-orbit { gap: 0; }
+.orbit-descriptions { grid-template-columns: repeat(2, minmax(0, 1fr)); align-self: center; }
+.orbit-descriptions article { min-height: 142px; }
+
+.careers-invitation-hero { position: relative; overflow: hidden; isolation: isolate; }
+.careers-invitation-hero::after {
+    top: 50%;
+    right: clamp(-100px, -4vw, -34px);
+    bottom: auto;
+    left: auto;
+    width: clamp(330px, 33vw, 590px);
+    height: clamp(580px, 72vw, 860px);
+    background: var(--yellow) !important;
+    clip-path: ellipse(72% 48% at 100% 50%);
+    transform: translateY(-50%) rotate(0deg);
+    transform-origin: 100% 50%;
+    animation: careers-shape-counter 28s linear infinite;
+}
+.careers-float-words {
+    z-index: 3;
+    right: clamp(18px, 4vw, 72px);
+    bottom: 23%;
+    color: var(--black-100) !important;
+}
+.careers-float-words span { color: var(--black-100) !important; text-shadow: none; }
+
+.office-location-panel {
+    grid-template-columns: minmax(250px, .55fr) minmax(0, 1.45fr);
+    gap: clamp(28px, 4vw, 60px);
+    min-height: 660px;
+    padding: clamp(24px, 3vw, 42px);
+}
+.office-location-map { display: flex; min-height: 570px; flex-direction: column; }
+.office-map-frame { height: auto; min-height: 520px; flex: 1; }
+
+@media (max-width: 1050px) {
+    .managed-support-intro,
+    .managed-support-layout { grid-template-columns: 1fr; }
+    .orbit-descriptions { width: min(820px, 100%); margin-inline: auto; }
+    .office-location-panel { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 680px) {
+    .services-fold-hero::after {
+        right: 20px;
+        bottom: -34px;
+        width: min(72vw, 330px);
+        opacity: .96;
+    }
+
+    .industry-tabs,
+    .content-nav .industry-tabs {
+        position: relative;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        height: auto;
+        margin-bottom: 14px;
+        padding: 0;
+        overflow: visible;
+        gap: 8px;
+    }
+    .industry-tab,
+    .industry-tab:not(.is-active),
+    .industry-tab.is-active {
+        min-width: 0;
+        min-height: 72px;
+        padding: 13px 12px 17px;
+        border: 1px solid var(--black-50) !important;
+        border-radius: 12px !important;
+    }
+    .industry-tab:last-child { grid-column: 1 / -1; }
+    .industry-showcase { padding-top: 0; }
+    .industry-panels::before,
+    .industry-panels::after { display: none !important; }
+    .industry-panel,
+    .industry-panel.is-active { grid-template-columns: 1fr; min-height: 0; padding: 30px 22px; border-radius: 22px; }
+    .industry-photo-placeholder { min-height: 270px; }
+    .managed-support-intro { grid-template-columns: 1fr; margin-bottom: 48px; }
+    .managed-support-layout { grid-template-columns: 1fr; }
+    .orbit-descriptions { grid-template-columns: 1fr; }
+    .orbit-descriptions article { min-height: 0; }
+    .careers-invitation-hero { min-height: 760px; padding-bottom: 190px; }
+    .careers-invitation-hero::after {
+        top: auto;
+        right: -74px;
+        bottom: -94px;
+        left: auto;
+        width: 290px;
+        height: 320px;
+        transform: none;
+        animation-name: careers-shape-counter-mobile;
+    }
+    .careers-float-words {
+        display: grid;
+        right: 12px;
+        bottom: 50px;
+        gap: 8px;
+        font-size: 1rem;
+    }
+    .office-location-panel { min-height: 0; }
+    .office-location-map { min-height: 430px; }
+    .office-map-frame { min-height: 390px; }
 }

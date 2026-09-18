@@ -167,6 +167,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="container">
                     <div class="footer-grid">
                         <div>
+                            <div class="footer-brand-mark">
+                                <img class="footer-logo" src="${rootPath}images/company-logo.png" alt="HOT Business Solutions Inc." />
+                            </div>
                             <h3>
                                 Global talent.<br>
                                 <span class="gold">Real impact.</span>

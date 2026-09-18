@@ -67,13 +67,20 @@
 }
 
 .why-card {
-    min-height: 310px;
+    min-height: 245px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
 }
 
+.why-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
 .why-card h3 {
-    margin-bottom: 18px;
+    margin-bottom: 14px;
+    font-size: clamp(1.25rem, 1.7vw, 1.7rem);
 }
 
 .why-card p {
@@ -82,6 +89,24 @@
 
 .why-card .card-number {
     margin-bottom: auto;
+    font-size: 2rem;
+}
+
+@media (max-width: 980px) {
+    .why-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .why-card {
+        min-height: 210px;
+        padding: 22px;
+    }
 }
 
 .pillar-gallery {
@@ -822,4 +847,310 @@
         gap: 34px;
         padding-right: 34px;
     }
+}
+
+/* Home-page application of the 60 / 30 / 10 palette. */
+.home-hero,
+.contact-cta,
+.dark-section {
+    background-color: var(--black-100);
+}
+
+.group-band,
+.why-card,
+.journey-step,
+.skyline-cta,
+.brand-marquee {
+    background-color: var(--white);
+}
+
+.why-card {
+    border-color: rgba(0, 0, 0, .20);
+}
+
+.cap-track {
+    background: var(--black-50);
+}
+
+.cap-fill,
+.pillar-ribbon::before,
+.pillar-arrow,
+.journey-step li::before {
+    background: var(--yellow);
+}
+
+.audience-path-client {
+    color: var(--black-100);
+    background: var(--white);
+    border-top: 8px solid var(--yellow);
+}
+
+.audience-path-talent {
+    color: var(--white);
+    background: var(--black-100);
+    border-top: 8px solid var(--yellow);
+}
+
+.audience-path-client > span,
+.audience-path-talent > span {
+    color: var(--black-50);
+}
+
+.audience-path-talent > span,
+.audience-path-talent p {
+    color: rgba(255, 255, 255, .76);
+}
+
+/* Home palette lock: white-led content, black structure, yellow accents. */
+.group-band,
+.why-partner,
+.core-pillars,
+.capability-section,
+.journey-section,
+.brand-marquee,
+.skyline-cta {
+    background-color: var(--white);
+}
+
+.home-hero,
+.dark-section,
+.contact-cta,
+.audience-path-talent {
+    background-color: var(--black-100);
+}
+
+.why-card,
+.journey-step,
+.audience-path-client {
+    color: var(--black-100);
+    background-color: var(--white);
+    border-color: var(--black-50);
+}
+
+/* White-canvas Home page. Black is contained; yellow stays an accent. */
+.home-hero,
+.brand-marquee,
+.page-home .section,
+.page-home .dark-section,
+.skyline-cta,
+.contact-cta {
+    color: var(--black-100) !important;
+    background-color: var(--white) !important;
+}
+
+.home-hero .lead,
+.home-hero .hero-support,
+.page-home .dark-section p,
+.contact-cta p {
+    color: var(--black-50) !important;
+}
+
+.home-hero .gold,
+.page-home .gold,
+.contact-cta .eyebrow {
+    color: var(--yellow) !important;
+}
+
+.pillar-gallery {
+    overflow: hidden;
+    background-color: var(--black-100);
+    border: 1px solid var(--black-100);
+    border-radius: 22px;
+}
+
+.pillar-ribbon {
+    color: var(--white);
+    background-color: var(--black-100);
+    border-color: rgba(255, 255, 255, .24);
+}
+
+.pillar-ribbon p,
+.pillar-ribbon .pillar-number,
+.pillar-ribbon .pillar-label {
+    color: rgba(255, 255, 255, .76) !important;
+}
+
+.pillar-ribbon:hover,
+.pillar-ribbon:focus-visible {
+    color: var(--black-100);
+}
+
+.pillar-ribbon:hover p,
+.pillar-ribbon:focus-visible p,
+.pillar-ribbon:hover .pillar-number,
+.pillar-ribbon:focus-visible .pillar-number,
+.pillar-ribbon:hover .pillar-label,
+.pillar-ribbon:focus-visible .pillar-label {
+    color: var(--black-50) !important;
+}
+
+.journey-step,
+.why-card,
+.audience-path-client {
+    background-color: var(--white) !important;
+    border: 1px solid var(--black-50);
+    border-top: 6px solid var(--yellow);
+}
+
+.audience-path-talent {
+    color: var(--white);
+    background-color: var(--black-100) !important;
+    border-top: 6px solid var(--yellow);
+}
+
+.cap-track {
+    background-color: var(--black-50);
+}
+
+/* Benefit icons replace numeric labels. */
+.why-card-icon {
+    display: block;
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    filter: drop-shadow(0 12px 18px rgba(0, 0, 0, .16));
+    transform-origin: center;
+}
+
+.why-card h3 {
+    margin-top: 34px;
+}
+
+.why-card:hover .why-card-icon-cw,
+.why-card:focus-within .why-card-icon-cw {
+    animation: why-icon-cw 1.2s var(--ease);
+}
+
+.why-card:hover .why-card-icon-ccw,
+.why-card:focus-within .why-card-icon-ccw {
+    animation: why-icon-ccw 1.2s var(--ease);
+}
+
+@keyframes why-icon-cw {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(30deg) scale(1.08); }
+}
+
+@keyframes why-icon-ccw {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(-30deg) scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .why-card-icon { animation: none !important; }
+}
+
+.brand-marquee-group img[src*="orbit"],
+.brand-marquee-group img[src*="travelmanagers"] {
+    background: var(--black-100);
+}
+
+/* Keep yellow as an accent while preserving calm, white content surfaces. */
+.why-card,
+.journey-step,
+.audience-path-client {
+    box-shadow: 0 16px 42px rgba(0, 0, 0, .08);
+}
+
+.group-band,
+.brand-marquee,
+.skyline-cta {
+    border-color: rgba(0, 0, 0, .16);
+}
+
+.home-hero .lead,
+.dark-section p,
+.audience-path-talent p {
+    color: rgba(255, 255, 255, .76);
+}
+
+/* Final white-canvas text correction for Home sections. */
+.page-home .dark-section,
+.page-home .contact-cta {
+    color: var(--black-100) !important;
+    background: var(--white) !important;
+}
+
+.page-home .dark-section p,
+.page-home .contact-cta p {
+    color: var(--black-50) !important;
+}
+
+.page-home .pillar-gallery,
+.page-home .pillar-ribbon {
+    color: var(--white);
+    background: var(--black-100) !important;
+}
+
+.page-home .pillar-ribbon p {
+    color: rgba(255, 255, 255, .76) !important;
+}
+
+/* Keep the skyline title legible without covering the photographic detail. */
+.skyline-cta .container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.skyline-cta .container::before {
+    position: absolute;
+    inset: 54px auto auto 0;
+    z-index: -1;
+    width: min(720px, 72vw);
+    height: calc(100% - 34px);
+    content: "";
+    background: rgba(255, 255, 255, .94);
+    border-left: 6px solid var(--yellow);
+    border-radius: 0 22px 22px 0;
+    box-shadow: 0 20px 44px rgba(0, 0, 0, .10);
+    backdrop-filter: blur(8px);
+}
+
+.skyline-cta .eyebrow,
+.skyline-cta h2 {
+    position: relative;
+    max-width: 640px;
+    padding-left: clamp(22px, 3vw, 42px);
+}
+
+@media (max-width: 680px) {
+    .skyline-cta { min-height: 500px; }
+    .skyline-cta .container { padding-top: 58px; }
+    .skyline-cta .container::before {
+        inset: 34px 18px auto;
+        width: auto;
+        height: 230px;
+        border-left-width: 5px;
+        border-radius: 16px;
+    }
+    .skyline-cta .eyebrow,
+    .skyline-cta h2 { padding-inline: 22px; }
+}
+
+/* Skyline copy sits vertically centred at the main content's left edge. */
+.skyline-cta {
+    align-items: center;
+}
+
+.skyline-cta .container {
+    display: block;
+    align-self: auto;
+    padding-top: 0;
+}
+
+.skyline-cta .container::before {
+    display: none;
+}
+
+.skyline-cta .eyebrow,
+.skyline-cta h2 {
+    max-width: 570px;
+    padding-left: 0;
+    text-align: left;
+}
+
+@media (max-width: 680px) {
+    .skyline-cta .container { padding-top: 0; }
+    .skyline-cta .eyebrow,
+    .skyline-cta h2 { padding-inline: 0; }
 }

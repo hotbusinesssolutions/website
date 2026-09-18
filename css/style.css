@@ -940,6 +940,123 @@ textarea {
     }
 }
 
+/* =========================================================
+   SEPTEMBER VISUAL REFINEMENTS
+   ========================================================= */
+.nav-shell,
+.site-header.scrolled .nav-shell {
+    color: var(--white);
+    background: var(--black-100) !important;
+    border-color: var(--black-100);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, .16);
+}
+
+.brand {
+    padding: 4px 10px;
+    background: var(--white);
+    border-radius: 12px;
+}
+
+.nav-list a,
+.nav-dropdown-toggle,
+.menu-toggle {
+    color: var(--white);
+}
+
+.reveal {
+    transform: translateY(38px);
+    transition: opacity 1.35s var(--ease), transform 1.35s var(--ease);
+}
+
+.reveal-delay {
+    transition-delay: .24s;
+}
+
+.word > span {
+    animation-duration: 1.2s;
+    animation-delay: calc(var(--i) * 75ms + 240ms);
+}
+
+.section-head h2,
+.page-hero h1,
+.home-hero h1 {
+    text-wrap: balance;
+    transition: transform .85s var(--ease), letter-spacing .85s var(--ease);
+}
+
+.section:hover .section-head h2 {
+    transform: translateX(7px);
+}
+
+.eyebrow::before {
+    transition: width .8s var(--ease), background-color .4s ease;
+}
+
+.section:hover .eyebrow::before,
+.page-hero:hover .eyebrow::before {
+    width: 50px;
+}
+
+.site-footer {
+    position: relative;
+    overflow: hidden;
+    color: var(--white) !important;
+    background:
+        radial-gradient(circle at 78% 18%, rgba(239, 191, 4, .10), transparent 28%),
+        linear-gradient(135deg, #000 0%, #171717 58%, #000 100%) !important;
+    border-top: 0;
+    padding-top: 96px;
+}
+
+.site-footer::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 34px;
+    content: "";
+    background:
+        linear-gradient(115deg, transparent 0 8%, var(--yellow) 8% 23%, transparent 23% 31%, var(--yellow) 31% 57%, transparent 57% 72%, var(--yellow) 72% 88%, transparent 88%);
+    clip-path: polygon(0 44%, 18% 44%, 23% 5%, 48% 68%, 66% 24%, 82% 68%, 100% 28%, 100% 38%, 82% 78%, 66% 35%, 48% 80%, 22% 17%, 19% 56%, 0 56%);
+}
+
+.site-footer p,
+.site-footer a,
+.site-footer h2,
+.site-footer h3,
+.site-footer strong,
+.site-footer .footer-title {
+    color: var(--white) !important;
+}
+
+.site-footer .footer-title,
+.site-footer .footer-description {
+    opacity: .72;
+}
+
+.site-footer a {
+    transition: color .35s ease, transform .35s var(--ease);
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+    color: var(--yellow) !important;
+    transform: translateX(4px);
+}
+
+@media (max-width: 980px) {
+    .nav-list {
+        color: var(--white);
+        background: var(--black-100) !important;
+        border-color: rgba(255, 255, 255, .25);
+    }
+
+    .nav-list a,
+    .nav-list button {
+        color: var(--white);
+    }
+}
+
 @media (max-width: 680px) {
     :root {
         --radius: 18px;
@@ -1029,4 +1146,356 @@ textarea {
         min-height: 100svh;
         padding-block: 112px 54px;
     }
+}
+
+/* =========================================================
+   HBS 60 / 30 / 10 COLOUR SYSTEM
+   60% white surfaces, 30% black structure, 10% yellow accents.
+   ========================================================= */
+:root {
+    --black-100: #000000;
+    --black-50: rgba(0, 0, 0, .50);
+    --black-50-solid: #808080;
+    --yellow: #EFBF04;
+    --ink: var(--black-100);
+    --charcoal: var(--black-100);
+    --panel: var(--black-50);
+    --gold: var(--yellow);
+    --paper: #FFFFFF;
+    --white: #FFFFFF;
+    --muted: var(--black-50);
+    --line: rgba(0, 0, 0, .18);
+}
+
+body {
+    color: var(--black-100);
+    background: var(--white);
+}
+
+.site-header.scrolled,
+.nav-shell,
+.site-header.scrolled .nav-shell,
+.card,
+.notice,
+.field input,
+.field select,
+.field textarea {
+    background-color: var(--white);
+}
+
+.dark-section,
+.site-footer,
+.page-hero,
+.contact-cta {
+    color: var(--white);
+    background-color: var(--black-100);
+}
+
+.dark-section p,
+.site-footer p,
+.page-hero .lead,
+.contact-cta p {
+    color: rgba(255, 255, 255, .76);
+}
+
+.dark-section .card {
+    background: var(--black-50);
+    border-color: rgba(255, 255, 255, .24);
+}
+
+.placeholder {
+    color: var(--white);
+    background: var(--black-100);
+    border-color: var(--black-50);
+}
+
+.button,
+.sticky-contact,
+.skip-link {
+    color: var(--black-100);
+    background-color: var(--yellow);
+}
+
+@media (max-width: 980px) {
+    .nav-list {
+        color: var(--white);
+        background: var(--black-100);
+    }
+}
+
+/* Professional finishing layer for consistent contrast and softer transitions. */
+::selection {
+    color: var(--black-100);
+    background: var(--yellow);
+}
+
+.nav-shell,
+.card,
+.notice,
+.field input,
+.field select,
+.field textarea {
+    border-color: rgba(0, 0, 0, .18);
+}
+
+.site-header.scrolled .nav-shell {
+    box-shadow: 0 14px 38px rgba(0, 0, 0, .10);
+}
+
+.button,
+.sticky-contact {
+    border: 1px solid var(--black-100);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+}
+
+.button:hover,
+.button:focus-visible,
+.sticky-contact:hover,
+.sticky-contact:focus-visible {
+    color: var(--white);
+    background: var(--black-100);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--yellow);
+    outline-offset: 3px;
+}
+
+/* Final site-wide colour contract. Page styles may change layout, not palette. */
+html {
+    color-scheme: light;
+    background: var(--white);
+}
+
+main,
+.section {
+    background-color: var(--white);
+}
+
+.section.dark-section,
+.site-footer,
+.contact-cta {
+    color: var(--white);
+    background-color: var(--black-100);
+}
+
+.section.dark-section p,
+.site-footer p,
+.contact-cta p {
+    color: rgba(255, 255, 255, .76);
+}
+
+.eyebrow,
+.muted,
+.meta {
+    color: var(--black-50);
+}
+
+/* =========================================================
+   WHITE CANVAS THEME — authoritative site-wide layer
+   White is the page canvas; black and yellow are accents.
+   ========================================================= */
+html,
+body,
+main,
+.section,
+.page-hero,
+.home-hero,
+.dark-section,
+.contact-cta,
+.site-footer {
+    color: var(--black-100) !important;
+    background-color: var(--white) !important;
+}
+
+.dark-section p,
+.page-hero .lead,
+.contact-cta p,
+.site-footer p {
+    color: var(--black-50) !important;
+}
+
+.page-hero::before,
+.home-hero::before {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, .045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, .045) 1px, transparent 1px);
+}
+
+.site-footer {
+    border-top: 8px solid var(--yellow);
+}
+
+.site-footer a,
+.site-footer h2,
+.site-footer h3,
+.site-footer strong {
+    color: var(--black-100);
+}
+
+.dark-section .card,
+.card,
+.notice {
+    color: var(--black-100);
+    background-color: var(--white) !important;
+    border-color: var(--black-50);
+}
+
+.button,
+.sticky-contact,
+.skip-link {
+    color: var(--black-100) !important;
+    background-color: var(--yellow) !important;
+}
+
+.button.outline {
+    color: var(--black-100) !important;
+    background-color: var(--white) !important;
+    border-color: var(--black-100);
+}
+
+.button:hover,
+.button:focus-visible,
+.sticky-contact:hover,
+.sticky-contact:focus-visible {
+    color: var(--white) !important;
+    background-color: var(--black-100) !important;
+}
+
+@media (max-width: 980px) {
+    .nav-list {
+        color: var(--black-100);
+        background-color: var(--white) !important;
+        border: 1px solid var(--black-50);
+    }
+
+    .nav-list a,
+    .nav-list button {
+        color: var(--black-100);
+    }
+}
+
+/* Final navigation, motion and footer lock. */
+.nav-shell,
+.site-header.scrolled .nav-shell {
+    color: var(--white);
+    background: var(--black-100) !important;
+    border-color: var(--black-100);
+}
+
+.brand {
+    padding: 4px 10px;
+    background: var(--white);
+    border-radius: 12px;
+}
+
+.nav-list a,
+.nav-dropdown-toggle,
+.menu-toggle {
+    color: var(--white);
+}
+
+.reveal {
+    transform: translateY(38px);
+    transition-duration: 1.35s;
+}
+
+.reveal-delay { transition-delay: .24s; }
+
+.word > span {
+    animation-duration: 1.2s;
+    animation-delay: calc(var(--i) * 75ms + 240ms);
+}
+
+.site-footer {
+    position: relative;
+    overflow: hidden;
+    color: var(--white) !important;
+    background:
+        radial-gradient(circle at 78% 18%, rgba(239, 191, 4, .10), transparent 28%),
+        linear-gradient(135deg, #000 0%, #171717 58%, #000 100%) !important;
+    border-top: 0;
+    padding-top: 96px;
+}
+
+.site-footer p,
+.site-footer a,
+.site-footer h2,
+.site-footer h3,
+.site-footer strong,
+.site-footer .footer-title {
+    color: var(--white) !important;
+}
+
+@media (max-width: 980px) {
+    .nav-list {
+        color: var(--white);
+        background: var(--black-100) !important;
+        border-color: rgba(255, 255, 255, .25);
+    }
+
+    .nav-list a,
+    .nav-list button { color: var(--white); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .word > span,
+    .section-head h2,
+    .page-hero h1,
+    .home-hero h1 {
+        opacity: 1;
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+    }
+}
+
+/* Logo sits directly on the black navigation bar without a white capsule. */
+.nav-shell .brand,
+.site-header.scrolled .nav-shell .brand {
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+}
+
+/* Dropdown labels stay readable on the yellow selected/hover state. */
+.nav-submenu a,
+.nav-submenu a[aria-current="page"],
+.nav-submenu a:hover,
+.nav-submenu a:focus-visible {
+    color: var(--black-100) !important;
+}
+
+.footer-brand-mark {
+    display: inline-flex;
+    margin-bottom: 28px;
+    padding: 12px 16px;
+    background: var(--white);
+    border-radius: 14px;
+}
+
+.footer-logo {
+    display: block;
+    width: clamp(210px, 18vw, 300px);
+    height: auto;
+}
+
+@media (max-width: 680px) {
+    .footer-logo { width: min(250px, 72vw); }
+}
+
+/* Footer logo blends directly into the dark footer surface. */
+.footer-brand-mark {
+    display: block;
+    width: fit-content;
+    margin-bottom: 28px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
 }
