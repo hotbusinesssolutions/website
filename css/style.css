@@ -1010,14 +1010,24 @@ textarea {
 
 .site-footer::before {
     position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    height: 34px;
+    top: 12px;
+    left: 50%;
+    width: min(1500px, 94vw);
+    height: clamp(72px, 8vw, 124px);
     content: "";
-    background:
-        linear-gradient(115deg, transparent 0 8%, var(--yellow) 8% 23%, transparent 23% 31%, var(--yellow) 31% 57%, transparent 57% 72%, var(--yellow) 72% 88%, transparent 88%);
-    clip-path: polygon(0 44%, 18% 44%, 23% 5%, 48% 68%, 66% 24%, 82% 68%, 100% 28%, 100% 38%, 82% 78%, 66% 35%, 48% 80%, 22% 17%, 19% 56%, 0 56%);
+    background-color: transparent;
+    background-image: url("../images/circuit.svg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain;
+    opacity: .72;
+    pointer-events: none;
+    transform: translateX(-50%);
+}
+
+.site-footer > .container {
+    position: relative;
+    z-index: 1;
 }
 
 .site-footer p,
@@ -1518,4 +1528,111 @@ html.reveal-ready .reveal:not(.in-view) {
     background: transparent;
     border: 0;
     border-radius: 0;
+}
+
+/* =========================================================
+   FINAL FOOTER CIRCUIT POSITION
+   Keep this block at the very bottom of style.css.
+   ========================================================= */
+
+.site-footer::before,
+.site-footer::after {
+    position: absolute !important;
+    top: auto !important;
+    bottom: 12px !important;
+    width: min(380px, 27vw) !important;
+    height: clamp(58px, 6vw, 86px) !important;
+    content: "" !important;
+    background: transparent url("../images/circuit.svg") center / contain no-repeat !important;
+    clip-path: none !important;
+    opacity: .58;
+    pointer-events: none;
+}
+
+.site-footer::before {
+    right: auto !important;
+    left: clamp(24px, 5vw, 88px) !important;
+    transform: scaleY(-1) !important;
+}
+
+.site-footer::after {
+    top: 18px !important;
+    bottom: auto !important;
+    right: clamp(24px, 5vw, 88px) !important;
+    left: auto !important;
+    transform: scaleX(-1) !important;
+}
+
+.site-footer {
+    padding-bottom: 112px !important;
+}
+
+.site-footer > .container {
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 760px) {
+    .site-footer::before {
+        top: auto !important;
+        bottom: 12px !important;
+        right: auto !important;
+        left: 50% !important;
+        width: min(340px, 80vw) !important;
+        height: 62px !important;
+        opacity: .46;
+        transform: translateX(-50%) scaleY(-1) !important;
+    }
+
+    .site-footer::after {
+        display: none;
+    }
+}
+
+/* Align footer artwork to the same centred content edges on wide screens. */
+@media (min-width: 761px) {
+    .site-footer::before {
+        right: auto !important;
+        left: clamp(24px, 5%, 88px) !important;
+    }
+
+    .site-footer::after {
+        right: clamp(24px, 5%, 88px) !important;
+        left: auto !important;
+    }
+}
+
+.footer-grid > *,
+.footer-bottom > * {
+    min-width: 0;
+}
+
+/* =========================================================
+   FINAL FOOTER PANEL WIDTH
+   Match the footer's black panel to the shared page container.
+   Keep this block last so earlier footer declarations cannot win.
+   ========================================================= */
+
+[data-site-footer] {
+    width: 100%;
+    background: transparent;
+}
+
+.site-footer {
+    width: calc(100% - 40px) !important;
+    max-width: var(--max) !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
+@media (max-width: 680px) {
+    .site-footer {
+        width: calc(100% - 28px) !important;
+    }
+}
+
+@media (max-width: 390px) {
+    .site-footer {
+        width: calc(100% - 22px) !important;
+    }
 }

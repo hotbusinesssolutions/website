@@ -76,12 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                 </li>
 
                                 <li>
-                                    <a href="${rootPath}about.html#group">
-                                        House of Travel
-                                    </a>
-                                </li>
-
-                                <li>
                                     <a href="${rootPath}about.html#manila">
                                         Manila operations
                                     </a>
@@ -621,7 +615,91 @@ document.addEventListener("DOMContentLoaded", () => {
                 ...showcase.querySelectorAll("[role='tabpanel']"),
             ];
 
-            const activateIndustry = (selectedTab, moveFocus = false) => {
+            if (!tabs.length || !panels.length) {
+                return;
+            }
+
+            const reducedMotion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)",
+            );
+            const autoplayDelay = Math.max(
+                0,
+                Number(showcase.dataset.industryAutoplay) || 0,
+            );
+
+            let autoplayTimer = null;
+            let switchClassTimer = null;
+            let isInView = false;
+            let isPointerPaused = false;
+            let userHasInteracted = false;
+
+            showcase.style.setProperty(
+                "--industry-cycle",
+                `${autoplayDelay || 7000}ms`,
+            );
+
+            const stopAutoplay = () => {
+                window.clearTimeout(autoplayTimer);
+                autoplayTimer = null;
+                showcase.classList.remove("is-autoplaying");
+            };
+
+            const playSwitchEffect = () => {
+                if (reducedMotion.matches) {
+                    return;
+                }
+
+                window.clearTimeout(switchClassTimer);
+                showcase.classList.remove("is-switching");
+
+                // Restart the card transition for every newly selected panel.
+                void showcase.offsetWidth;
+                showcase.classList.add("is-switching");
+
+                switchClassTimer = window.setTimeout(() => {
+                    showcase.classList.remove("is-switching");
+                }, 760);
+            };
+
+            const canAutoplay = () =>
+                autoplayDelay >= 3000 &&
+                !reducedMotion.matches &&
+                !userHasInteracted &&
+                !isPointerPaused &&
+                isInView &&
+                !document.hidden;
+
+            const scheduleAutoplay = () => {
+                stopAutoplay();
+
+                if (!canAutoplay()) {
+                    return;
+                }
+
+                // Re-adding the class restarts the active-tab progress line.
+                void showcase.offsetWidth;
+                showcase.classList.add("is-autoplaying");
+
+                autoplayTimer = window.setTimeout(() => {
+                    const activeIndex = Math.max(
+                        0,
+                        tabs.findIndex((tab) => tab.classList.contains("is-active")),
+                    );
+                    const nextTab = tabs[(activeIndex + 1) % tabs.length];
+                    activateIndustry(nextTab, false, true);
+                }, autoplayDelay);
+            };
+
+            const activateIndustry = (
+                selectedTab,
+                moveFocus = false,
+                fromAutoplay = false,
+            ) => {
+                const previousTab = tabs.find((tab) =>
+                    tab.classList.contains("is-active"),
+                );
+                const didChange = previousTab !== selectedTab;
+
                 tabs.forEach((tab) => {
                     const isSelected = tab === selectedTab;
                     tab.classList.toggle("is-active", isSelected);
@@ -636,18 +714,29 @@ document.addEventListener("DOMContentLoaded", () => {
                     panel.classList.toggle("is-active", isSelected);
                 });
 
+                if (didChange) {
+                    playSwitchEffect();
+                }
+
                 if (moveFocus) {
                     selectedTab.focus();
                 }
 
-                if (window.innerWidth <= 980) {
+                if (moveFocus && window.innerWidth <= 980) {
                     selectedTab.scrollIntoView({
-                        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                        behavior: reducedMotion.matches
                             ? "auto"
                             : "smooth",
                         block: "nearest",
                         inline: "center",
                     });
+                }
+
+                if (fromAutoplay) {
+                    scheduleAutoplay();
+                } else {
+                    userHasInteracted = true;
+                    stopAutoplay();
                 }
             };
 
@@ -674,6 +763,57 @@ document.addEventListener("DOMContentLoaded", () => {
                     event.preventDefault();
                     activateIndustry(tabs[nextIndex], true);
                 });
+            });
+
+            showcase.addEventListener("pointerenter", () => {
+                isPointerPaused = true;
+                stopAutoplay();
+            });
+
+            showcase.addEventListener("pointerleave", () => {
+                isPointerPaused = false;
+                scheduleAutoplay();
+            });
+
+            showcase.addEventListener("focusin", () => {
+                userHasInteracted = true;
+                stopAutoplay();
+            });
+
+            if ("IntersectionObserver" in window) {
+                const showcaseObserver = new IntersectionObserver(
+                    ([entry]) => {
+                        isInView = entry.isIntersecting;
+
+                        if (isInView) {
+                            scheduleAutoplay();
+                        } else {
+                            stopAutoplay();
+                        }
+                    },
+                    { threshold: 0.35 },
+                );
+
+                showcaseObserver.observe(showcase);
+            } else {
+                isInView = true;
+                scheduleAutoplay();
+            }
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    stopAutoplay();
+                } else {
+                    scheduleAutoplay();
+                }
+            });
+
+            reducedMotion.addEventListener?.("change", () => {
+                if (reducedMotion.matches) {
+                    stopAutoplay();
+                } else {
+                    scheduleAutoplay();
+                }
             });
         });
 
