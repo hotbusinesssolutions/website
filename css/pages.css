@@ -5833,3 +5833,163 @@ main .section-head > p {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
+
+/* Careers: remove the obsolete full-width yellow divider. */
+.page-careers .candidate-invitation {
+    border-top: 0 !important;
+}
+
+/* Contact: final office-map sizing and colour treatment.
+   This block intentionally comes last so older map declarations cannot
+   collapse the iframe back to its browser-default height. */
+.page-contact .office-location-panel {
+    display: grid;
+    grid-template-columns: minmax(310px, .62fr) minmax(0, 1.38fr);
+    gap: clamp(28px, 3vw, 42px);
+    align-items: stretch;
+    width: min(calc(100% - 40px), var(--max)) !important;
+    max-width: var(--max) !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    min-height: 0;
+    padding: clamp(26px, 2.5vw, 38px);
+    color: var(--black-100) !important;
+    background: var(--yellow) !important;
+    border-radius: clamp(24px, 2.4vw, 34px);
+}
+
+.page-contact .office-location-copy {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.page-contact .office-location-copy h2 {
+    margin: 0 0 28px;
+    font-size: clamp(3.25rem, 4.25vw, 4.75rem);
+    line-height: .94;
+    letter-spacing: -.04em;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
+}
+
+.page-contact .office-location-copy h2 .gold {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.page-contact .office-location-panel h2,
+.page-contact .office-location-panel p,
+.page-contact .office-location-panel strong,
+.page-contact .office-location-panel .eyebrow,
+.page-contact .office-location-panel .gold {
+    color: var(--black-100) !important;
+}
+
+.page-contact .office-location-panel .eyebrow::before {
+    background: var(--black-100) !important;
+}
+
+.page-contact .office-location-panel .office-address,
+.page-contact .office-location-panel .office-visit-note {
+    color: rgba(0, 0, 0, .72) !important;
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+.page-contact .office-location-panel .office-address {
+    max-width: 34ch;
+    font-size: clamp(.96rem, 1.05vw, 1.08rem);
+    line-height: 1.65;
+}
+
+.page-contact .office-location-panel .office-address strong {
+    line-height: 1.45;
+}
+
+.page-contact .office-location-panel .office-visit-note {
+    max-width: 34ch;
+    line-height: 1.6;
+}
+
+.page-contact .office-location-map {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    min-width: 0;
+    min-height: 600px;
+}
+
+.page-contact .office-directions-link {
+    color: var(--black-100) !important;
+    border-bottom: 2px solid rgba(0, 0, 0, .34);
+}
+
+.page-contact .office-map-frame {
+    position: relative;
+    width: 100%;
+    height: 100% !important;
+    min-height: 580px !important;
+    overflow: hidden;
+    background: #e5e3df;
+    border: 2px solid var(--black-100);
+    border-radius: 24px;
+}
+
+.page-contact .office-map-frame iframe {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 100%;
+    min-height: 100%;
+    border: 0;
+}
+
+@media (max-width: 1050px) {
+    .page-contact .office-location-panel {
+        grid-template-columns: 1fr;
+        width: min(calc(100% - 40px), var(--max)) !important;
+        min-height: 0;
+    }
+
+    .page-contact .office-location-map {
+        min-height: 560px;
+    }
+
+    .page-contact .office-map-frame {
+        min-height: 520px !important;
+    }
+}
+
+@media (max-width: 680px) {
+    .page-contact .office-location-panel {
+        width: calc(100% - 28px) !important;
+        gap: 28px;
+        padding: 28px 20px;
+        border-radius: 22px;
+    }
+
+    .page-contact .office-location-map {
+        min-height: 480px;
+    }
+
+    .page-contact .office-location-copy h2 {
+        font-size: clamp(2.8rem, 15vw, 4.2rem);
+    }
+
+    .page-contact .office-map-frame {
+        min-height: 440px !important;
+        border-radius: 16px;
+    }
+}
+
+@media (max-width: 390px) {
+    .page-contact .office-location-panel {
+        width: calc(100% - 22px) !important;
+        padding-inline: 16px;
+    }
+}

@@ -162,14 +162,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (footerContainer) {
         footerContainer.innerHTML = `
             <footer class="site-footer">
-                <img
-                    class="footer-circuit footer-circuit--top"
-                    src="${rootPath}images/circuit.svg"
-                    alt=""
-                    aria-hidden="true"
-                    decoding="async"
-                />
-
                 <div class="container">
                     <div class="footer-grid">
                         <div>
@@ -299,14 +291,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         </span>
                     </div>
                 </div>
-
-                <img
-                    class="footer-circuit footer-circuit--bottom"
-                    src="${rootPath}images/circuit.svg"
-                    alt=""
-                    aria-hidden="true"
-                    decoding="async"
-                />
             </footer>
         `;
     }

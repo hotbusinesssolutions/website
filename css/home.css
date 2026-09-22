@@ -1388,3 +1388,37 @@
         width: calc(100% - 22px);
     }
 }
+
+/* =========================================================
+   SKYLINE — CONTAINED WIDTH AT EVERY BROWSER ZOOM
+   Match the shared site container instead of the viewport.
+   Keep this override last in home.css.
+   ========================================================= */
+
+.page-home .skyline-cta {
+    width: min(calc(100% - 40px), var(--max));
+    max-width: var(--max);
+    margin-inline: auto;
+    border-radius: clamp(22px, 2.4vw, 36px);
+}
+
+.page-home .skyline-cta-image {
+    inset: 0;
+    width: 100%;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 680px) {
+    .page-home .skyline-cta {
+        width: min(calc(100% - 28px), var(--max));
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 390px) {
+    .page-home .skyline-cta {
+        width: calc(100% - 22px);
+        border-radius: 16px;
+    }
+}
