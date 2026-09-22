@@ -162,6 +162,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (footerContainer) {
         footerContainer.innerHTML = `
             <footer class="site-footer">
+                <img
+                    class="footer-circuit footer-circuit--top"
+                    src="${rootPath}images/circuit.svg"
+                    alt=""
+                    aria-hidden="true"
+                    decoding="async"
+                />
+
                 <div class="container">
                     <div class="footer-grid">
                         <div>
@@ -291,6 +299,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         </span>
                     </div>
                 </div>
+
+                <img
+                    class="footer-circuit footer-circuit--bottom"
+                    src="${rootPath}images/circuit.svg"
+                    alt=""
+                    aria-hidden="true"
+                    decoding="async"
+                />
             </footer>
         `;
     }
@@ -615,9 +631,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 ...showcase.querySelectorAll("[role='tabpanel']"),
             ];
 
+            const panelImages = [
+                ...showcase.querySelectorAll(".industry-photo-placeholder img"),
+            ];
+
             if (!tabs.length || !panels.length) {
                 return;
             }
+
+            /* Load every tab photo before autoplay can reveal its panel. */
+            panelImages.forEach((image) => {
+                image.loading = "eager";
+                image.decoding = "async";
+            });
 
             const reducedMotion = window.matchMedia(
                 "(prefers-reduced-motion: reduce)",

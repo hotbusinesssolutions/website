@@ -1269,3 +1269,122 @@
         object-position: 50% 50%;
     }
 }
+
+/* =========================================================
+   FINAL HOME RESPONSIVE ALIGNMENT
+   Keep this section last in home.css.
+   ========================================================= */
+
+.home-hero {
+    min-height: 100svh;
+    padding: clamp(148px, 15vh, 190px) 0 clamp(84px, 10vh, 120px);
+    overflow: hidden;
+    overflow: clip;
+}
+
+.home-hero > .container {
+    width: min(calc(100% - 40px), var(--max));
+    margin-inline: auto;
+}
+
+.home-hero h1 {
+    width: min(930px, 72%);
+    max-width: 100%;
+}
+
+.home-hero .lead {
+    width: min(650px, 58%);
+    max-width: 100%;
+}
+
+.home-hero .hero-orbit,
+.home-hero .route-line {
+    pointer-events: none;
+}
+
+.skyline-cta {
+    min-height: clamp(500px, 44vw, 660px);
+    overflow: hidden;
+    overflow: clip;
+}
+
+.skyline-cta-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: center;
+}
+
+@media (max-width: 980px) {
+    .home-hero h1,
+    .home-hero .lead {
+        width: min(760px, 78%);
+    }
+
+    .home-hero .hero-orbit {
+        top: 24%;
+        right: -54%;
+        width: clamp(680px, 126%, 920px);
+    }
+
+    .home-hero .route-line {
+        top: 51%;
+        right: -18%;
+        width: 68%;
+    }
+}
+
+@media (max-width: 680px) {
+    .home-hero {
+        align-items: flex-start;
+        min-height: 100svh;
+        padding: 138px 0 82px;
+    }
+
+    .home-hero > .container {
+        width: min(calc(100% - 28px), var(--max));
+    }
+
+    .home-hero h1,
+    .home-hero .lead {
+        width: 100%;
+    }
+
+    .home-hero h1 {
+        font-size: clamp(3.15rem, 15vw, 5.25rem);
+    }
+
+    .home-hero .lead {
+        font-size: clamp(1rem, 4.5vw, 1.2rem);
+    }
+
+    .home-hero .hero-orbit {
+        top: 44%;
+        right: -128%;
+        width: 760px;
+        opacity: .74;
+    }
+
+    .home-hero .route-line {
+        top: 66%;
+        right: -42%;
+        width: 96%;
+        opacity: .74;
+    }
+
+    .skyline-cta {
+        min-height: 520px;
+    }
+
+    .skyline-cta-image {
+        object-position: 50% 50%;
+    }
+}
+
+@media (max-width: 390px) {
+    .home-hero > .container {
+        width: calc(100% - 22px);
+    }
+}
