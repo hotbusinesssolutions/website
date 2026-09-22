@@ -1501,6 +1501,26 @@ html.reveal-ready .reveal:not(.in-view) {
     color: var(--black-100) !important;
 }
 
+/* Keep the About submenu readable inside the black mobile navigation. */
+@media (max-width: 980px) {
+    .nav-list .nav-submenu {
+        color: var(--white);
+        background: transparent !important;
+    }
+
+    .nav-list .nav-submenu a,
+    .nav-list .nav-submenu a[aria-current="page"] {
+        color: var(--white) !important;
+        background: transparent;
+    }
+
+    .nav-list .nav-submenu a:hover,
+    .nav-list .nav-submenu a:focus-visible {
+        color: var(--black-100) !important;
+        background: var(--gold);
+    }
+}
+
 .footer-brand-mark {
     display: inline-flex;
     margin-bottom: 28px;

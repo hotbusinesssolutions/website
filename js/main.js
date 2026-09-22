@@ -654,7 +654,6 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
             let autoplayTimer = null;
-            let switchClassTimer = null;
             let isInView = false;
             let isPointerPaused = false;
             let userHasInteracted = false;
@@ -668,23 +667,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.clearTimeout(autoplayTimer);
                 autoplayTimer = null;
                 showcase.classList.remove("is-autoplaying");
-            };
-
-            const playSwitchEffect = () => {
-                if (reducedMotion.matches) {
-                    return;
-                }
-
-                window.clearTimeout(switchClassTimer);
-                showcase.classList.remove("is-switching");
-
-                // Restart the card transition for every newly selected panel.
-                void showcase.offsetWidth;
-                showcase.classList.add("is-switching");
-
-                switchClassTimer = window.setTimeout(() => {
-                    showcase.classList.remove("is-switching");
-                }, 760);
             };
 
             const canAutoplay = () =>
@@ -721,11 +703,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 moveFocus = false,
                 fromAutoplay = false,
             ) => {
-                const previousTab = tabs.find((tab) =>
-                    tab.classList.contains("is-active"),
-                );
-                const didChange = previousTab !== selectedTab;
-
                 tabs.forEach((tab) => {
                     const isSelected = tab === selectedTab;
                     tab.classList.toggle("is-active", isSelected);
@@ -739,10 +716,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     panel.hidden = !isSelected;
                     panel.classList.toggle("is-active", isSelected);
                 });
-
-                if (didChange) {
-                    playSwitchEffect();
-                }
 
                 if (moveFocus) {
                     selectedTab.focus();

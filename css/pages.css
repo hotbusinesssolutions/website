@@ -5582,7 +5582,9 @@ main .section-head > p {
     --folder-tabs-width: 68%;
     --folder-height: 96px;
     --folder-radius: 36px;
-    --folder-connector: 64px;
+    /* 98px cap - 36px corner = 62px connector.
+       Matching these values removes the tiny vertical step between curves. */
+    --folder-connector: 62px;
     --industry-card: #EFBF04;
     --industry-cycle: 9000ms;
     position: relative;
@@ -5619,7 +5621,7 @@ main .section-head > p {
         z-index: 7;
         display: block;
         width: calc(100% - var(--folder-tabs-width) + 2px);
-        height: calc(var(--folder-height) + 3px);
+        height: calc(var(--folder-height) + 2px);
         background: var(--industry-card);
         border-radius: var(--folder-radius) var(--folder-radius) 0 0;
         pointer-events: none;
@@ -5628,29 +5630,23 @@ main .section-head > p {
 
     .page-industries .industry-folder-cap::before {
         position: absolute;
-        bottom: -2px;
-        left: calc((var(--folder-connector) * -1) - 1px);
-        width: calc(var(--folder-connector) + 3px);
-        height: calc(var(--folder-connector) + 3px);
+        bottom: 0;
+        left: calc(var(--folder-connector) * -1);
+        width: calc(var(--folder-connector) + 2px);
+        height: var(--folder-connector);
         content: "";
         background: radial-gradient(
             circle at top left,
-            transparent 0 calc(var(--folder-connector) - 2px),
-            var(--industry-card) calc(var(--folder-connector) - 1px) 100%
+            transparent 0 calc(var(--folder-connector) - 1px),
+            var(--industry-card) var(--folder-connector) 100%
         );
         pointer-events: none;
         transform: translateZ(0);
+        backface-visibility: hidden;
     }
 
     .page-industries .industry-folder-cap::after {
-        position: absolute;
-        right: 0;
-        bottom: -3px;
-        left: 0;
-        height: 5px;
-        content: "";
-        background: var(--industry-card);
-        pointer-events: none;
+        display: none;
     }
 
     .page-industries .industry-panels {
