@@ -569,6 +569,62 @@
 .orbit-descriptions { grid-template-columns: repeat(2, minmax(0, 1fr)); align-self: center; }
 .orbit-descriptions article { min-height: 142px; }
 
+/* Click-linked managed-support selection.
+   Selecting a card temporarily pauses the automatic highlight sequence. */
+.orbit-descriptions article[data-support-key] {
+    cursor: pointer;
+    outline: none;
+}
+
+.orbit-descriptions article[data-support-key]:focus-visible {
+    box-shadow:
+        0 0 0 3px var(--white),
+        0 0 0 6px var(--yellow),
+        0 14px 28px rgba(0, 0, 0, .12);
+}
+
+.orbit-descriptions article.is-active {
+    background: var(--yellow);
+    border-color: var(--black-100);
+    border-top-color: var(--black-100);
+    box-shadow:
+        0 0 0 4px rgba(239, 191, 4, .18),
+        0 16px 32px rgba(0, 0, 0, .16);
+    transform: translateY(-4px);
+}
+
+.orbit-descriptions article.is-active p {
+    color: var(--black-100) !important;
+}
+
+/* Freeze only the timed highlight while a card is selected.
+   The first animation stays running, so the orbit never stops moving. */
+.managed-support-section.has-support-selection .orbit-node {
+    color: #171717 !important;
+    background: #ffffff !important;
+    border-color: rgba(239, 191, 4, .85) !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .32) !important;
+    animation-play-state: running, paused;
+}
+
+.orbit-position.is-selected .orbit-node {
+    color: #171717 !important;
+    background: var(--yellow) !important;
+    border-color: #ffffff !important;
+    box-shadow:
+        0 0 0 9px rgba(239, 191, 4, .24),
+        0 0 34px rgba(239, 191, 4, .58),
+        0 18px 38px rgba(0, 0, 0, .4) !important;
+}
+
+.orbit-position.is-selected .orbit-icon {
+    background: #ffffff;
+}
+
+.orbit-position.is-selected .orbit-node {
+    cursor: pointer;
+}
+
 /* Careers: responsive yellow orbital shape, pinned to the right. */
 .careers-invitation-hero { position: relative; overflow: hidden; isolation: isolate; }
 .careers-invitation-hero::after {

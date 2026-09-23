@@ -7,7 +7,7 @@
     <title>How We Work | HBS</title>
     <link rel="icon" href="images/favicon.svg" />
     <link rel="stylesheet" href="css/style.css?v=hbs-responsive-20260922" />
-    <link rel="stylesheet" href="css/pages.css?v=hbs-responsive-20260922" />
+    <link rel="stylesheet" href="css/pages.css?v=hbs-support-merged-20260923" />
   </head>
   <body class="page-how-we-work">
     <div data-site-header></div>
@@ -138,7 +138,7 @@
         <!-- Yellow orbit line and rotating nodes -->
         <div class="orbit-ring" aria-hidden="true">
 
-          <div class="orbit-position" style="--angle: 0deg; --i: 0">
+          <div class="orbit-position" data-support-key="recruitment" style="--angle: 0deg; --i: 0">
             <div class="orbit-node">
               <span class="orbit-icon">
                 <svg viewBox="0 0 24 24">
@@ -153,7 +153,7 @@
             </div>
           </div>
 
-          <div class="orbit-position" style="--angle: 45deg; --i: 1">
+          <div class="orbit-position" data-support-key="onboarding" style="--angle: 45deg; --i: 1">
             <div class="orbit-node">
               <span class="orbit-icon">
                 <svg viewBox="0 0 24 24">
@@ -167,7 +167,7 @@
             </div>
           </div>
 
-          <div class="orbit-position" style="--angle: 90deg; --i: 2">
+          <div class="orbit-position" data-support-key="hr-support" style="--angle: 90deg; --i: 2">
             <div class="orbit-node">
               <span class="orbit-icon">
                 <svg viewBox="0 0 24 24">
@@ -180,7 +180,7 @@
             </div>
           </div>
 
-          <div class="orbit-position" style="--angle: 135deg; --i: 3">
+          <div class="orbit-position" data-support-key="it-security" style="--angle: 135deg; --i: 3">
             <div class="orbit-node">
               <span class="orbit-icon">
                 <svg viewBox="0 0 24 24">
@@ -193,7 +193,7 @@
             </div>
           </div>
 
-          <div class="orbit-position" style="--angle: 180deg; --i: 4">
+          <div class="orbit-position" data-support-key="workplace" style="--angle: 180deg; --i: 4">
             <div class="orbit-node">
               <span class="orbit-icon">
                 <svg viewBox="0 0 24 24">
@@ -207,7 +207,7 @@
             </div>
           </div>
 
-          <div class="orbit-position" style="--angle: 225deg; --i: 5">
+          <div class="orbit-position" data-support-key="performance" style="--angle: 225deg; --i: 5">
             <div class="orbit-node">
               <span class="orbit-icon">
                 <svg viewBox="0 0 24 24">
@@ -220,7 +220,7 @@
             </div>
           </div>
 
-          <div class="orbit-position" style="--angle: 270deg; --i: 6">
+          <div class="orbit-position" data-support-key="payroll" style="--angle: 270deg; --i: 6">
             <div class="orbit-node">
               <span class="orbit-icon">
                 <svg viewBox="0 0 24 24">
@@ -234,7 +234,7 @@
             </div>
           </div>
 
-          <div class="orbit-position" style="--angle: 315deg; --i: 7">
+          <div class="orbit-position" data-support-key="continuity" style="--angle: 315deg; --i: 7">
             <div class="orbit-node">
               <span class="orbit-icon">
                 <svg viewBox="0 0 24 24">
@@ -267,14 +267,14 @@
     </div>
 
       <div class="orbit-descriptions reveal reveal-delay" aria-label="Managed support components">
-        <article><strong>Recruitment</strong><p>Role calibration, talent search, screening and candidate coordination aligned to the approved brief.</p></article>
-        <article><strong>Onboarding</strong><p>Pre-employment checks, documentation, orientation and launch-readiness coordination.</p></article>
-        <article><strong>HR Support</strong><p>Employee-lifecycle guidance, records support and practical day-to-day people coordination.</p></article>
-        <article><strong>IT &amp; Security</strong><p>Access, device, systems and security support shaped around approved client requirements.</p></article>
-        <article><strong>Workplace</strong><p>A managed BGC environment with equipment, connectivity and operational support.</p></article>
-        <article><strong>Performance</strong><p>Clear expectations, regular check-ins and transparent reporting against agreed outcomes.</p></article>
-        <article><strong>Payroll</strong><p>Coordinated payroll inputs, attendance records and employee administration support.</p></article>
-        <article><strong>Continuity</strong><p>Documented processes, escalation paths and resilience planning for dependable delivery.</p></article>
+        <article data-support-key="recruitment" role="button" tabindex="0" aria-pressed="false"><strong>Recruitment</strong><p>Role calibration, talent search, screening and candidate coordination aligned to the approved brief.</p></article>
+        <article data-support-key="onboarding" role="button" tabindex="0" aria-pressed="false"><strong>Onboarding</strong><p>Pre-employment checks, documentation, orientation and launch-readiness coordination.</p></article>
+        <article data-support-key="hr-support" role="button" tabindex="0" aria-pressed="false"><strong>HR Support</strong><p>Employee-lifecycle guidance, records support and practical day-to-day people coordination.</p></article>
+        <article data-support-key="it-security" role="button" tabindex="0" aria-pressed="false"><strong>IT &amp; Security</strong><p>Access, device, systems and security support shaped around approved client requirements.</p></article>
+        <article data-support-key="workplace" role="button" tabindex="0" aria-pressed="false"><strong>Workplace</strong><p>A managed BGC environment with equipment, connectivity and operational support.</p></article>
+        <article data-support-key="performance" role="button" tabindex="0" aria-pressed="false"><strong>Performance</strong><p>Clear expectations, regular check-ins and transparent reporting against agreed outcomes.</p></article>
+        <article data-support-key="payroll" role="button" tabindex="0" aria-pressed="false"><strong>Payroll</strong><p>Coordinated payroll inputs, attendance records and employee administration support.</p></article>
+        <article data-support-key="continuity" role="button" tabindex="0" aria-pressed="false"><strong>Continuity</strong><p>Documented processes, escalation paths and resilience planning for dependable delivery.</p></article>
       </div>
 
     </div>
@@ -297,6 +297,6 @@
       </section>
     </main>
     <div data-site-footer></div>
-    <script src="js/main.js?v=hbs-responsive-20260922"></script>
+    <script src="js/main.js?v=hbs-support-merged-20260923"></script>
   </body>
 </html>

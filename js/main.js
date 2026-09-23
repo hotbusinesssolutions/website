@@ -254,28 +254,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                         Cookies
                                     </a>
                                 </li>
-
-                                <li>
-                                    <a
-                                        href="${rootPath}legal/data-protection.html"
-                                    >
-                                        Data protection
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a
-                                        href="${rootPath}legal/accessibility.html"
-                                    >
-                                        Accessibility
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="${rootPath}legal/security.html">
-                                        Security
-                                    </a>
-                                </li>
                             </ul>
                         </div>
                     </div>
@@ -1455,4 +1433,92 @@ document.addEventListener("DOMContentLoaded", () => {
             activateCommandService(initialTab);
         }
     }
+
+    /* =========================================================
+       MANAGED SUPPORT CARD-TO-ORBIT LINK
+       ========================================================= */
+
+    const managedSupport = document.querySelector("#managed-support");
+
+    if (managedSupport) {
+        const supportCards = Array.from(
+            managedSupport.querySelectorAll(
+                ".orbit-descriptions [data-support-key]",
+            ),
+        );
+
+        const supportNodes = Array.from(
+            managedSupport.querySelectorAll(
+                ".orbit-position[data-support-key]",
+            ),
+        );
+
+        const clearSupportSelection = () => {
+            managedSupport.classList.remove("has-support-selection");
+
+            supportCards.forEach((card) => {
+                card.classList.remove("is-active");
+                card.setAttribute("aria-pressed", "false");
+            });
+
+            supportNodes.forEach((position) => {
+                position.classList.remove("is-selected");
+            });
+        };
+
+        const activateSupportItem = (selectedCard) => {
+            if (selectedCard.classList.contains("is-active")) {
+                clearSupportSelection();
+                return;
+            }
+
+            const selectedKey = selectedCard.dataset.supportKey;
+
+            managedSupport.classList.add("has-support-selection");
+
+            supportCards.forEach((card) => {
+                const isSelected = card === selectedCard;
+
+                card.classList.toggle("is-active", isSelected);
+                card.setAttribute("aria-pressed", String(isSelected));
+            });
+
+            supportNodes.forEach((position) => {
+                const isSelected =
+                    position.dataset.supportKey === selectedKey;
+
+                position.classList.toggle("is-selected", isSelected);
+            });
+        };
+
+        supportCards.forEach((card) => {
+            card.addEventListener("click", () => {
+                activateSupportItem(card);
+            });
+
+            card.addEventListener("keydown", (event) => {
+                if (event.key !== "Enter" && event.key !== " ") {
+                    return;
+                }
+
+                event.preventDefault();
+                activateSupportItem(card);
+            });
+        });
+
+        supportNodes.forEach((position) => {
+            position.addEventListener("click", () => {
+                if (position.classList.contains("is-selected")) {
+                    clearSupportSelection();
+                }
+            });
+        });
+
+        managedSupport.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                clearSupportSelection();
+            }
+        });
+    }
+
 });
