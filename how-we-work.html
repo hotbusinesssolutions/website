@@ -7,7 +7,7 @@
     <title>How We Work | HBS</title>
     <link rel="icon" href="images/favicon.svg" />
     <link rel="stylesheet" href="css/style.css?v=hbs-responsive-20260922" />
-    <link rel="stylesheet" href="css/pages.css?v=hbs-support-merged-20260923" />
+    <link rel="stylesheet" href="css/pages.css?v=hbs-process-track-20260923" />
   </head>
   <body class="page-how-we-work">
     <div data-site-header></div>
@@ -70,7 +70,12 @@
           <div class="section-head reveal">
             <div>
               <p class="eyebrow">Onboarding process</p>
-              <h2>Four stages to <span class="gold">go-live.</span></h2>
+              <h2 class="process-title" aria-label="Four stages to go-live.">
+                <span class="process-title-word" style="--stage: 0" aria-hidden="true">Four</span>
+                <span class="process-title-word" style="--stage: 1" aria-hidden="true">stages</span>
+                <span class="process-title-word" style="--stage: 2" aria-hidden="true">to</span>
+                <span class="process-title-word process-title-go-live gold" style="--stage: 3" aria-hidden="true">go-live.</span>
+              </h2>
             </div>
           </div>
           <div class="process-row">
@@ -98,6 +103,34 @@
                 HBS onboarding plus partner-led process and systems readiness.
               </p>
               <ul><li>Prepare workplace, equipment and access</li><li>Complete HBS and partner onboarding</li><li>Run process training and readiness checks</li></ul>
+              <div class="process-cycle" aria-hidden="true">
+                <svg class="process-cycle-svg" viewBox="0 0 800 360" role="presentation" focusable="false">
+                  <defs>
+                    <linearGradient id="hbs-cycle-gold" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stop-color="#EFBF04" />
+                      <stop offset="1" stop-color="#F5A900" />
+                    </linearGradient>
+                  </defs>
+                  <rect class="cycle-board" width="800" height="360" rx="18" />
+                  <g class="cycle-guides">
+                    <path d="M185 0V360M400 0V360M615 0V360M0 180H800" />
+                  </g>
+                  <rect class="cycle-loop" x="70" y="55" width="660" height="250" rx="125" />
+                  <rect class="cycle-loop-core" x="145" y="125" width="510" height="110" rx="55" />
+                  <g class="cycle-separators">
+                    <path d="M265 55l20 35-20 35M515 55l20 35-20 35M690 84l-37 44 42 24M695 208l-42 24 37 44M535 305l-20-35 20-35M285 305l-20-35 20-35M110 276l35-44-40-23M105 151l40-26-35-41" />
+                  </g>
+                  <g class="cycle-steps">
+                    <text x="382" y="91">01</text>
+                    <text x="585" y="91">02</text>
+                    <text x="687" y="188">03</text>
+                    <text x="548" y="279">04</text>
+                    <text x="314" y="279">05</text>
+                    <text x="101" y="242">06</text>
+                    <text x="113" y="116">07</text>
+                  </g>
+                </svg>
+              </div>
               <strong class="process-output">Outcome: team ready for supported delivery</strong>
             </article>
             <article class="process-card reveal">
