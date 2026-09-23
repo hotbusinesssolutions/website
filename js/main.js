@@ -137,6 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         type="button"
                         aria-label="Open menu"
                         aria-expanded="false"
+                        aria-controls="primary-navigation"
                     >
                         <span></span>
                         <span></span>
@@ -144,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </button>
 
                     <nav aria-label="Main navigation">
-                        <ul class="nav-list">
+                        <ul class="nav-list" id="primary-navigation">
                             ${navigationLinks}
                         </ul>
                     </nav>
@@ -848,7 +849,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     const simpleOperationsLayout = window.matchMedia(
-        "(max-width: 900px)",
+        "(max-width: 980px)",
     );
 
     const reducedMotion = window.matchMedia(
@@ -1191,7 +1192,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 panel.classList.toggle("is-active", isActive);
                 panel.setAttribute("aria-hidden", String(!isActive));
-                panel.inert = !isActive;
+                panel.hidden = !isActive;
             });
 
             serviceCommand.style.setProperty(
@@ -1199,7 +1200,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 `${((selectedIndex + 1) / commandTabs.length) * 100}%`,
             );
 
-            if (window.innerWidth <= 680) {
+            if (window.innerWidth <= 760) {
                 selectedTab.scrollIntoView({
                     behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
                         ? "auto"
@@ -1369,12 +1370,24 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         let dialogOpener;
 
+        const getDialogFocusables = () => [
+            ...serviceDialog.querySelectorAll(
+                'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+            ),
+        ];
+
+        const openServiceDialog = () => {
+            serviceDialog.hidden = false;
+            serviceDialog.classList.add("is-open");
+            document.body.classList.add("modal-open");
+            dialogClose?.focus();
+        };
+
         const closeServiceDialog = () => {
-            if (typeof serviceDialog.close === "function" && serviceDialog.open) {
-                serviceDialog.close();
-            } else {
-                serviceDialog.removeAttribute("open");
-            }
+            serviceDialog.classList.remove("is-open");
+            serviceDialog.hidden = true;
+            document.body.classList.remove("modal-open");
+            dialogOpener?.focus();
         };
 
         document
@@ -1406,11 +1419,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         }),
                     );
 
-                    if (typeof serviceDialog.showModal === "function") {
-                        serviceDialog.showModal();
-                    } else {
-                        serviceDialog.setAttribute("open", "");
-                    }
+                    openServiceDialog();
                 });
             });
 
@@ -1422,8 +1431,35 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        serviceDialog.addEventListener("close", () => {
-            dialogOpener?.focus();
+        document.addEventListener("keydown", (event) => {
+            if (serviceDialog.hidden) {
+                return;
+            }
+
+            if (event.key === "Escape") {
+                closeServiceDialog();
+                return;
+            }
+
+            if (event.key !== "Tab") {
+                return;
+            }
+
+            const focusables = getDialogFocusables();
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+
+            if (!first || !last) {
+                return;
+            }
+
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
         });
     }
 

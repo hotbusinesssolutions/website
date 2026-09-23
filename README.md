@@ -1,33 +1,52 @@
 # HOT Business Solutions website
 
-Static GitHub Pages website for HOT Business Solutions.
+Refactored static GitHub Pages website for HOT Business Solutions.
 
-## Deployment
+## Deploy
 
-Copy the HTML files and `robots.txt`/`sitemap.xml` to the repository root. Keep
-the existing `images/` directory, then replace the deployed `css/` and `js/`
-files with the versions in this package.
+Upload the contents of this folder to the `website` repository root, preserving
+the directory structure. Deploy the HTML, CSS and JavaScript together: every
+page uses the cache key `hbs-20260923-refactor-1`.
 
-Every page uses the shared release key `hbs-20260923-compact-2`, so deploy all
-HTML, CSS, and JavaScript files together.
+Do not upload `node_modules/`. It is a local development dependency folder and
+is not included in the delivery ZIP.
 
-Because this is a GitHub Pages project site under `/website/`, its sitemap can
-stay in this repository. For standards-compliant crawler discovery, also place
-the same `robots.txt` in the root of the `hotbusinesssolutions.github.io`
-user-site repository; crawlers request `https://hotbusinesssolutions.github.io/robots.txt`.
+Because this is a GitHub Pages project site under `/website/`, `sitemap.xml`
+can remain here. For standards-compliant crawler discovery, also publish this
+`robots.txt` at `https://hotbusinesssolutions.github.io/robots.txt` from the
+root user-site repository.
 
-## This cleanup includes
+## Quality checks
 
-- one consistent page-title format;
-- one shared asset cache version;
-- Barlow Condensed as the free display-font replacement;
-- removal of superseded CSS declarations and unused service-tab JavaScript;
-- the Services dialog moved into `js/main.js`;
-- shorter Contact and Careers heroes;
-- a shorter About operating-model scroll sequence;
-- more compact spacing across every page;
-- a measured, cross-device brand-logo marquee with a reduced-motion fallback;
-- verified JobStreet vacancies with direct application links;
-- `robots.txt` and `sitemap.xml`.
+Requires Node.js 20 or newer.
 
-The existing `images/` directory is not duplicated in this code-only package.
+```bash
+npm ci
+npm run check
+npm run lighthouse
+```
+
+`npm run check` validates metadata, internal links and fragments, duplicate
+IDs, image alt text, ARIA control targets, JSON-LD, the CSS breakpoint policy,
+duplicate selectors/properties, and JavaScript syntax. The GitHub Actions
+workflow runs these checks and a mobile Lighthouse audit on every push and
+pull request.
+
+## Shared code
+
+- `js/main.js` owns the header, footer, mobile navigation, reveal behaviour,
+  services interaction and shared page behaviour.
+- `css/style.css` contains the design tokens and site-wide components.
+- `css/home.css` contains homepage-only layout and effects.
+- `css/pages.css` contains shared inner-page components and page-specific
+  sections.
+- Each page includes a small `<noscript>` navigation and footer fallback, so
+  essential navigation remains available if JavaScript does not run.
+
+## Before publishing
+
+The files in `legal/` are clearly marked drafts and set to `noindex` until HBS
+legal/privacy stakeholders approve them. Replace the placeholder policy text
+with approved language before removing `noindex`.
+
+See `REFACTOR-NOTES.md` for the full change summary and before/after metrics.

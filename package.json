@@ -1,0 +1,16 @@
+{
+  "name": "hbs-website",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "check": "node scripts/check-site.mjs && html-validate \"*.html\" \"legal/*.html\" && npm run lint:css",
+    "lint:css": "stylelint \"css/*.css\"",
+    "lighthouse": "lhci autorun"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.15.1",
+    "html-validate": "^10.4.0",
+    "http-server": "^14.1.1",
+    "stylelint": "17.15.0"
+  }
+}
