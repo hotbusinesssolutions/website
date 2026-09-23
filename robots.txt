@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hotbusinesssolutions.github.io/website/sitemap.xml

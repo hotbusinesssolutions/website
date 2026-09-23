@@ -1,28 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-/*
- * HBS display typeface.
- * Add the licensed webfont at fonts/MundialNarrow-ExtraBold.woff2.
- * The fallback stack preserves the intended narrow, heavy character until then.
- */
-@font-face {
-    font-family: "Mundial Narrow";
-    src: url("../fonts/MundialNarrow-ExtraBold.woff2") format("woff2");
-    font-style: normal;
-    font-weight: 800;
-    font-display: swap;
-}
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap");
 
 :root {
-    --ink: #000000;
-    --charcoal: #000000;
-    --panel: #000000;
-    --gold: #EFBF04;
+    --black-100: #000000;
+    --black-50: rgba(0, 0, 0, .50);
+    --black-50-solid: #666666;
+    --yellow: #EFBF04;
+    --ink: var(--black-100);
+    --charcoal: var(--black-100);
+    --panel: var(--black-50);
+    --gold: var(--yellow);
     --paper: #FFFFFF;
     --white: #FFFFFF;
-    --muted: #666666;
+    --muted: var(--black-50-solid);
     --line: rgba(0, 0, 0, .18);
-    --display: "Mundial Narrow", "Arial Narrow", "Helvetica Neue Condensed", Arial, sans-serif;
+    --display: "Barlow Condensed", "Arial Narrow", "Helvetica Neue Condensed", Arial, sans-serif;
     --body: "Inter", Arial, sans-serif;
     --max: 1240px;
     --radius: 24px;
@@ -39,8 +30,6 @@ html {
 
 body {
     margin: 0;
-    background: var(--paper);
-    color: var(--ink);
     font-family: var(--body);
     line-height: 1.65;
 }
@@ -175,11 +164,6 @@ p {
     border-color: rgba(0,0,0,.18);
 }
 
-.brand {
-    font-weight: 800;
-    font-size: .9rem;
-    white-space: nowrap;
-}
 
 .brand span {
     color: var(--gold);
@@ -403,10 +387,6 @@ p {
     transform: scaleX(1.08);
 }
 
-.button.outline {
-    color: #fff;
-    border-color: #777;
-}
 
 .button.outline:before {
     transform: scaleX(0);
@@ -436,30 +416,12 @@ p {
     margin-top: 28px;
 }
 
-.page-hero {
-    min-height: 78vh;
-    padding: 180px 0 90px;
-    background: var(--charcoal);
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-}
-
 .page-hero:before,.home-hero:before {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
     background-size: 52px 52px;
     mask-image: linear-gradient(to bottom,#000,transparent 90%);
-}
-
-.page-hero .container {
-    position: relative;
-}
-
-.page-hero h1 {
-    max-width: 960px;
 }
 
 .page-hero .lead {
@@ -507,8 +469,6 @@ p {
     min-height: 280px;
     border: 1px solid #555;
     border-radius: var(--radius);
-    background: linear-gradient(145deg,rgba(255,255,255,.08),var(--ink));
-    color: #999;
     font-size: .72rem;
     letter-spacing: .12em;
     text-transform: uppercase;
@@ -552,10 +512,6 @@ p {
     color: #fff;
 }
 
-.dark-section .card {
-    background: var(--panel);
-    border-color: #484848;
-}
 
 .dark-section .card p {
     color: #bbb;
@@ -574,20 +530,12 @@ p {
     color: var(--muted);
 }
 
-.reveal {
-    opacity: 0;
-    transform: translateY(32px);
-    transition: opacity .8s var(--ease),transform .8s var(--ease);
-}
 
 .reveal.in-view {
     opacity: 1;
     transform: none;
 }
 
-.reveal-delay {
-    transition-delay: .13s;
-}
 
 .word {
     display: inline-block;
@@ -609,16 +557,9 @@ p {
 
 }
 
-.site-footer {
-    background: #0c0c0c;
-    color: #fff;
-    padding: 72px 0 30px;
-}
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 1.5fr repeat(3,1fr);
-    gap: 40px;
 }
 
 .footer-title {
@@ -755,10 +696,6 @@ p {
         grid-template-columns: 1fr 1fr;
     }
 
-    .page-hero {
-        min-height: 68vh;
-    }
-
     .section-head {
         display: block;
     }
@@ -780,10 +717,6 @@ p {
 
     .grid-2,.grid-3,.footer-grid {
         grid-template-columns: 1fr;
-    }
-
-    .page-hero {
-        padding-top: 150px;
     }
 
     .button-row .button {
@@ -848,12 +781,6 @@ p {
     }
 }
 
-/* Responsive hardening shared by every page. */
-html,
-body {
-    max-width: 100%;
-    overflow-x: clip;
-}
 
 main,
 section,
@@ -945,37 +872,14 @@ textarea {
    ========================================================= */
 .nav-shell,
 .site-header.scrolled .nav-shell {
-    color: var(--white);
-    background: var(--black-100) !important;
-    border-color: var(--black-100);
     box-shadow: 0 14px 38px rgba(0, 0, 0, .16);
 }
 
-.brand {
-    padding: 4px 10px;
-    background: var(--white);
-    border-radius: 12px;
-}
-
-.nav-list a,
-.nav-dropdown-toggle,
-.menu-toggle {
-    color: var(--white);
-}
 
 .reveal {
-    transform: translateY(38px);
     transition: opacity 1.35s var(--ease), transform 1.35s var(--ease);
 }
 
-.reveal-delay {
-    transition-delay: .24s;
-}
-
-.word > span {
-    animation-duration: 1.2s;
-    animation-delay: calc(var(--i) * 75ms + 240ms);
-}
 
 .section-head h2,
 .page-hero h1,
@@ -997,30 +901,6 @@ textarea {
     width: 50px;
 }
 
-.site-footer {
-    position: relative;
-    overflow: hidden;
-    color: var(--white) !important;
-    background:
-        radial-gradient(circle at 78% 18%, rgba(239, 191, 4, .10), transparent 28%),
-        linear-gradient(135deg, #000 0%, #171717 58%, #000 100%) !important;
-    border-top: 0;
-    padding-top: 96px;
-}
-
-.site-footer > .container {
-    position: relative;
-    z-index: 1;
-}
-
-.site-footer p,
-.site-footer a,
-.site-footer h2,
-.site-footer h3,
-.site-footer strong,
-.site-footer .footer-title {
-    color: var(--white) !important;
-}
 
 .site-footer .footer-title,
 .site-footer .footer-description {
@@ -1037,18 +917,6 @@ textarea {
     transform: translateX(4px);
 }
 
-@media (max-width: 980px) {
-    .nav-list {
-        color: var(--white);
-        background: var(--black-100) !important;
-        border-color: rgba(255, 255, 255, .25);
-    }
-
-    .nav-list a,
-    .nav-list button {
-        color: var(--white);
-    }
-}
 
 @media (max-width: 680px) {
     :root {
@@ -1072,11 +940,6 @@ textarea {
         line-height: 1.05;
     }
 
-    .page-hero {
-        min-height: auto;
-        padding-block: 138px 78px;
-    }
-
     .lead {
         font-size: 1rem;
     }
@@ -1087,7 +950,6 @@ textarea {
     }
 
     .button,
-    .text-link,
     .menu-toggle,
     summary {
         min-height: 44px;
@@ -1135,31 +997,12 @@ textarea {
         inset-block-start: 70px;
     }
 
-    .page-hero {
-        min-height: 100svh;
-        padding-block: 112px 54px;
-    }
 }
 
 /* =========================================================
    HBS 60 / 30 / 10 COLOUR SYSTEM
    60% white surfaces, 30% black structure, 10% yellow accents.
    ========================================================= */
-:root {
-    --black-100: #000000;
-    --black-50: rgba(0, 0, 0, .50);
-    --black-50-solid: #666666;
-    --yellow: #EFBF04;
-    --ink: var(--black-100);
-    --charcoal: var(--black-100);
-    --panel: var(--black-50);
-    --gold: var(--yellow);
-    --paper: #FFFFFF;
-    --white: #FFFFFF;
-    --muted: var(--black-50-solid);
-    --line: rgba(0, 0, 0, .18);
-}
-
 body {
     color: var(--black-100);
     background: var(--white);
@@ -1202,19 +1045,6 @@ body {
     border-color: var(--black-50);
 }
 
-.button,
-.sticky-contact,
-.skip-link {
-    color: var(--black-100);
-    background-color: var(--yellow);
-}
-
-@media (max-width: 980px) {
-    .nav-list {
-        color: var(--white);
-        background: var(--black-100);
-    }
-}
 
 /* Professional finishing layer for consistent contrast and softer transitions. */
 ::selection {
@@ -1245,7 +1075,6 @@ body {
 .button:focus-visible,
 .sticky-contact:hover,
 .sticky-contact:focus-visible {
-    color: var(--white);
     background: var(--black-100);
 }
 
@@ -1258,7 +1087,7 @@ textarea:focus-visible {
     outline-offset: 3px;
 }
 
-/* Final site-wide colour contract. Page styles may change layout, not palette. */
+/* Site-wide colour contract. Page styles may change layout, not palette. */
 html {
     color-scheme: light;
     background: var(--white);
@@ -1283,13 +1112,12 @@ main,
 }
 
 .eyebrow,
-.muted,
 .meta {
     color: var(--black-50);
 }
 
 /* =========================================================
-   WHITE CANVAS THEME — authoritative site-wide layer
+   WHITE CANVAS THEME
    White is the page canvas; black and yellow are accents.
    ========================================================= */
 html,
@@ -1319,9 +1147,6 @@ main,
         linear-gradient(90deg, rgba(0, 0, 0, .045) 1px, transparent 1px);
 }
 
-.site-footer {
-    border-top: 8px solid var(--yellow);
-}
 
 .site-footer a,
 .site-footer h2,
@@ -1361,18 +1186,14 @@ main,
 
 @media (max-width: 980px) {
     .nav-list {
-        color: var(--black-100);
         background-color: var(--white) !important;
         border: 1px solid var(--black-50);
     }
 
-    .nav-list a,
-    .nav-list button {
-        color: var(--black-100);
-    }
+
 }
 
-/* Final navigation, motion and footer lock. */
+/* Navigation, motion and footer treatment. */
 .nav-shell,
 .site-header.scrolled .nav-shell {
     color: var(--white);
@@ -1393,7 +1214,6 @@ main,
 }
 
 .reveal {
-    transform: translateY(38px);
     transition-duration: 1.35s;
 }
 
@@ -1405,12 +1225,7 @@ main,
 }
 
 .site-footer {
-    position: relative;
-    overflow: hidden;
     color: var(--white) !important;
-    background:
-        radial-gradient(circle at 78% 18%, rgba(239, 191, 4, .10), transparent 28%),
-        linear-gradient(135deg, #000 0%, #171717 58%, #000 100%) !important;
     border-top: 0;
     padding-top: 96px;
 }
@@ -1504,13 +1319,6 @@ html.reveal-ready .reveal:not(.in-view) {
     }
 }
 
-.footer-brand-mark {
-    display: inline-flex;
-    margin-bottom: 28px;
-    padding: 12px 16px;
-    background: var(--white);
-    border-radius: 14px;
-}
 
 .footer-logo {
     display: block;
@@ -1539,38 +1347,7 @@ html.reveal-ready .reveal:not(.in-view) {
 }
 
 /* =========================================================
-   FINAL FOOTER PANEL WIDTH
-   Match the footer's black panel to the shared page container.
-   Keep this block last so earlier footer declarations cannot win.
-   ========================================================= */
-
-[data-site-footer] {
-    width: 100%;
-    background: transparent;
-}
-
-.site-footer {
-    width: calc(100% - 40px) !important;
-    max-width: var(--max) !important;
-    margin-right: auto !important;
-    margin-left: auto !important;
-}
-
-@media (max-width: 680px) {
-    .site-footer {
-        width: calc(100% - 28px) !important;
-    }
-}
-
-@media (max-width: 390px) {
-    .site-footer {
-        width: calc(100% - 22px) !important;
-    }
-}
-
-/* =========================================================
-   FINAL SHARED RESPONSIVE + FOOTER STABILITY LAYER
-   Keep this section last in style.css.
+   SHARED RESPONSIVE + FOOTER LAYOUT
    ========================================================= */
 
 html,
@@ -1626,6 +1403,7 @@ button {
     width: 100%;
     padding-block: clamp(18px, 2vw, 30px);
     overflow: hidden;
+    background: transparent;
 }
 
 .site-footer {

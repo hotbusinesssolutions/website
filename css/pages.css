@@ -2,30 +2,12 @@
     padding-top: clamp(150px, 16vw, 210px);
 }
 
-.about-first-section h1,
-.industry-experience .section-head h1 {
-    font-size: clamp(2.5rem, 5vw, 5.3rem);
-    letter-spacing: -.035em;
-}
 
 .industry-experience {
     --industry-surface: var(--white);
     background: var(--industry-surface);
 }
 
-.industry-showcase {
-    margin-top: clamp(42px, 6vw, 76px);
-}
-
-.industry-tabs {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: clamp(10px, 1.4vw, 18px);
-    position: relative;
-    z-index: 3;
-    width: min(66%, 790px);
-    padding: 0 30px 24px;
-}
 
 .industry-tab {
     position: relative;
@@ -41,48 +23,24 @@
 .industry-tab span {
     display: block;
     margin-top: 5px;
-    color: var(--ink);
     font-size: clamp(.62rem, .72vw, .7rem);
     line-height: 1.22;
-    transition: color .25s var(--ease);
 }
 
 .industry-tab::after {
     position: absolute;
-    right: 100%;
-    bottom: 0;
-    left: 0;
-    height: 3px;
     content: "";
-    background: var(--gold);
-    transition: right .3s var(--ease);
 }
 
-.industry-tab:hover,
-.industry-tab:focus-visible,
-.industry-tab.is-active {
-    color: var(--gold);
-}
-
-.industry-tab:hover span,
-.industry-tab:focus-visible span,
-.industry-tab.is-active span {
-    color: var(--gold);
-}
 
 .industry-tab.is-active::after {
     right: 0;
 }
 
 .industry-panels {
-    position: relative;
-    z-index: 1;
     isolation: isolate;
 }
 
-.industry-panels::before {
-    display: none;
-}
 
 .industry-panel {
     --industry-cap-width: 30%;
@@ -94,8 +52,6 @@
     height: 620px;
     min-height: 620px;
     padding: clamp(34px, 4.2vw, 58px);
-    color: var(--ink);
-    background: var(--gold);
     border-radius: 30px 0 30px 30px;
     opacity: 1;
     transform: none;
@@ -109,7 +65,6 @@
     width: var(--industry-cap-width);
     height: 82px;
     content: "";
-    background: inherit;
     border-radius: 30px 30px 0 0;
 }
 
@@ -123,7 +78,6 @@
     content: "";
     background: transparent;
     border-bottom-right-radius: 40px;
-    box-shadow: 20px 20px 0 20px var(--gold);
 }
 
 .industry-panel > * {
@@ -139,22 +93,6 @@
     opacity: 1;
     transform: none;
 }
-
-.industry-panel.is-active .industry-panel-copy > *,
-.industry-panel.is-active .industry-photo-placeholder span,
-.industry-panel.is-active .industry-photo-placeholder small {
-    animation: industry-content-in .48s var(--ease) both;
-}
-
-.industry-panel.is-active .industry-photo-placeholder {
-    animation: industry-photo-in .58s var(--ease) both;
-}
-
-.industry-panel.is-active .industry-panel-copy > :nth-child(2) { animation-delay: .05s; }
-.industry-panel.is-active .industry-panel-copy > :nth-child(3) { animation-delay: .1s; }
-.industry-panel.is-active .industry-panel-copy > :nth-child(4) { animation-delay: .15s; }
-.industry-panel.is-active .industry-panel-copy > :nth-child(5) { animation-delay: .2s; }
-.industry-panel.is-active .industry-photo-placeholder { animation-delay: .08s; }
 
 .industry-panel-copy {
     display: flex;
@@ -186,7 +124,6 @@
 
 .industry-panel-copy > p {
     max-width: 500px;
-    color: #272727;
     font-size: clamp(.95rem, 1.15vw, 1.08rem);
     line-height: 1.55;
 }
@@ -253,15 +190,12 @@
     justify-content: flex-end;
     width: 100%;
     height: 100%;
-    min-height: 0;
     padding: 30px;
     overflow: hidden;
     color: #fff;
     background:
         linear-gradient(145deg, rgba(239,191,4,.16), transparent 48%),
         repeating-linear-gradient(-45deg, #3c3c3c 0, #3c3c3c 1px, #343434 1px, #343434 16px);
-    border: 1px dashed rgba(255,255,255,.45);
-    border-radius: 24px;
 }
 
 .industry-photo-placeholder::before {
@@ -323,16 +257,6 @@
     border-radius: inherit;
 }
 
-@keyframes industry-content-in {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: none; }
-}
-
-@keyframes industry-photo-in {
-    from { opacity: 0; transform: scale(.985); }
-    to { opacity: 1; transform: scale(1); }
-}
-
 @media (max-width: 1120px) and (min-width: 901px) {
     .industry-tabs {
         width: 72%;
@@ -365,7 +289,6 @@
 @media (max-width: 900px) {
     .industry-tabs {
         display: flex;
-        width: 100%;
         padding-inline: 0;
         overflow-x: auto;
         scrollbar-width: thin;
@@ -403,23 +326,6 @@
     }
 }
 
-/* =========================================================
-   FINAL RESPONSIVE POLISH — SEPTEMBER 2026
-   ========================================================= */
-
-/* Flat service chips: yellow accents without a 3D drop treatment. */
-.services-fold-rail span,
-.services-fold-rail span:hover {
-    color: var(--black-100);
-    background: var(--yellow);
-    border: 2px solid var(--black-100);
-    box-shadow: none;
-    transform: none;
-}
-
-.services-fold-rail span {
-    transition: background-color .35s ease, color .35s ease, border-color .35s ease;
-}
 
 .services-fold-rail span:hover {
     color: var(--yellow);
@@ -430,144 +336,37 @@
 /* Connected tab-and-panel system inspired by modern product showcases. */
 .industry-showcase { margin-top: clamp(38px, 5vw, 66px); }
 
-.industry-tabs {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 8px;
-    width: 100%;
-    margin: 0 0 -2px;
-    padding: 0 clamp(18px, 3vw, 44px);
-    align-items: end;
-}
 
 .industry-tab,
 .industry-tab:not(.is-active),
 .industry-tab.is-active {
-    min-height: 86px;
-    padding: 18px 16px 20px;
-    color: var(--black-50) !important;
-    background: var(--white) !important;
-    border: 2px solid var(--black-100) !important;
     border-bottom-color: var(--black-100) !important;
-    border-radius: 18px 18px 0 0;
-    box-shadow: none;
-    transform: none;
-    transition: min-height .45s var(--ease), color .35s ease, border-color .35s ease;
 }
 
-.industry-tab span { color: var(--black-100) !important; transform: none !important; }
-
-.industry-tab::after {
-    right: 50%;
-    bottom: 10px;
-    left: 16px;
-    height: 3px;
-    transform: scaleX(0);
-    transform-origin: left;
-}
-
-.industry-tab:hover,
-.industry-tab:focus-visible,
-.industry-tab.is-active { color: var(--yellow) !important; }
-
-.industry-tab:hover span,
-.industry-tab:focus-visible span,
-.industry-tab.is-active span { color: var(--yellow) !important; }
 
 .industry-tab.is-active {
     z-index: 3;
-    min-height: 98px;
     border-bottom-color: var(--white) !important;
 }
 
-.industry-tab:hover::after,
-.industry-tab:focus-visible::after,
-.industry-tab.is-active::after { right: 16px; transform: scaleX(1); }
 
 .industry-panels {
-    overflow: hidden;
-    background: var(--white);
-    border: 2px solid var(--black-100);
     border-top: 6px solid var(--yellow);
-    border-radius: 28px;
-    box-shadow: 0 22px 54px rgba(0, 0, 0, .10);
 }
 
-.industry-panel,
-.industry-panel.is-active {
-    grid-template-columns: minmax(0, .92fr) minmax(340px, 1.08fr);
-    gap: clamp(38px, 5vw, 74px);
-    height: auto;
-    min-height: 560px;
-    padding: clamp(36px, 5vw, 70px);
-    background: var(--white) !important;
-    border: 0 !important;
-    border-radius: 0;
-    box-shadow: none;
-}
-
-.industry-panel::before,
-.industry-panel::after { display: none; }
 
 .industry-panel.is-active { animation: industry-panel-sweep .62s var(--ease) both; }
-.industry-panel.is-active .industry-panel-copy > * { animation: industry-copy-rise .58s var(--ease) both; }
-.industry-panel.is-active .industry-photo-placeholder { animation: industry-media-arrive .72s var(--ease) both; }
 
-.industry-photo-placeholder {
-    min-height: 390px;
-    border: 2px solid var(--black-100);
-    border-radius: 22px;
-}
 
 @keyframes industry-panel-sweep {
     from { opacity: .35; clip-path: inset(0 12% 0 0 round 24px); }
     to { opacity: 1; clip-path: inset(0 0 0 0 round 0); }
 }
 
-@keyframes industry-copy-rise {
-    from { opacity: 0; transform: translateY(18px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes industry-media-arrive {
-    from { opacity: 0; transform: translateX(28px) scale(.98); }
-    to { opacity: 1; transform: translateX(0) scale(1); }
-}
-
-/* Larger How We Work route, moving twenty percent more slowly. */
-.process-route-map > b { top: 10px; height: 5px; }
-.process-route-map > b::after { animation-duration: 4.6s; }
-.process-route-map > span { padding-top: 38px; }
 .process-route-map > span::before {
-    width: 22px;
-    height: 22px;
     border-width: 5px;
-    box-shadow: 0 0 0 6px var(--white);
 }
 
-/* Intro above; rotating model and its eight explanations side by side. */
-.managed-support-intro {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr);
-    gap: clamp(36px, 7vw, 110px);
-    margin-bottom: clamp(58px, 8vw, 104px);
-    align-items: end;
-}
-
-.managed-support-intro h2 { max-width: 760px; }
-.managed-support-intro .lead { margin: 0; }
-
-.managed-support-layout {
-    grid-template-columns: minmax(440px, .92fr) minmax(460px, 1.08fr);
-    gap: clamp(44px, 6vw, 92px);
-    align-items: center;
-}
-
-.support-orbit { gap: 0; }
-.orbit-descriptions { grid-template-columns: repeat(2, minmax(0, 1fr)); align-self: center; }
-.orbit-descriptions article { min-height: 142px; }
 
 /* Click-linked managed-support selection.
    Selecting a card temporarily pauses the automatic highlight sequence. */
@@ -625,464 +424,46 @@
     cursor: pointer;
 }
 
-/* Careers: responsive yellow orbital shape, pinned to the right. */
-.careers-invitation-hero { position: relative; overflow: hidden; isolation: isolate; }
-.careers-invitation-hero::after {
-    top: 50%;
-    right: clamp(-100px, -4vw, -34px);
-    bottom: auto;
-    left: auto;
-    width: clamp(330px, 33vw, 590px);
-    height: clamp(580px, 72vw, 860px);
-    background: var(--yellow) !important;
-    clip-path: ellipse(72% 48% at 100% 50%);
-    transform: translateY(-50%) rotate(0deg);
-    transform-origin: 100% 50%;
-    animation: careers-shape-counter 28s linear infinite;
-}
-
-.careers-float-words {
-    z-index: 3;
-    right: clamp(18px, 4vw, 72px);
-    bottom: 23%;
-    color: var(--black-100) !important;
-}
-
-.careers-float-words span { color: var(--black-100) !important; text-shadow: none; }
 
 @keyframes careers-shape-counter {
     to { transform: translateY(-50%) rotate(-360deg); }
 }
 
-/* Contact: a fuller location panel and a map that occupies the right side. */
-.office-location-panel {
-    grid-template-columns: minmax(250px, .55fr) minmax(0, 1.45fr);
-    gap: clamp(28px, 4vw, 60px);
-    min-height: 660px;
-    padding: clamp(24px, 3vw, 42px);
-}
-
-.office-location-map { display: flex; min-height: 570px; flex-direction: column; }
-.office-map-frame { height: auto; min-height: 520px; flex: 1; }
-
-/* Keep the map substantial at every width instead of collapsing to the
-   iframe's default 150px height. */
-.office-map-frame {
-    height: clamp(420px, 34vw, 520px);
-    min-height: 420px;
-}
 
 @media (max-width: 1050px) {
     .managed-support-intro { grid-template-columns: 1fr; }
-    .managed-support-layout { grid-template-columns: 1fr; }
-    .orbit-descriptions { width: min(820px, 100%); margin-inline: auto; }
+
+
     .industry-tabs { overflow-x: auto; padding-inline: 12px; scroll-snap-type: x proximity; }
     .industry-tab { min-width: 190px; scroll-snap-align: start; }
-    .office-location-panel { grid-template-columns: 1fr; }
+
 }
 
 @media (max-width: 680px) {
-    .services-fold-hero::after {
-        right: 20px;
-        bottom: -34px;
-        width: min(72vw, 330px);
-        opacity: .96;
-    }
 
-    .industry-tabs,
-    .content-nav .industry-tabs {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        margin-bottom: 12px;
-        padding: 0;
-        overflow: visible;
-    }
+
     .industry-tab,
     .industry-tab:not(.is-active),
     .industry-tab.is-active {
-        min-width: 0;
-        min-height: 78px;
-        border-radius: 14px !important;
         border-bottom-color: var(--black-100) !important;
     }
-    .industry-tab:last-child { grid-column: 1 / -1; }
-    .industry-panel,
-    .industry-panel.is-active {
-        grid-template-columns: 1fr;
-        min-height: 0;
-        padding: 28px 20px;
-    }
-    .industry-photo-placeholder { min-height: 270px; }
-    .process-route-map > b { top: 11px; height: 5px; }
+
+
     .process-route-map > span { padding-top: 38px; }
-    .managed-support-intro { margin-bottom: 48px; }
-    .orbit-descriptions { grid-template-columns: 1fr; }
-    .orbit-descriptions article { min-height: 0; }
-    .careers-invitation-hero { min-height: 760px; padding-bottom: 190px; }
-    .careers-invitation-hero::after {
-        top: auto;
-        right: -74px;
-        bottom: -94px;
-        width: 290px;
-        height: 320px;
-        clip-path: ellipse(72% 48% at 100% 50%);
-        transform: none;
-        animation-name: careers-shape-counter-mobile;
-    }
-    .careers-float-words {
-        display: grid;
-        right: 12px;
-        bottom: 50px;
-        gap: 8px;
-        font-size: 1rem;
-    }
-    .office-location-panel { min-height: 0; }
-    .office-location-map { min-height: 430px; }
-    .office-map-frame {
-        height: 420px;
-        min-height: 420px;
-    }
+
+
 }
 
-/* Body copy uses a readable solid grey instead of 50% black transparency. */
-main p:not(.eyebrow),
-main .lead,
-main .card p,
-main .industry-panel-copy > p,
-main .section-head > p {
-    color: var(--muted) !important;
-}
-
-/* Authoritative screenshot corrections — keep last in the cascade. */
-.services-fold-hero::after {
-    right: max(20px, calc((100vw - var(--max)) / 2));
-    bottom: -72px;
-    width: clamp(350px, 33vw, 510px);
-}
-
-.industry-showcase {
-    --folder-tabs-width: 66%;
-    position: relative;
-    padding-top: 88px;
-}
-
-.industry-tabs {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 5;
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 0;
-    width: var(--folder-tabs-width);
-    height: 88px;
-    margin: 0;
-    padding: 0 22px 14px;
-    overflow: visible;
-    align-items: end;
-    background: var(--white);
-}
-
-.industry-tab,
-.industry-tab:not(.is-active),
-.industry-tab.is-active {
-    min-width: 0;
-    min-height: 68px;
-    padding: 14px 12px 18px;
-    color: var(--black-50) !important;
-    background: transparent !important;
-    border: 0 !important;
-    border-radius: 0;
-    box-shadow: none;
-    transform: none;
-    transition: color .38s ease, transform .38s var(--ease);
-}
-
-.industry-tab span { color: var(--black-100) !important; transform: none !important; }
-.industry-tab::after {
-    right: 12px;
-    bottom: 7px;
-    left: 12px;
-    height: 3px;
-    background: var(--yellow);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform .42s var(--ease);
-}
-.industry-tab:hover,
-.industry-tab:focus-visible,
-.industry-tab.is-active,
-.industry-tab:hover span,
-.industry-tab:focus-visible span,
-.industry-tab.is-active span { color: var(--yellow) !important; }
-.industry-tab:hover::after,
-.industry-tab:focus-visible::after,
-.industry-tab.is-active::after { right: 12px; transform: scaleX(1); }
-.industry-tab:hover,
-.industry-tab:focus-visible { transform: translateY(-2px); }
-
-.industry-panels {
-    position: relative;
-    z-index: 2;
-    overflow: visible;
-    color: var(--white);
-    background: var(--black-100);
-    border: 0;
-    border-radius: 30px;
-    box-shadow: 0 24px 56px rgba(0, 0, 0, .16);
-}
-.industry-panels::before {
-    position: absolute;
-    top: -88px;
-    right: 0;
-    display: block !important;
-    width: calc(100% - var(--folder-tabs-width));
-    height: 90px;
-    content: "";
-    background: var(--black-100);
-    border-radius: 30px 30px 0 0;
-}
-.industry-panels::after {
-    position: absolute;
-    top: -48px;
-    right: calc(100% - var(--folder-tabs-width));
-    display: block;
-    width: 48px;
-    height: 48px;
-    content: "";
-    background: transparent;
-    border-bottom-right-radius: 48px;
-    box-shadow: 24px 24px 0 24px var(--black-100);
-}
-.industry-panel,
-.industry-panel.is-active {
-    grid-template-columns: minmax(0, .92fr) minmax(340px, 1.08fr);
-    min-height: 560px;
-    color: var(--white) !important;
-    background: transparent !important;
-    border: 0 !important;
-    border-radius: 30px;
-    box-shadow: none;
-}
-.industry-panel::before,
-.industry-panel::after { display: none; }
-.industry-panel-copy,
-.industry-panel h3,
-.industry-capabilities strong { color: var(--white); }
-.industry-panel-copy > p { color: rgba(255, 255, 255, .74) !important; }
-.industry-number,
-.industry-capabilities span { color: var(--yellow); }
-.industry-photo-placeholder { border: 0; border-radius: 26px; }
-
-.process-route-map > span::before {
-    background: var(--yellow);
-    border: 0;
-    box-shadow: 0 0 0 6px var(--white);
-}
-
-@media (max-width: 900px) {
-    .services-fold-hero::after {
-        right: 20px;
-        bottom: -48px;
-        width: clamp(300px, 48vw, 420px);
-    }
-    .industry-showcase { padding-top: 0; }
-    .industry-tabs,
-    .content-nav .industry-tabs {
-        position: relative;
-        width: 100%;
-        height: auto;
-        margin-bottom: 14px;
-        padding: 0;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 8px;
-        overflow: visible;
-    }
-    .industry-tab,
-    .industry-tab:not(.is-active),
-    .industry-tab.is-active {
-        min-height: 72px;
-        padding: 13px 12px 17px;
-        border: 1px solid var(--black-50) !important;
-        border-radius: 12px;
-    }
-    .industry-tab:last-child { grid-column: 1 / -1; }
-    .industry-panels::before,
-    .industry-panels::after { display: none !important; }
-    .industry-panel,
-    .industry-panel.is-active {
-        grid-template-columns: 1fr;
-        min-height: 0;
-        padding: 30px 22px;
-        border-radius: 22px;
-    }
-}
-
-@media (max-width: 560px) {
-    .services-fold-hero::after {
-        right: 20px;
-        bottom: -34px;
-        width: min(72vw, 330px);
-        opacity: .96;
-    }
-}
-
-/* =========================================================
-   FINAL VISUAL CORRECTIONS — FOLDER PANEL + SHAPE BOUNDARIES
-   ========================================================= */
-
-/* Keep the rotating Services polygon inside the same right margin as .container. */
-.services-fold-hero::after {
-    right: max(20px, calc((100vw - var(--max)) / 2));
-    bottom: -72px;
-    width: clamp(350px, 33vw, 510px);
-}
-
-/* Papaya-inspired horizontal folder silhouette using the HBS palette. */
-.industry-showcase {
-    --folder-tabs-width: 66%;
-    position: relative;
-    padding-top: 88px;
-}
-
-.industry-tabs {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 5;
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 0;
-    width: var(--folder-tabs-width);
-    height: 88px;
-    margin: 0;
-    padding: 0 22px 14px;
-    align-items: end;
-    background: var(--white);
-}
-
-.industry-tab,
-.industry-tab:not(.is-active),
-.industry-tab.is-active {
-    min-width: 0;
-    min-height: 68px;
-    padding: 14px 12px 18px;
-    color: var(--black-50) !important;
-    background: transparent !important;
-    border: 0 !important;
-    border-radius: 0;
-    box-shadow: none;
-    transform: none;
-    transition: color .38s ease, transform .38s var(--ease);
-}
-
-.industry-tab span {
-    color: var(--black-100) !important;
-    transform: none !important;
-}
-
-.industry-tab::after {
-    right: 12px;
-    bottom: 7px;
-    left: 12px;
-    height: 3px;
-    background: var(--yellow);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform .42s var(--ease);
-}
-
-.industry-tab:hover,
-.industry-tab:focus-visible,
-.industry-tab.is-active,
-.industry-tab:hover span,
-.industry-tab:focus-visible span,
-.industry-tab.is-active span {
-    color: var(--yellow) !important;
-}
-
-.industry-tab:hover::after,
-.industry-tab:focus-visible::after,
-.industry-tab.is-active::after {
-    right: 12px;
-    transform: scaleX(1);
-}
 
 .industry-tab:hover,
 .industry-tab:focus-visible { transform: translateY(-2px); }
 
-.industry-panels {
-    position: relative;
-    z-index: 2;
-    overflow: visible;
-    color: var(--white);
-    background: var(--black-100);
-    border: 0;
-    border-radius: 30px;
-    box-shadow: 0 24px 56px rgba(0, 0, 0, .16);
-}
-
-.industry-panels::before {
-    position: absolute;
-    top: -88px;
-    right: 0;
-    display: block !important;
-    width: calc(100% - var(--folder-tabs-width));
-    height: 90px;
-    content: "";
-    background: var(--black-100);
-    border-radius: 30px 30px 0 0;
-}
-
-.industry-panels::after {
-    position: absolute;
-    top: -48px;
-    right: calc(100% - var(--folder-tabs-width));
-    display: block;
-    width: 48px;
-    height: 48px;
-    content: "";
-    background: transparent;
-    border-bottom-right-radius: 48px;
-    box-shadow: 24px 24px 0 24px var(--black-100);
-}
-
-.industry-panel,
-.industry-panel.is-active {
-    grid-template-columns: minmax(0, .92fr) minmax(340px, 1.08fr);
-    min-height: 560px;
-    color: var(--white) !important;
-    background: transparent !important;
-    border: 0 !important;
-    border-radius: 30px;
-    box-shadow: none;
-}
-
-.industry-panel-copy,
-.industry-panel h3,
-.industry-capabilities strong { color: var(--white); }
-
-.industry-panel-copy > p { color: rgba(255, 255, 255, .74) !important; }
-.industry-number,
-.industry-capabilities span { color: var(--yellow); }
-.industry-photo-placeholder { border: 0; border-radius: 26px; }
-
-/* Yellow progress nodes without a black outline. */
-.process-route-map > span::before {
-    background: var(--yellow);
-    border: 0;
-    box-shadow: 0 0 0 6px var(--white);
-}
 
 @media (max-width: 900px) {
-    .services-fold-hero::after {
-        right: 20px;
-        bottom: -48px;
-        width: clamp(300px, 48vw, 420px);
-    }
+
 
     .industry-showcase { padding-top: 0; }
-    .industry-tabs,
-    .content-nav .industry-tabs {
+    .industry-tabs {
         position: relative;
         width: 100%;
         height: auto;
@@ -1176,101 +557,20 @@ main .section-head > p {
     }
 }
 
-/* =========================================================
-   PAGE-SPECIFIC HERO IDENTITIES
-   ========================================================= */
-
-.about-brand-marquee + .about-first-section {
-    padding-top: clamp(80px, 9vw, 132px);
-}
-
-.about-brand-marquee {
-    padding: 126px 0 40px;
-    overflow: hidden;
-    background: var(--white);
-    border-block: 1px solid var(--line);
-}
-
-.about-brand-window {
-    overflow: hidden;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-}
-
-.about-brand-track {
-    display: flex;
-    width: max-content;
-    pointer-events: none;
-    user-select: none;
-    will-change: transform;
-    animation: about-brand-scroll 30s linear infinite;
-}
-
-.about-brand-group {
-    display: flex;
-    align-items: center;
-    gap: clamp(48px, 7vw, 110px);
-    padding-right: clamp(48px, 7vw, 110px);
-}
-
-.about-brand-group img {
-    flex: none;
-    width: auto;
-    height: clamp(42px, 5vw, 72px);
-    max-width: 190px;
-    object-fit: contain;
-}
-
-.about-brand-group img[src*="nexus"],
-.about-brand-group img[src*="wanderlust"] {
-    height: clamp(52px, 6vw, 84px);
-}
-
-.about-brand-group img[src*="orbit"],
-.about-brand-group img[src*="travelmanagers"] {
-    box-sizing: content-box;
-    height: clamp(40px, 4.5vw, 58px);
-    padding: clamp(10px, 1.2vw, 14px) clamp(16px, 1.8vw, 24px);
-    background: #101010;
-    border: 1px solid rgba(239, 191, 4, .28);
-    border-radius: 14px;
-}
-
-.about-brand-group img[src*="orbit"] { min-width: 150px; }
-.about-brand-group img[src*="travelmanagers"] { min-width: 210px; }
-
-@keyframes about-brand-scroll {
-    to { transform: translateX(-50%); }
-}
 
 .services-fold-hero {
     isolation: isolate;
-    background: var(--gold);
-    color: var(--ink);
 }
 
 .services-fold-hero::after {
     position: absolute;
     z-index: -1;
-    right: -8vw;
-    bottom: -18vw;
-    width: 56vw;
     aspect-ratio: 1;
     content: "";
-    background: var(--ink);
     clip-path: polygon(50% 0,100% 25%,86% 100%,16% 86%,0 28%);
     animation: service-fold-turn 14s linear infinite;
 }
 
-.services-fold-hero .eyebrow,
-.services-fold-hero .lead {
-    color: rgba(0,0,0,.7);
-}
-
-.services-fold-hero .gold {
-    color: var(--white);
-    text-shadow: 2px 2px 0 var(--ink);
-}
 
 .services-fold-rail {
     display: flex;
@@ -1285,89 +585,21 @@ main .section-head > p {
     font-weight: 700;
     letter-spacing: .1em;
     text-transform: uppercase;
-    border: 1px solid rgba(0,0,0,.45);
     border-radius: 999px;
 }
 
 @keyframes service-fold-turn { to { transform: rotate(360deg); } }
 
-.industries-index-hero {
-    min-height: 100svh;
-    padding: 150px 0 86px;
-    color: var(--white);
-    background: var(--ink);
-}
-
-.industries-index-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(420px, .95fr);
-    gap: clamp(50px, 8vw, 130px);
-    align-items: center;
-}
-
-.industries-index-copy h1 {
-    max-width: 780px;
-    font-size: clamp(4rem, 7.6vw, 8rem);
-}
-
-.industries-index-copy .lead {
-    margin-top: 30px;
-    color: rgba(255,255,255,.68);
-}
-
-.industries-index-board {
-    padding: clamp(26px, 4vw, 48px);
-    color: var(--ink);
-    background: var(--gold);
-}
-
-.industries-board-label {
-    margin-bottom: 24px;
-    font-size: .66rem;
-    font-weight: 800;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-}
-
-.industries-index-board ol {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    border-top: 1px solid rgba(0,0,0,.34);
-}
-
-.industries-index-board li {
-    display: grid;
-    grid-template-columns: 34px minmax(0,1fr) auto;
-    gap: 14px;
-    align-items: center;
-    padding: 17px 0;
-    border-bottom: 1px solid rgba(0,0,0,.34);
-    animation: industry-row-in .7s var(--ease) both;
-}
-
-.industries-index-board li:nth-child(2) { animation-delay:.08s; }
-.industries-index-board li:nth-child(3) { animation-delay:.16s; }
-.industries-index-board li:nth-child(4) { animation-delay:.24s; }
-.industries-index-board li:nth-child(5) { animation-delay:.32s; }
-.industries-index-board li span { font-size:.68rem; font-weight:800; }
-.industries-index-board li strong { font:800 clamp(1rem,1.5vw,1.35rem)/1.05 var(--display); }
-.industries-index-board li em { color:rgba(0,0,0,.6); font-size:.65rem; font-style:normal; font-weight:700; text-transform:uppercase; }
-.industries-board-proof { display:grid; grid-template-columns:auto 1fr; gap:18px; align-items:end; margin-top:32px; }
-.industries-board-proof span { font:800 clamp(2.6rem,5vw,5.4rem)/.8 var(--display); }
-.industries-board-proof p { margin:0; font-size:.78rem; line-height:1.45; }
-@keyframes industry-row-in { from { opacity:0; transform:translateX(26px); } to { opacity:1; transform:none; } }
 
 .process-route-hero { background: var(--ink); }
 
 .process-route-map {
-    display: flex;
     align-items: center;
     max-width: 900px;
     margin-top: 54px;
 }
 
-.process-route-map span { color: var(--white); font: 800 .75rem/1 var(--display); }
+.process-route-map span { font: 800 .75rem/1 var(--display); }
 .process-route-map span i { display: block; margin-bottom: 8px; color: var(--gold); font: 700 .65rem/1 var(--body); }
 .process-route-map b { height: 2px; flex: 1; margin: 0 18px; overflow: hidden; background: rgba(255,255,255,.18); }
 .process-route-map b::after { display: block; width: 42%; height: 100%; content: ""; background: var(--gold); animation: route-travel 2.6s ease-in-out infinite; }
@@ -1375,7 +607,6 @@ main .section-head > p {
 
 .insights-signal-hero {
     position: relative;
-    min-height: 100svh;
     padding: 160px 0 72px;
     overflow: hidden;
     color: var(--white);
@@ -1384,9 +615,7 @@ main .section-head > p {
 
 .insights-signal-word {
     position: absolute;
-    top: 88px;
     left: 50%;
-    color: transparent;
     font: 800 clamp(8rem, 23vw, 23rem)/.75 var(--display);
     letter-spacing: -.055em;
     white-space: nowrap;
@@ -1401,8 +630,6 @@ main .section-head > p {
     display: grid;
     grid-template-columns: .52fr 1.48fr .68fr;
     gap: clamp(28px, 5vw, 78px);
-    align-items: end;
-    min-height: calc(100svh - 232px);
 }
 
 .insights-signal-index {
@@ -1506,23 +733,18 @@ main .section-head > p {
     to { transform: translateX(460%); }
 }
 
-.careers-invitation-hero { isolation: isolate; background: var(--gold); color: var(--ink); }
-.careers-invitation-hero::after { position:absolute; z-index:-1; inset:0 0 0 52%; content:""; background:var(--ink); clip-path:ellipse(76% 90% at 100% 50%); }
+
+.careers-invitation-hero::after { position:absolute; z-index:-1; content:""; }
 .careers-invitation-hero .eyebrow,.careers-invitation-hero .lead { color: rgba(0,0,0,.68); }
-.careers-invitation-hero .gold { color: var(--white); text-shadow: 2px 2px 0 var(--ink); }
-.careers-float-words { position:absolute; right:5%; bottom:12%; display:grid; gap:14px; color:var(--white); font:800 clamp(1.7rem,3vw,3.2rem)/1 var(--display); }
+
+.careers-float-words { position:absolute; display:grid; gap:14px; font:800 clamp(1.7rem,3vw,3.2rem)/1 var(--display); }
 .careers-float-words span { animation: career-float 4s ease-in-out infinite alternate; }
 .careers-float-words span:nth-child(2) { margin-left:55px; animation-delay:-1.2s; }
 .careers-float-words span:nth-child(3) { margin-left:12px; animation-delay:-2.2s; }
 @keyframes career-float { to { transform: translateY(-12px) rotate(-2deg); } }
 
 .contact-signal-hero { background:var(--ink); }
-.contact-signal-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); max-width:760px; margin-top:48px; border:1px solid rgba(255,255,255,.25); }
-.contact-signal-options a { display:grid; gap:6px; padding:22px; transition:background .35s ease,color .35s ease; }
-.contact-signal-options a + a { border-left:1px solid rgba(255,255,255,.25); }
-.contact-signal-options a:hover,.contact-signal-options a:focus-visible { color:var(--ink); background:var(--gold); outline:0; }
-.contact-signal-options span { font-size:.65rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; opacity:.62; }
-.contact-signal-options strong { font:800 clamp(1.2rem,2vw,1.8rem)/1.05 var(--display); }
+
 
 /* Expanded services scope */
 .capability-scope-section { background:var(--white); }
@@ -1536,12 +758,12 @@ main .section-head > p {
 .scope-note { max-width:900px; margin:24px 0 0; color:var(--muted); font-size:.82rem; }
 
 /* Applicant invitation */
-.candidate-invitation { padding:clamp(72px,9vw,120px) 0; color:var(--ink); background:var(--gold); }
+.candidate-invitation { padding:clamp(72px,9vw,120px) 0; }
 .candidate-invitation-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(36px,7vw,100px); align-items:end; }
 .candidate-invitation h2 { font-size:clamp(3rem,6vw,6.5rem); }
 
 /* Interactive office map */
-.office-location-panel { display:grid; grid-template-columns:minmax(260px,.72fr) minmax(420px,1.28fr); gap:clamp(34px,5vw,76px); align-items:center; margin-top:clamp(64px,8vw,110px); padding:clamp(30px,4vw,58px); color:var(--white); background:var(--ink); border-radius:28px; }
+.office-location-panel { display:grid; align-items:center; margin-top:clamp(64px,8vw,110px); color:var(--white); background:var(--ink); border-radius:28px; }
 .office-location-copy h2 { margin-bottom:26px; }
 .office-address { color:rgba(255,255,255,.82); line-height:1.8; }
 .office-address strong { color:var(--white); font-size:1.08rem; }
@@ -1550,7 +772,7 @@ main .section-head > p {
 .office-directions-link { display:flex; justify-content:space-between; align-items:center; gap:20px; margin-bottom:14px; padding:0 2px 12px; color:var(--gold); border-bottom:1px solid rgba(239,191,4,.42); font-size:.76rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
 .office-directions-link span { font-size:1.05rem; transition:transform .25s ease; }
 .office-directions-link:hover span,.office-directions-link:focus-visible span { transform:translate(3px,-3px); }
-.office-map-frame { position:relative; width:100%; height:clamp(340px,34vw,470px); overflow:hidden; background:#e5e3df; border:1px solid rgba(255,255,255,.18); border-radius:18px; }
+.office-map-frame { position:relative; width:100%; overflow:hidden; background:#e5e3df; border:1px solid rgba(255,255,255,.18); border-radius:18px; }
 .office-map-frame iframe { display:block; width:100%; height:100%; border:0; }
 
 @media(max-width:900px) {
@@ -1566,60 +788,15 @@ main .section-head > p {
     .process-route-map b { width:2px; height:28px; margin-left:10px; }
     .careers-invitation-hero::after { inset:58% 0 0; clip-path:ellipse(90% 60% at 75% 100%); }
     .careers-float-words { display:none; }
-    .contact-signal-options { grid-template-columns:1fr; }
-    .contact-signal-options a + a { border-top:1px solid rgba(255,255,255,.25); border-left:0; }
+
+
     .capability-scope-grid { grid-template-columns:1fr; }
     .capability-scope-grid article { min-height:0; }
     .office-map-frame { height:420px; }
 
-    .about-brand-marquee {
-        padding-block: 104px 30px;
-    }
 
-    .about-brand-window {
-        -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
-        mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
-    }
-
-    .about-brand-group {
-        gap: 38px;
-        padding-right: 38px;
-    }
-
-    .about-brand-group img {
-        max-width: 145px;
-    }
-
-    .about-brand-group img[src*="orbit"],
-    .about-brand-group img[src*="travelmanagers"] {
-        min-width: 0;
-        max-width: 180px;
-        padding: 9px 14px;
-        border-radius: 11px;
-    }
 }
 
-.content-nav {
-    position: sticky;
-    top: 88px;
-    z-index: 20;
-    background: rgba(246,245,240,.95);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--line);
-}
-
-.content-nav .container {
-    display: flex;
-    gap: 24px;
-    overflow: auto;
-    padding-block: 15px;
-}
-
-.content-nav a {
-    white-space: nowrap;
-    font-size: .75rem;
-    font-weight: 700;
-}
 
 .editorial {
     display: grid;
@@ -2163,7 +1340,6 @@ main .section-head > p {
 }
 
 .service-modal::backdrop {
-    background: rgba(8,8,8,.76);
     backdrop-filter: blur(8px);
     animation: service-backdrop-in .35s ease both;
 }
@@ -2343,35 +1519,6 @@ main .section-head > p {
     }
 }
 
-.page-hero:not(.services-fold-hero):not(.careers-invitation-hero) {
-    color: var(--white);
-    background: var(--black-100);
-}
-
-.page-hero:not(.services-fold-hero):not(.careers-invitation-hero) .lead {
-    color: rgba(255, 255, 255, .76);
-}
-
-.industry-panel,
-.operation-panel,
-.process-card,
-.leader-card,
-.career-role,
-.notice {
-    box-shadow: 0 16px 42px rgba(0, 0, 0, .08);
-}
-
-.service-modal-intro,
-.operation-panel-dark p,
-.operations-unified p,
-.office-location-panel p {
-    color: rgba(255, 255, 255, .76);
-}
-
-.directory-card ul {
-    color: #666;
-    padding-left: 20px;
-}
 
 .process-row {
     display: grid;
@@ -2444,7 +1591,9 @@ main .section-head > p {
 }
 
 @media(max-width:800px) {
-    .editorial,.leader-grid,.service-directory,.process-row {
+    .editorial,
+    .leader-grid,
+    .process-row {
         grid-template-columns: 1fr;
     }
 
@@ -2764,9 +1913,6 @@ main .section-head > p {
 .managed-support-layout {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(440px, 1fr) minmax(380px, 0.9fr);
-    align-items: center;
-    gap: clamp(70px, 9vw, 150px);
 }
 
 /* Orbit container */
@@ -2946,52 +2092,6 @@ main .section-head > p {
 }
 
 
-
-/* Content */
-
-.managed-support-content {
-    position: relative;
-    z-index: 2;
-}
-
-.managed-support-content .eyebrow {
-    color: #a9a9a9;
-}
-
-.managed-support-content h2 {
-    max-width: 670px;
-}
-
-.managed-support-content .lead {
-    margin-top: 26px;
-    color: #cfcfcf;
-}
-
-.managed-support-list {
-    display: grid;
-    gap: 0;
-    margin: 35px 0;
-    padding: 0;
-    list-style: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.managed-support-list li {
-    display: flex;
-    align-items: center;
-    gap: 17px;
-    padding: 16px 0;
-    color: #dedede;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.managed-support-list li span {
-    color: var(--gold);
-    font-family: var(--display);
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-}
-
 /* Rotation animations */
 
 @keyframes orbit-spin {
@@ -3051,11 +2151,7 @@ main .section-head > p {
         order: 1;
     }
 
-    .managed-support-content {
-        order: 2;
-        max-width: 760px;
-        margin-inline: auto;
-    }
+
 }
 
 /* Mobile: diagram above text */
@@ -3158,8 +2254,7 @@ main .section-head > p {
     gap: 24px;
 }
 
-.operation-panel,
-.operations-unified {
+.operation-panel {
     position: relative;
     display: grid;
     grid-template-columns: 0.92fr 1.08fr;
@@ -3179,10 +2274,6 @@ main .section-head > p {
     border-color: rgba(255, 255, 255, 0.16);
 }
 
-.operation-panel-gold {
-    color: #111;
-    background: var(--gold);
-}
 
 .operation-copy {
     position: relative;
@@ -3201,14 +2292,12 @@ main .section-head > p {
     background: currentColor;
 }
 
-.operation-copy h3,
-.operations-unified h3 {
+.operation-copy h3 {
     max-width: 590px;
     font-size: clamp(2.2rem, 4.6vw, 5rem);
 }
 
-.operation-copy > p:last-child,
-.operations-unified-heading > p:last-child {
+.operation-copy > p:last-child {
     max-width: 520px;
     margin: 26px 0 0;
     font-size: clamp(1rem, 1.4vw, 1.18rem);
@@ -3240,41 +2329,6 @@ main .section-head > p {
     transform: scale(1.035);
 }
 
-.operations-unified {
-    grid-template-columns: 1.05fr 0.95fr;
-    color: #fff;
-    background: #202020;
-}
-
-.operations-unified-heading {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: clamp(36px, 6vw, 78px);
-}
-
-.operations-unified-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    align-content: center;
-    padding: clamp(30px, 5vw, 64px);
-    background: var(--gold);
-}
-
-.operations-unified-grid span {
-    display: grid;
-    place-items: center;
-    min-height: 130px;
-    padding: 22px;
-    color: #111;
-    background: rgba(255, 255, 255, 0.45);
-    border: 1px solid rgba(11, 11, 11, 0.15);
-    border-radius: 18px;
-    font-weight: 800;
-    text-align: center;
-}
 
 .operations-progress {
     position: sticky;
@@ -3293,9 +2347,7 @@ main .section-head > p {
 
 /* Scroll-enhanced desktop stack. JavaScript adds .is-enhanced. */
 @media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
-    .operations-scroll.is-enhanced {
-        height: 520vh;
-    }
+
 
     .operations-scroll.is-enhanced .operations-stage {
         position: sticky;
@@ -3306,8 +2358,7 @@ main .section-head > p {
         overflow: hidden;
     }
 
-    .operations-scroll.is-enhanced .operation-panel,
-    .operations-scroll.is-enhanced .operations-unified {
+    .operations-scroll.is-enhanced .operation-panel {
         --card-y: 0px;
         --card-scale: 1;
         position: absolute;
@@ -3348,8 +2399,7 @@ main .section-head > p {
         gap: 24px;
     }
 
-    .operation-panel,
-    .operations-unified {
+    .operation-panel {
         position: relative;
         grid-template-columns: 1fr;
         opacity: 1;
@@ -3371,99 +2421,28 @@ main .section-head > p {
         background-size: 48px 48px;
     }
 
-    .operation-panel,
-    .operations-unified {
+    .operation-panel {
         border-radius: 18px;
     }
 
-    .operation-copy,
-    .operations-unified-heading {
+    .operation-copy {
         padding: 64px 26px 36px;
     }
 
-    .operations-unified-grid {
-        grid-template-columns: 1fr;
-        padding: 20px;
-    }
-
-    .operations-unified-grid span {
-        min-height: 86px;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .operation-panel,
-    .operations-unified {
-        transition: none;
-    }
-}
-
-/* Service bullets reveal slowly; headings remain static. */
-
-.directory-card.reveal li {
-    opacity: 0;
-    transform: translate3d(0, 24px, 0);
-    transition:
-         opacity 1.5s ease,
-        transform 1.8s var(--ease);
-}
-
-.directory-card.reveal li {
-    opacity: 0;
-    transform: translate3d(0, 24px, 0);
-    transition:
-        opacity 1.5s ease,
-        transform 1.8s var(--ease);
-}
-
-.directory-card.reveal.in-view li {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-}
-
-.directory-card.reveal.in-view li:nth-child(1) {
-    transition-delay: 0.4s;
-}
-
-.directory-card.reveal.in-view li:nth-child(2) {
-    transition-delay: 0.7s;
-}
-
-.directory-card.reveal.in-view li:nth-child(3) {
-    transition-delay: 1.2s;
-}
-
-.directory-card.reveal.in-view li:nth-child(4) {
-    transition-delay: 1.6s;
-}
-
-.directory-card.reveal.in-view li:nth-child(5) {
-    transition-delay: 2.0s;
 
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .directory-card.reveal li {
-        opacity: 1;
-        transform: none;
+    .operation-panel {
         transition: none;
     }
-
-    .about-brand-track {
-        animation: none;
-    }
 }
+
 
 /* Page-level responsive hardening. */
 @media (max-width: 980px) {
-    .content-nav {
-        top: 78px;
-        overflow-x: auto;
-        overscroll-behavior-inline: contain;
-        scrollbar-width: thin;
-    }
 
-    .content-nav ul,
+
     .industry-tabs {
         width: max-content;
         min-width: 100%;
@@ -3507,19 +2486,14 @@ main .section-head > p {
     }
 
     .service-command-list {
-        display: flex;
         flex-direction: row;
         overflow-x: auto;
-        scroll-snap-type: x mandatory;
         scrollbar-width: thin;
     }
 
     .service-command-tab,
     .service-command-tab:first-child {
         flex: 0 0 min(280px, 82vw);
-        min-height: 72px;
-        border-right: 1px solid rgba(0,0,0,.12);
-        scroll-snap-align: start;
     }
 
     .service-command-stage {
@@ -3541,8 +2515,7 @@ main .section-head > p {
 
     .capability-scope-grid,
     .leader-grid,
-    .industry-panel,
-    .directory-grid {
+    .industry-panel {
         grid-template-columns: 1fr;
     }
 
@@ -3560,13 +2533,9 @@ main .section-head > p {
     }
 
     .office-map-frame {
-        height: min(390px, 72vh);
         border-radius: 14px;
     }
 
-    .contact-signal-options {
-        margin-top: 34px;
-    }
 
     .service-modal {
         width: calc(100% - 16px);
@@ -3619,12 +2588,9 @@ main .section-head > p {
 }
 
 .services-fold-rail span {
-    color: var(--black-100);
-    background: var(--white);
     border-color: var(--black-50);
 }
 
-.industries-index-hero,
 .process-route-hero,
 .insights-signal-hero,
 .contact-signal-hero,
@@ -3633,21 +2599,6 @@ main .section-head > p {
     background-color: var(--black-100);
 }
 
-.industries-index-board {
-    color: var(--black-100);
-    background: var(--white);
-    border-top: 8px solid var(--yellow);
-}
-
-.industries-index-board ol,
-.industries-index-board li {
-    border-color: var(--black-50);
-}
-
-.industries-index-board li span,
-.industries-board-label {
-    color: var(--black-50);
-}
 
 .industry-panel {
     color: var(--black-100);
@@ -3664,18 +2615,12 @@ main .section-head > p {
     box-shadow: 20px 20px 0 20px var(--white);
 }
 
-.industry-panel-copy > p {
-    color: var(--black-50);
-}
 
 .careers-invitation-hero {
     color: var(--black-100);
     background: var(--white);
 }
 
-.careers-invitation-hero::after {
-    background: var(--black-100);
-}
 
 .careers-invitation-hero .eyebrow,
 .careers-invitation-hero .lead {
@@ -3724,15 +2669,6 @@ main .section-head > p {
     background-color: var(--yellow);
 }
 
-.service-command,
-.service-command-stage,
-.service-modal-shell,
-.operation-panel-dark,
-.operations-unified,
-.office-location-panel {
-    color: var(--white);
-    background-color: var(--black-100);
-}
 
 .service-modal-detail,
 .service-modal-close {
@@ -3744,22 +2680,6 @@ main .section-head > p {
     background-color: var(--black-50);
 }
 
-.content-nav {
-    background: rgba(255, 255, 255, .96);
-}
-
-@media (max-width: 680px) {
-    .industry-tab {
-        color: var(--black-100);
-        background: rgba(0, 0, 0, .10);
-        border-color: rgba(0, 0, 0, .22);
-    }
-
-    .industry-tab.is-active {
-        color: var(--black-100);
-        background: var(--yellow);
-    }
-}
 
 @media (hover: none) {
     .service-command-glow,
@@ -3774,14 +2694,10 @@ main .section-head > p {
 }
 
 @media (max-width: 900px) {
-    .industries-index-hero,
     .insights-signal-hero {
         min-height: auto;
     }
 
-    .industries-index-grid {
-        grid-template-columns: 1fr;
-    }
 
     .insights-signal-grid {
         grid-template-columns: .48fr 1.52fr;
@@ -3801,34 +2717,18 @@ main .section-head > p {
         grid-column: 1 / -1;
     }
 
-    .industries-index-board {
-        max-width: 760px;
-    }
 
 }
 
 @media (max-width: 620px) {
-    .industries-index-hero,
     .insights-signal-hero {
         padding-block: 132px 64px;
     }
 
-    .industries-index-copy h1,
     .insights-signal-copy h1 {
         font-size: clamp(3rem, 14vw, 4.8rem);
     }
 
-    .industries-index-board {
-        padding: 24px 20px;
-    }
-
-    .industries-index-board li {
-        grid-template-columns: 28px minmax(0,1fr);
-    }
-
-    .industries-index-board li em {
-        grid-column: 2;
-    }
 
     .insights-signal-word {
         top: 92px;
@@ -3867,7 +2767,7 @@ main .section-head > p {
 }
 
 /* =========================================================
-   REQUESTED RESPONSIVE CORRECTIONS — KEEP LAST IN THIS FILE
+   RESPONSIVE COMPONENT CORRECTIONS
    ========================================================= */
 
 /* One continuous How We Work route from 01 to 04. */
@@ -3880,14 +2780,11 @@ main .section-head > p {
 
 .process-route-map > b {
     position: absolute;
-    top: 9px;
     right: 7%;
     left: 2%;
     z-index: 0;
-    height: 2px;
     margin: 0;
     overflow: hidden;
-    background: rgba(255,255,255,.22);
 }
 
 .process-route-map > b::after {
@@ -3903,13 +2800,8 @@ main .section-head > p {
 .process-route-map > span { position: relative; z-index: 1; }
 .process-route-map > span::before {
     position: absolute;
-    top: 4px;
     left: -1px;
-    width: 11px;
-    height: 11px;
     content: "";
-    background: var(--gold);
-    border: 3px solid var(--ink);
     border-radius: 50%;
     transform: translateX(-50%);
 }
@@ -3966,9 +2858,9 @@ main .section-head > p {
     margin-inline: auto;
 }
 
-/* 520vh / 1.30 = 400vh: approximately 30% faster panel progression. */
+/* Four panels progress in just under three viewport heights. */
 @media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
-    .operations-scroll.is-enhanced { height: 400vh; }
+    .operations-scroll.is-enhanced { height: 280vh; }
 }
 
 /* More breathing room in Corporate Information and the foundation section. */
@@ -4031,7 +2923,6 @@ main .section-head > p {
 .careers-invitation-hero .lead { max-width: 66%; }
 .careers-invitation-hero::after {
     inset: 0 0 0 70%;
-    clip-path: ellipse(92% 88% at 100% 50%);
 }
 
 @media (max-width: 800px) {
@@ -4045,12 +2936,7 @@ main .section-head > p {
 @media (max-width: 680px) {
     /* Keep the Services pentagon behind the copy and chips. */
     .services-fold-hero { overflow: hidden; }
-    .services-fold-hero::after {
-        right: -34vw;
-        bottom: -28vw;
-        width: 76vw;
-        opacity: .94;
-    }
+
     .services-fold-hero .lead,
     .services-fold-rail {
         position: relative;
@@ -4084,15 +2970,9 @@ main .section-head > p {
     .service-command-tab i { display: none; }
 
     /* Show all five Where We Support tabs in a mobile-only grid. */
-    .industry-tabs,
-    .content-nav .industry-tabs {
+    .industry-tabs {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 8px;
-        width: 100%;
         min-width: 0;
-        padding: 0 0 22px;
-        overflow: visible;
         scroll-snap-type: none;
     }
     .industry-tab {
@@ -4101,13 +2981,11 @@ main .section-head > p {
         min-width: 0;
         min-height: 66px;
         padding: 12px;
-        color: #666;
         white-space: normal;
-        background: #f1f0ec;
         border: 1px solid rgba(0,0,0,.09);
         border-radius: 10px;
     }
-    .industry-tab:last-child { grid-column: 1 / -1; }
+
     .industry-tab::after { right: 12px; bottom: 7px; left: 12px; }
 
     .process-route-map {
@@ -4132,17 +3010,11 @@ main .section-head > p {
         line-height: .94;
     }
 
-    /* Move the Careers black shape below all usable content. */
-    .careers-invitation-hero {
-        min-height: 720px;
-        padding-bottom: 190px;
-    }
+
     .careers-invitation-hero h1,
     .careers-invitation-hero .lead { max-width: 100%; }
     .careers-invitation-hero::after {
         inset: auto 0 0;
-        width: 100%;
-        height: 125px;
         clip-path: ellipse(82% 82% at 80% 100%);
     }
     .careers-invitation-hero .button-row { position: relative; z-index: 3; }
@@ -4156,7 +3028,7 @@ main .section-head > p {
     .leadership-section .leader-grid { width: 82%; }
 }
 
-/* Final palette lock: keep late responsive rules inside the 60 / 30 / 10 system. */
+/* Internal-page 60 / 30 / 10 palette refinements. */
 .operation-panel-gold {
     color: var(--black-100);
     background: var(--white);
@@ -4171,24 +3043,11 @@ main .section-head > p {
     background: var(--black-50);
 }
 
-.operations-unified,
 .operation-panel-dark,
-.industry-photo-placeholder,
-.about-brand-group img[src*="orbit"],
-.about-brand-group img[src*="travelmanagers"] {
+.industry-photo-placeholder {
     background: var(--black-100);
 }
 
-.operations-unified-grid {
-    background: var(--black-50);
-    border-left: 8px solid var(--yellow);
-}
-
-.operations-unified-grid span {
-    color: var(--white);
-    background: var(--black-100);
-    border-color: rgba(255, 255, 255, .24);
-}
 
 .service-modal::backdrop {
     background: var(--black-50);
@@ -4228,12 +3087,11 @@ main .section-head > p {
 
 .service-modal-intro,
 .operation-panel-dark p,
-.operations-unified p,
 .office-location-panel p {
     color: rgba(255, 255, 255, .76);
 }
 
-/* Authoritative internal-page 60 / 30 / 10 palette — final cascade. */
+/* Internal-page 60 / 30 / 10 palette. */
 .about-first-section,
 .leadership-section,
 .operations-stack-section,
@@ -4242,12 +3100,10 @@ main .section-head > p {
 .foundation-section,
 .faq,
 .services-fold-hero,
-.careers-invitation-hero,
-.content-nav {
+.careers-invitation-hero {
     background-color: var(--white);
 }
 
-.industries-index-hero,
 .process-route-hero,
 .insights-signal-hero,
 .contact-signal-hero,
@@ -4287,18 +3143,9 @@ main .section-head > p {
     border-top-color: var(--yellow);
 }
 
-.service-command-tab.is-active,
-.industry-tab.is-active,
-.career-role:hover,
-.career-role:focus-visible,
-.capability-scope-grid article:hover {
-    color: var(--black-100);
-    background-color: var(--yellow);
-}
 
-/* White-canvas internal pages — authoritative and intentionally last. */
+/* White-canvas internal-page surfaces. */
 .page-hero,
-.industries-index-hero,
 .process-route-hero,
 .insights-signal-hero,
 .contact-signal-hero,
@@ -4318,7 +3165,6 @@ main .section-head > p {
 }
 
 .page-hero .lead,
-.industries-index-hero p,
 .process-route-hero p,
 .insights-signal-hero p,
 .contact-signal-hero p,
@@ -4328,7 +3174,6 @@ main .section-head > p {
     color: var(--black-50) !important;
 }
 
-.industries-index-hero .gold,
 .process-route-hero .gold,
 .insights-signal-hero .gold,
 .contact-signal-hero .gold,
@@ -4337,7 +3182,6 @@ main .section-head > p {
     color: var(--yellow) !important;
 }
 
-.industries-index-board,
 .industry-panel,
 .process-card,
 .leader-card,
@@ -4351,7 +3195,6 @@ main .section-head > p {
     border-color: var(--black-50);
 }
 
-.industries-index-board,
 .industry-panel,
 .operation-panel-gold,
 .process-card,
@@ -4376,7 +3219,6 @@ main .section-head > p {
 .service-command-stage,
 .service-modal-shell,
 .operation-panel-dark,
-.operations-unified,
 .office-location-panel {
     color: var(--white) !important;
     background-color: var(--black-100) !important;
@@ -4386,7 +3228,6 @@ main .section-head > p {
 .service-command-stage p,
 .service-modal-shell p,
 .operation-panel-dark p,
-.operations-unified p,
 .office-location-panel p {
     color: rgba(255, 255, 255, .76) !important;
 }
@@ -4408,9 +3249,6 @@ main .section-head > p {
 
 /* Services hero: smaller, slower polygon and raised yellow capability chips. */
 .services-fold-hero::after {
-    right: 1vw;
-    bottom: -7vw;
-    width: 33.6vw;
     animation-duration: 20s;
 }
 
@@ -4430,25 +3268,16 @@ main .section-head > p {
 
 /* Industry tabs: outlined controls with an animated yellow text cue. */
 .industry-tabs {
-    gap: 12px;
-    width: 100%;
     padding-inline: 0;
 }
 
 .industry-tab,
 .industry-tab:not(.is-active),
 .industry-tab.is-active {
-    min-height: 66px;
-    padding: 14px 18px 18px;
-    color: var(--black-50) !important;
-    background: var(--white) !important;
-    border: 2px solid var(--black-100) !important;
-    border-radius: 14px;
     transition: color .45s ease, border-color .45s ease, transform .45s var(--ease), box-shadow .45s ease;
 }
 
 .industry-tab span {
-    color: var(--black-100) !important;
     transition: color .45s ease, transform .45s var(--ease);
 }
 
@@ -4488,38 +3317,25 @@ main .section-head > p {
 
 /* How We Work route: stronger continuous line and larger nodes, no numbers. */
 .process-route-map > b {
-    top: 8px;
-    height: 4px;
     background: var(--black-100);
 }
 
 .process-route-map > span {
-    padding-top: 32px;
     color: var(--black-100);
     font-size: .82rem;
 }
 
 .process-route-map > span::before {
-    top: 0;
-    width: 18px;
-    height: 18px;
     background: var(--yellow);
-    border: 4px solid var(--black-100);
-    box-shadow: 0 0 0 5px var(--white);
 }
 
 .process-route-map > span i {
     display: none;
 }
 
-/* Eight explanations sit directly below the moving support orbit. */
-.support-orbit {
-    gap: 42px;
-}
 
 .orbit-descriptions {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
     width: 100%;
 }
@@ -4551,14 +3367,6 @@ main .section-head > p {
     line-height: 1.5;
 }
 
-.managed-support-content .eyebrow,
-.managed-support-content .lead {
-    color: var(--black-50) !important;
-}
-
-.managed-support-content .gold {
-    color: var(--yellow) !important;
-}
 
 /* Insights: remove the empty viewport-sized gap and retain purposeful motion. */
 .insights-signal-hero {
@@ -4580,28 +3388,11 @@ main .section-head > p {
     to { transform: translateX(-48%) translateY(8px); }
 }
 
-/* Careers: smaller contained shape and readable yellow floating words. */
-.careers-invitation-hero::after {
-    top: 16%;
-    right: 0;
-    bottom: 16%;
-    left: 72%;
-    width: auto;
-    height: auto;
-    clip-path: ellipse(82% 74% at 100% 50%);
-}
 
 .careers-float-words {
-    right: 2.5%;
-    bottom: 24%;
-    color: var(--yellow) !important;
     font-size: clamp(1.25rem, 2.1vw, 2.25rem);
 }
 
-.careers-float-words span {
-    color: var(--yellow) !important;
-    text-shadow: 0 2px 14px rgba(239, 191, 4, .22);
-}
 
 @media (max-width: 900px) {
     .services-fold-hero::after {
@@ -4623,7 +3414,7 @@ main .section-head > p {
     }
 }
 
-/* Final cascade: the rules below intentionally win over legacy variants. */
+/* Component refinements. */
 .services-fold-hero::after {
     right: max(20px, calc((100vw - var(--max)) / 2));
     bottom: -72px;
@@ -4802,7 +3593,7 @@ main .section-head > p {
     padding: clamp(24px, 3vw, 42px);
 }
 .office-location-map { display: flex; min-height: 570px; flex-direction: column; }
-.office-map-frame { height: auto; min-height: 520px; flex: 1; }
+.office-map-frame { flex: 1; }
 
 @media (max-width: 1050px) {
     .managed-support-intro,
@@ -4819,8 +3610,7 @@ main .section-head > p {
         opacity: .96;
     }
 
-    .industry-tabs,
-    .content-nav .industry-tabs {
+    .industry-tabs {
         position: relative;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         width: 100%;
@@ -4850,7 +3640,6 @@ main .section-head > p {
     .managed-support-layout { grid-template-columns: 1fr; }
     .orbit-descriptions { grid-template-columns: 1fr; }
     .orbit-descriptions article { min-height: 0; }
-    .careers-invitation-hero { min-height: 760px; padding-bottom: 190px; }
     .careers-invitation-hero::after {
         top: auto;
         right: -74px;
@@ -4870,11 +3659,10 @@ main .section-head > p {
     }
     .office-location-panel { min-height: 0; }
     .office-location-map { min-height: 430px; }
-    .office-map-frame { min-height: 390px; }
+
 }
 
-/* Final accessibility/layout overrides. Keep these after the legacy theme
-   layers above so they remain authoritative. */
+/* Accessibility and layout safeguards. */
 .office-map-frame {
     height: clamp(420px, 34vw, 520px) !important;
     min-height: 420px !important;
@@ -5095,21 +3883,13 @@ main .section-head > p {
 /* =========================================================
    INDUSTRIES — CONNECTED TAB CARD
    HBS adaptation of the supplied rounded tab/card reference.
-   Keep this block last so it overrides the legacy variants above.
    ========================================================= */
 
 .page-industries .industry-showcase {
-    --folder-tabs-width: 68%;
-    --industry-card: var(--yellow);
-    --industry-cycle: 7000ms;
-    position: relative;
-    isolation: isolate;
     margin-top: clamp(44px, 6vw, 78px);
-    padding-top: 96px;
 }
 
-.page-industries .industry-tabs,
-.page-industries .content-nav .industry-tabs {
+.page-industries .industry-tabs {
     position: absolute;
     top: 0;
     left: 0;
@@ -5207,31 +3987,6 @@ main .section-head > p {
     border: 0;
     border-radius: 32px;
     box-shadow: 0 28px 70px rgba(0, 0, 0, .17);
-}
-
-.page-industries .industry-panels::before {
-    position: absolute;
-    top: -96px;
-    right: 0;
-    display: block !important;
-    width: calc(100% - var(--folder-tabs-width));
-    height: 98px;
-    content: "";
-    background: var(--industry-card);
-    border-radius: 32px 32px 0 0;
-}
-
-.page-industries .industry-panels::after {
-    position: absolute;
-    top: -56px;
-    right: calc(100% - var(--folder-tabs-width));
-    display: block !important;
-    width: 56px;
-    height: 56px;
-    content: "";
-    background: transparent;
-    border-bottom-right-radius: 56px;
-    box-shadow: 28px 28px 0 28px var(--industry-card);
 }
 
 .page-industries .industry-panel,
@@ -5348,10 +4103,7 @@ main .section-head > p {
 
 .page-industries .industry-photo-placeholder {
     min-height: 420px;
-    overflow: hidden;
-    background: var(--black-100);
     border: 0;
-    border-radius: 30px;
     box-shadow: 0 22px 46px rgba(0, 0, 0, .20);
     transform-origin: center;
 }
@@ -5385,19 +4137,6 @@ main .section-head > p {
     animation: hbs-industry-image-in 1.05s .09s var(--ease) both;
 }
 
-.page-industries .industry-showcase.is-switching .industry-panels {
-    animation: hbs-industry-card-pulse .65s var(--ease) both;
-}
-
-@keyframes hbs-industry-copy-in {
-    from { opacity: 0; filter: blur(4px); transform: translateY(24px); }
-    to { opacity: 1; filter: blur(0); transform: none; }
-}
-
-@keyframes hbs-industry-photo-in {
-    from { opacity: 0; clip-path: inset(9% 9% 9% 9% round 38px); transform: translateX(34px) scale(.98); }
-    to { opacity: 1; clip-path: inset(0 round 30px); transform: none; }
-}
 
 @keyframes hbs-industry-image-in {
     from { transform: scale(1.11); }
@@ -5410,23 +4149,15 @@ main .section-head > p {
     100% { opacity: 0; transform: translateX(620%) skewX(-18deg); }
 }
 
-@keyframes hbs-industry-card-pulse {
-    0% { transform: scale(.992); }
-    100% { transform: scale(1); }
-}
-
 @keyframes hbs-industry-tab-progress {
     from { transform: scaleX(0); }
     to { transform: scaleX(1); }
 }
 
 @media (max-width: 980px) {
-    .page-industries .industry-showcase {
-        padding-top: 0;
-    }
 
-    .page-industries .industry-tabs,
-    .page-industries .content-nav .industry-tabs {
+
+    .page-industries .industry-tabs {
         position: relative;
         display: flex;
         gap: 8px;
@@ -5461,11 +4192,6 @@ main .section-head > p {
         display: none !important;
     }
 
-    .page-industries .industry-panels,
-    .page-industries .industry-panel,
-    .page-industries .industry-panel.is-active {
-        border-radius: 26px;
-    }
 
     .page-industries .industry-panel,
     .page-industries .industry-panel.is-active {
@@ -5482,25 +4208,13 @@ main .section-head > p {
 }
 
 @media (max-width: 760px) {
-    .page-industries .industry-panel,
-    .page-industries .industry-panel.is-active {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        min-height: 0;
-        padding: 32px 24px 24px;
-    }
 
-    .page-industries .industry-panel h3 {
-        font-size: clamp(2.6rem, 12vw, 4.2rem);
-    }
 
     .page-industries .industry-number {
         margin-bottom: 22px;
     }
 
-    .page-industries .industry-photo-placeholder {
-        min-height: 300px;
-    }
+
 }
 
 @media (max-width: 460px) {
@@ -5529,69 +4243,35 @@ main .section-head > p {
 }
 
 /* =========================================================
-   FINAL INDUSTRY FOLDER CURVE
-   Keep this block last. It places the curved connector above the
-   white tab rail and creates one continuous semi-rounded silhouette.
-   ========================================================= */
-
-@media (min-width: 981px) {
-    .page-industries .industry-tabs,
-    .page-industries .content-nav .industry-tabs {
-        z-index: 5;
-        padding-right: 82px;
-    }
-
-    .page-industries .industry-panels {
-        z-index: 6;
-    }
-
-    .page-industries .industry-panels::before {
-        top: -96px;
-        right: 0;
-        z-index: 1;
-        width: calc(100% - var(--folder-tabs-width));
-        height: 98px;
-        background: var(--industry-card);
-        border-radius: 36px 36px 0 0;
-        pointer-events: none;
-    }
-
-    .page-industries .industry-panels::after {
-        top: -64px;
-        right: calc(100% - var(--folder-tabs-width));
-        z-index: 2;
-        display: block !important;
-        width: 64px;
-        height: 64px;
-        background: radial-gradient(
-            circle at top left,
-            transparent 0 62px,
-            var(--industry-card) 63px 100%
-        );
-        border: 0;
-        border-radius: 0;
-        box-shadow: none;
-        pointer-events: none;
-    }
-}
-
-/* =========================================================
-   FINAL PAGE RESPONSIVE + HERO ALIGNMENT LAYER
-   Keep this section at the absolute end of pages.css.
+   SHARED PAGE HERO ALIGNMENT
    ========================================================= */
 
 .page-hero,
 .insights-signal-hero {
     position: relative;
-    min-height: 100svh;
     overflow: hidden;
     overflow: clip;
+}
+
+.page-hero:not(.contact-signal-hero):not(.careers-invitation-hero),
+.insights-signal-hero {
+    min-height: 100svh;
+}
+
+.contact-signal-hero,
+.careers-invitation-hero {
+    min-height: clamp(620px, 72svh, 760px);
 }
 
 .page-hero {
     display: flex;
     align-items: center;
     padding: clamp(148px, 15vh, 190px) 0 clamp(84px, 10vh, 120px);
+}
+
+.contact-signal-hero,
+.careers-invitation-hero {
+    padding: clamp(126px, 12vh, 156px) 0 clamp(64px, 7vh, 84px);
 }
 
 .page-hero > .container,
@@ -5673,8 +4353,7 @@ main .section-head > p {
 }
 
 @media (min-width: 981px) {
-    .page-industries .industry-tabs,
-    .page-industries .content-nav .industry-tabs {
+    .page-industries .industry-tabs {
         position: absolute;
         top: 0;
         left: 0;
@@ -5799,7 +4478,7 @@ main .section-head > p {
 }
 
 @media (max-width: 760px) {
-    .page-hero,
+    .page-hero:not(.contact-signal-hero):not(.careers-invitation-hero),
     .insights-signal-hero {
         min-height: 100svh;
     }
@@ -5807,6 +4486,12 @@ main .section-head > p {
     .page-hero {
         align-items: flex-start;
         padding: 138px 0 82px;
+    }
+
+    .contact-signal-hero,
+    .careers-invitation-hero {
+        min-height: auto;
+        padding: 122px 0 70px;
     }
 
     .page-hero > .container,
@@ -5857,8 +4542,7 @@ main .section-head > p {
         padding-top: 126px;
     }
 
-    .page-industries .industry-tabs,
-    .page-industries .content-nav .industry-tabs {
+    .page-industries .industry-tabs {
         display: flex;
         gap: 8px;
         width: 100%;
@@ -5918,9 +4602,7 @@ main .section-head > p {
     border-top: 0 !important;
 }
 
-/* Contact: final office-map sizing and colour treatment.
-   This block intentionally comes last so older map declarations cannot
-   collapse the iframe back to its browser-default height. */
+/* Contact office-map sizing and colour treatment. */
 .page-contact .office-location-panel {
     display: grid;
     grid-template-columns: minmax(310px, .62fr) minmax(0, 1.38fr);

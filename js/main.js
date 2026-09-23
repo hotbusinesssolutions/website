@@ -1063,217 +1063,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     /* =========================================================
-       CORE SERVICE PILLARS
-       ========================================================= */
-
-    const serviceTabs = [
-        ...document.querySelectorAll(".service-tab"),
-    ];
-
-    const servicePanel =
-        document.querySelector(".service-panel");
-
-    const serviceTitle =
-        document.querySelector("[data-service-title]");
-
-    const serviceCopy =
-        document.querySelector("[data-service-copy]");
-
-    const serviceFlow =
-        document.querySelector("[data-service-flow]");
-
-    const services = {
-        talent: {
-            title: "Build Your Offshore Team",
-            description:
-                "Sourcing, screening, recruitment, onboarding and ongoing people support from Manila.",
-            flow: [
-                "Calibrate",
-                "Select",
-                "Onboard",
-                "Support",
-            ],
-        },
-
-        travel: {
-            title: "Travel Operations",
-            description:
-                "GDS-based ticketing, reissuance, refunds, itinerary management and travel administration.",
-            flow: [
-                "GDS",
-                "Ticket",
-                "Manage",
-                "Resolve",
-            ],
-        },
-
-        cx: {
-            title: "Customer Experience",
-            description:
-                "Dependable voice, email and chat support for customers, agents and sales teams.",
-            flow: [
-                "Connect",
-                "Assist",
-                "Resolve",
-                "Learn",
-            ],
-        },
-
-        finance: {
-            title: "Finance & Back Office",
-            description:
-                "AR/AP, reconciliation, invoicing, financial reporting and administrative support.",
-            flow: [
-                "Process",
-                "Check",
-                "Report",
-                "Improve",
-            ],
-        },
-
-        shared: {
-            title: "HR & Shared Services",
-            description:
-                "Employee lifecycle support spanning HR administration, payroll coordination, attendance, benefits and offboarding.",
-            flow: [
-                "Employ",
-                "Care",
-                "Comply",
-                "Retain",
-            ],
-        },
-
-        workplace: {
-            title: "Managed Workplace",
-            description:
-                "Secure BGC workspaces, IT support, system security, equipment and continuity support.",
-            flow: [
-                "Equip",
-                "Secure",
-                "Operate",
-                "Continue",
-            ],
-        },
-    };
-
-    let serviceTransitionTimer;
-
-    const activateService = (selectedTab) => {
-        if (
-            selectedTab.classList.contains("active") ||
-            !servicePanel ||
-            !serviceTitle ||
-            !serviceCopy ||
-            !serviceFlow
-        ) {
-            return;
-        }
-
-        const selectedService =
-            services[selectedTab.dataset.service];
-
-        if (!selectedService) {
-            return;
-        }
-
-        serviceTabs.forEach((tab) => {
-            const isActive = tab === selectedTab;
-
-            tab.classList.toggle(
-                "active",
-                isActive,
-            );
-
-            tab.setAttribute(
-                "aria-selected",
-                String(isActive),
-            );
-        });
-
-        window.clearTimeout(serviceTransitionTimer);
-
-        servicePanel.classList.remove("is-entering");
-        servicePanel.classList.add("is-changing");
-
-        serviceTransitionTimer =
-            window.setTimeout(() => {
-                serviceTitle.textContent =
-                    selectedService.title;
-
-                serviceCopy.textContent =
-                    selectedService.description;
-
-                serviceFlow.innerHTML =
-                    selectedService.flow
-                        .map((step) => {
-                            return `<span>${step}</span>`;
-                        })
-                        .join("");
-
-                servicePanel.classList.remove(
-                    "is-changing",
-                );
-
-                /*
-                 * Force the browser to calculate the updated
-                 * layout before restarting the entrance effect.
-                 */
-                void servicePanel.offsetWidth;
-
-                servicePanel.classList.add(
-                    "is-entering",
-                );
-
-                window.setTimeout(() => {
-                    servicePanel.classList.remove(
-                        "is-entering",
-                    );
-                }, 650);
-            }, 220);
-    };
-
-    serviceTabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-            activateService(tab);
-        });
-
-        tab.addEventListener(
-            "keydown",
-            (event) => {
-                if (
-                    event.key !== "ArrowDown" &&
-                    event.key !== "ArrowUp"
-                ) {
-                    return;
-                }
-
-                event.preventDefault();
-
-                const currentIndex =
-                    serviceTabs.indexOf(tab);
-
-                const direction =
-                    event.key === "ArrowDown"
-                        ? 1
-                        : -1;
-
-                const nextIndex =
-                    (
-                        currentIndex +
-                        direction +
-                        serviceTabs.length
-                    ) % serviceTabs.length;
-
-                const nextTab =
-                    serviceTabs[nextIndex];
-
-                nextTab.focus();
-                activateService(nextTab);
-            },
-        );
-    });
-
-    /* =========================================================
        HOMEPAGE EDITORIAL SERVICE RIBBONS
        ========================================================= */
 
@@ -1432,6 +1221,153 @@ document.addEventListener("DOMContentLoaded", () => {
         if (initialTab) {
             activateCommandService(initialTab);
         }
+    }
+
+    /* =========================================================
+       SERVICES DETAIL DIALOG
+       ========================================================= */
+
+    const serviceDialog = document.querySelector(
+        "[data-service-dialog]",
+    );
+
+    if (serviceDialog) {
+        const serviceDialogContent = {
+            team: [
+                "01 / Build your team",
+                "Build Your Offshore Team",
+                "A structured path from role definition and talent search through onboarding and ongoing people support.",
+                [
+                    ["Role calibration", "Clarify responsibilities, skills, coverage and success measures before sourcing."],
+                    ["Talent pathway", "Coordinate sourcing, screening, selection and onboarding around the agreed role profile."],
+                    ["Ongoing support", "Support employee administration after the team is established."],
+                ],
+            ],
+            travel: [
+                "02 / Travel operations",
+                "Travel Operations",
+                "Operational support for travel workflows requiring accuracy, responsive handling and clear escalation paths.",
+                [
+                    ["Transaction support", "Assist with ticketing, reissuance, refunds and itinerary processing."],
+                    ["GDS workflows", "Align support with documented systems, queues and procedures."],
+                    ["Service continuity", "Define coverage, handoffs and escalation points."],
+                ],
+            ],
+            customer: [
+                "03 / Customer experience",
+                "Customer Experience",
+                "Connected voice and digital support designed around the customer journey and established channels.",
+                [
+                    ["Channel coverage", "Support voice, email and chat within an agreed scope."],
+                    ["Correspondence", "Handle customer and agent communication using documented guidance."],
+                    ["Sales support", "Provide defined pre-sale or post-sale assistance."],
+                ],
+            ],
+            finance: [
+                "04 / Finance operations",
+                "Finance & Back Office",
+                "Process-focused support for recurring finance and administration work within agreed controls.",
+                [
+                    ["Transaction processing", "Support invoicing and AR/AP activities."],
+                    ["Reconciliation", "Assist with matching, investigation and reconciliation outputs."],
+                    ["Reporting support", "Prepare defined reporting inputs for review."],
+                ],
+            ],
+            hr: [
+                "05 / Shared services",
+                "HR & Shared Services",
+                "Employee-lifecycle coordination that keeps recurring people processes organised and visible.",
+                [
+                    ["Employee administration", "Coordinate routine employee-lifecycle documentation."],
+                    ["Time & benefits", "Support attendance, payroll inputs and benefits coordination."],
+                    ["People support", "Assist with performance processes and offboarding."],
+                ],
+            ],
+            workplace: [
+                "06 / Managed workplace",
+                "Managed Workplace",
+                "A supported BGC environment connecting equipment, IT operations, security and continuity planning.",
+                [
+                    ["Workplace setup", "Coordinate workstations and equipment."],
+                    ["IT support", "Provide defined infrastructure and technical support pathways."],
+                    ["Continuity", "Align security and continuity arrangements with operational requirements."],
+                ],
+            ],
+        };
+
+        const dialogKicker = serviceDialog.querySelector(
+            "[data-service-modal-kicker]",
+        );
+        const dialogTitle = serviceDialog.querySelector(
+            "[data-service-modal-title]",
+        );
+        const dialogIntro = serviceDialog.querySelector(
+            "[data-service-modal-intro]",
+        );
+        const dialogDetails = serviceDialog.querySelector(
+            "[data-service-modal-details]",
+        );
+        const dialogClose = serviceDialog.querySelector(
+            "[data-service-modal-close]",
+        );
+        let dialogOpener;
+
+        const closeServiceDialog = () => {
+            if (typeof serviceDialog.close === "function" && serviceDialog.open) {
+                serviceDialog.close();
+            } else {
+                serviceDialog.removeAttribute("open");
+            }
+        };
+
+        document
+            .querySelectorAll("[data-service-modal]")
+            .forEach((button) => {
+                button.addEventListener("click", () => {
+                    const item =
+                        serviceDialogContent[button.dataset.serviceModal];
+
+                    if (!item) {
+                        return;
+                    }
+
+                    dialogOpener = button;
+                    dialogKicker.textContent = item[0];
+                    dialogTitle.textContent = item[1];
+                    dialogIntro.textContent = item[2];
+                    dialogDetails.replaceChildren(
+                        ...item[3].map(([heading, copy]) => {
+                            const block = document.createElement("div");
+                            const strong = document.createElement("strong");
+                            const span = document.createElement("span");
+
+                            block.className = "service-modal-detail";
+                            strong.textContent = heading;
+                            span.textContent = copy;
+                            block.append(strong, span);
+                            return block;
+                        }),
+                    );
+
+                    if (typeof serviceDialog.showModal === "function") {
+                        serviceDialog.showModal();
+                    } else {
+                        serviceDialog.setAttribute("open", "");
+                    }
+                });
+            });
+
+        dialogClose?.addEventListener("click", closeServiceDialog);
+
+        serviceDialog.addEventListener("click", (event) => {
+            if (event.target === serviceDialog) {
+                closeServiceDialog();
+            }
+        });
+
+        serviceDialog.addEventListener("close", () => {
+            dialogOpener?.focus();
+        });
     }
 
     /* =========================================================
