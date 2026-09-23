@@ -474,6 +474,63 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* =========================================================
+       RESILIENT BRAND MARQUEE
+       ========================================================= */
+
+    document.querySelectorAll("[data-brand-marquee]").forEach((marquee) => {
+        const track = marquee.querySelector("[data-brand-marquee-track]");
+        const firstGroup = marquee.querySelector("[data-brand-marquee-group]");
+
+        if (!track || !firstGroup) {
+            return;
+        }
+
+        let resizeFrame = 0;
+
+        const measureLoop = () => {
+            window.cancelAnimationFrame(resizeFrame);
+            resizeFrame = window.requestAnimationFrame(() => {
+                const trackStyle = window.getComputedStyle(track);
+                const trackGap = Number.parseFloat(trackStyle.columnGap) || 0;
+                const loopDistance = firstGroup.getBoundingClientRect().width + trackGap;
+
+                if (loopDistance <= 0) {
+                    return;
+                }
+
+                marquee.style.setProperty(
+                    "--brand-loop-offset",
+                    `-${loopDistance}px`,
+                );
+                marquee.classList.add("is-ready");
+            });
+        };
+
+        const imagesReady = [...track.querySelectorAll("img")].map((image) => {
+            if (image.complete) {
+                return Promise.resolve();
+            }
+
+            return new Promise((resolve) => {
+                image.addEventListener("load", resolve, { once: true });
+                image.addEventListener("error", resolve, { once: true });
+            });
+        });
+
+        Promise.all(imagesReady).then(measureLoop);
+        document.fonts?.ready.then(measureLoop);
+
+        if ("ResizeObserver" in window) {
+            const marqueeObserver = new ResizeObserver(measureLoop);
+            marqueeObserver.observe(firstGroup);
+        } else {
+            window.addEventListener("resize", measureLoop, { passive: true });
+        }
+
+        measureLoop();
+    });
+
+    /* =========================================================
        HOMEPAGE CAPABILITY COUNTERS
        ========================================================= */
 

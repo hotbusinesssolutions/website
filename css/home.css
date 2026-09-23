@@ -498,10 +498,12 @@
    ========================================================= */
 
 .brand-marquee {
-    padding: 36px 0 42px;
+    --brand-gap: clamp(48px, 7vw, 110px);
+    padding: 28px 0 32px;
     overflow: hidden;
-    background: #ffffff;
-    border-bottom: 1px solid var(--line);
+    color: var(--black-100);
+    background: var(--white) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, .16);
 }
 
 .brand-marquee-container {
@@ -514,24 +516,31 @@
 .brand-marquee-window {
     width: 100%;
     overflow: hidden;
-    -webkit-mask-image: linear-gradient(         90deg,         transparent,         #000 8%,         #000 92%,         transparent     );
-    mask-image: linear-gradient(         90deg,         transparent,         #000 8%,         #000 92%,         transparent     );
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    touch-action: pan-x;
 }
 
 .brand-marquee-track {
     display: flex;
+    gap: var(--brand-gap);
     width: max-content;
-    animation: brand-scroll 30s linear infinite;
+    min-width: max-content;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
     will-change: transform;
-    pointer-events: none;
     user-select: none;
+}
+
+.brand-marquee.is-ready .brand-marquee-track {
+    animation: brand-scroll 32s linear infinite;
 }
 
 .brand-marquee-group {
     display: flex;
+    flex: 0 0 auto;
     align-items: center;
-    gap: clamp(48px, 7vw, 110px);
-    padding-right: clamp(48px, 7vw, 110px);
+    gap: var(--brand-gap);
 }
 
 .brand-marquee-group img {
@@ -540,6 +549,7 @@
     max-width: 190px;
     object-fit: contain;
     flex: none;
+    pointer-events: none;
     /* Preserve exact logo colors. */
 
     filter: none;
@@ -571,9 +581,8 @@
 
 @keyframes brand-scroll {
     to {
-        transform: translateX(-50%);
+        transform: translate3d(var(--brand-loop-offset), 0, 0);
     }
-
 }
 
 
@@ -582,13 +591,16 @@
    ========================================================= */
 
 @media (max-width: 520px) {
+    .brand-marquee {
+        --brand-gap: 44px;
+    }
+
     .brand-marquee-container {
         width: calc(100% - 28px);
     }
 
     .brand-marquee-group {
-        gap: 44px;
-        padding-right: 44px;
+        gap: var(--brand-gap);
     }
 
     .brand-marquee-group img {
@@ -607,8 +619,21 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .brand-marquee-window {
+        overflow-x: auto;
+        -webkit-mask-image: none;
+        mask-image: none;
+        scrollbar-width: none;
+    }
+
     .brand-marquee-track {
-        animation: none;
+        animation: none !important;
+        transform: none !important;
+        will-change: auto;
+    }
+
+    .brand-marquee-group[aria-hidden="true"] {
+        display: none;
     }
 
     .pillar-ribbon,
@@ -625,30 +650,16 @@
 
 /* Homepage layouts remain fluid across phones, tablets and wide screens. */
 @media (max-width: 980px) {
-    .hero {
-        min-height: 760px;
-    }
-
-
     .capability-layout {
         min-width: 0;
     }
 }
 
 @media (max-width: 680px) {
-    .hero {
-        min-height: 100svh;
-        padding-top: 132px;
-    }
-
     .hero-orbit {
         width: min(78vw, 390px);
         right: -34%;
         opacity: .62;
-    }
-
-    .brand-marquee {
-        padding-block: 28px 32px;
     }
 
     .brand-marquee-window {
@@ -666,11 +677,8 @@
 }
 
 @media (max-width: 420px) {
-
-
-    .brand-marquee-group {
-        gap: 34px;
-        padding-right: 34px;
+    .brand-marquee {
+        --brand-gap: 34px;
     }
 }
 
@@ -682,8 +690,7 @@
 }
 
 .journey-step,
-.skyline-cta,
-.brand-marquee {
+.skyline-cta {
     background-color: var(--white);
 }
 
@@ -701,11 +708,6 @@
 
 
 /* Home palette lock: white-led content, black structure, yellow accents. */
-.brand-marquee,
-.skyline-cta {
-    background-color: var(--white);
-}
-
 .home-hero,
 .dark-section,
 .contact-cta {
@@ -719,7 +721,6 @@
 
 /* White-canvas Home page. Black is contained; yellow stays an accent. */
 .home-hero,
-.brand-marquee,
 .page-home .section,
 .page-home .dark-section,
 .skyline-cta,
@@ -797,7 +798,6 @@
     box-shadow: 0 16px 42px rgba(0, 0, 0, .08);
 }
 
-.brand-marquee,
 .skyline-cta {
     border-color: rgba(0, 0, 0, .16);
 }
@@ -952,8 +952,8 @@
    ========================================================= */
 
 .home-hero {
-    min-height: 100svh;
-    padding: clamp(148px, 15vh, 190px) 0 clamp(84px, 10vh, 120px);
+    min-height: clamp(680px, 88svh, 860px);
+    padding: clamp(132px, 13vh, 166px) 0 clamp(70px, 8vh, 96px);
     overflow: hidden;
     overflow: clip;
 }
@@ -979,7 +979,7 @@
 }
 
 .skyline-cta {
-    min-height: clamp(500px, 44vw, 660px);
+    min-height: clamp(420px, 38vw, 540px);
     overflow: hidden;
     overflow: clip;
 }
@@ -1015,8 +1015,8 @@
 @media (max-width: 680px) {
     .home-hero {
         align-items: flex-start;
-        min-height: 100svh;
-        padding: 138px 0 82px;
+        min-height: auto;
+        padding: 122px 0 64px;
     }
 
     .home-hero > .container {

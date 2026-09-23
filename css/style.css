@@ -17,6 +17,7 @@
     --body: "Inter", Arial, sans-serif;
     --max: 1240px;
     --radius: 24px;
+    --section-space: clamp(64px, 6.5vw, 96px);
     --ease: cubic-bezier(.22,1,.36,1);
 }
 
@@ -71,7 +72,7 @@ button,input,select,textarea {
 }
 
 .section {
-    padding: clamp(76px,9vw,132px) 0;
+    padding: var(--section-space) 0;
 }
 
 .eyebrow {

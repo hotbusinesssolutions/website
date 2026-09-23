@@ -1,8 +1,3 @@
-.about-first-section {
-    padding-top: clamp(150px, 16vw, 210px);
-}
-
-
 .industry-experience {
     --industry-surface: var(--white);
     background: var(--industry-surface);
@@ -758,7 +753,7 @@
 .scope-note { max-width:900px; margin:24px 0 0; color:var(--muted); font-size:.82rem; }
 
 /* Applicant invitation */
-.candidate-invitation { padding:clamp(72px,9vw,120px) 0; }
+.candidate-invitation { padding: var(--section-space) 0; }
 .candidate-invitation-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(36px,7vw,100px); align-items:end; }
 .candidate-invitation h2 { font-size:clamp(3rem,6vw,6.5rem); }
 
@@ -2858,9 +2853,9 @@
     margin-inline: auto;
 }
 
-/* Four panels progress in just under three viewport heights. */
+/* Four panels progress over 2.4 viewport heights. */
 @media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
-    .operations-scroll.is-enhanced { height: 280vh; }
+    .operations-scroll.is-enhanced { height: 240vh; }
 }
 
 /* More breathing room in Corporate Information and the foundation section. */
@@ -2885,10 +2880,13 @@
 }
 
 /* Career roles and safe desktop hero boundary. */
-.career-role-grid { margin-top: 40px; }
+.career-role-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 36px;
+}
 .career-role {
     display: flex;
-    min-height: 280px;
+    min-height: 390px;
     flex-direction: column;
     color: var(--ink);
     text-decoration: none;
@@ -2900,7 +2898,40 @@
     letter-spacing: .12em;
     text-transform: uppercase;
 }
-.career-role h3 { margin-top: 36px; }
+.career-role h3 {
+    margin-top: 18px;
+    font-size: clamp(2rem, 3vw, 3.25rem);
+}
+.career-role-meta {
+    margin: 14px 0 18px;
+    color: var(--black-50) !important;
+    font-size: .8rem;
+    font-weight: 700;
+}
+.career-role-highlights {
+    display: grid;
+    gap: 9px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.career-role-highlights li {
+    position: relative;
+    padding-left: 18px;
+    color: var(--black-50);
+    font-size: .82rem;
+    line-height: 1.5;
+}
+.career-role-highlights li::before {
+    position: absolute;
+    top: .6em;
+    left: 0;
+    width: 7px;
+    height: 7px;
+    content: "";
+    background: var(--yellow);
+    border-radius: 50%;
+}
 .career-role strong {
     margin-top: auto;
     padding-top: 22px;
@@ -3368,9 +3399,8 @@
 }
 
 
-/* Insights: remove the empty viewport-sized gap and retain purposeful motion. */
+/* Insights hero spacing and purposeful motion. */
 .insights-signal-hero {
-    min-height: auto;
     padding-block: 150px 86px;
 }
 
@@ -4255,23 +4285,23 @@ main .section-head > p {
 
 .page-hero:not(.contact-signal-hero):not(.careers-invitation-hero),
 .insights-signal-hero {
-    min-height: 100svh;
+    min-height: clamp(640px, 78svh, 780px);
 }
 
 .contact-signal-hero,
 .careers-invitation-hero {
-    min-height: clamp(620px, 72svh, 760px);
+    min-height: clamp(560px, 66svh, 680px);
 }
 
 .page-hero {
     display: flex;
     align-items: center;
-    padding: clamp(148px, 15vh, 190px) 0 clamp(84px, 10vh, 120px);
+    padding: clamp(132px, 13vh, 166px) 0 clamp(70px, 8vh, 96px);
 }
 
 .contact-signal-hero,
 .careers-invitation-hero {
-    padding: clamp(126px, 12vh, 156px) 0 clamp(64px, 7vh, 84px);
+    padding: clamp(112px, 10vh, 136px) 0 clamp(56px, 6vh, 72px);
 }
 
 .page-hero > .container,
@@ -4309,7 +4339,7 @@ main .section-head > p {
 
 .page-about .about-first-section,
 .page-industries .industry-experience {
-    padding-top: clamp(150px, 14vw, 190px);
+    padding-top: clamp(112px, 10vw, 140px);
 }
 
 .culture-photo img,
@@ -4480,18 +4510,18 @@ main .section-head > p {
 @media (max-width: 760px) {
     .page-hero:not(.contact-signal-hero):not(.careers-invitation-hero),
     .insights-signal-hero {
-        min-height: 100svh;
+        min-height: auto;
     }
 
     .page-hero {
         align-items: flex-start;
-        padding: 138px 0 82px;
+        padding: 118px 0 64px;
     }
 
     .contact-signal-hero,
     .careers-invitation-hero {
         min-height: auto;
-        padding: 122px 0 70px;
+        padding: 112px 0 62px;
     }
 
     .page-hero > .container,
